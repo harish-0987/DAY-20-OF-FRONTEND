@@ -1,561 +1,464 @@
-# 🎯 Day 15 of Frontend: CSS Flexbox (Flexible Box Layout)
+# 🎯 Day 16 of Frontend: CSS Grid Box (CSS Grid Layout)
 
-Welcome to **Day 15 of the 100 Days Frontend Challenge**! Today's milestone is dedicated to mastering the single most foundational layout system in modern CSS: **CSS Flexbox (Flexible Box Layout Module)**.
+Welcome to **Day 16 of the 100 Days Frontend Challenge**! Today's milestone is dedicated to mastering the most versatile, robust 2-dimensional layout engine in modern CSS: **CSS Grid Layout (CSS Grid Box)**.
 
-Repository: [harish-0987/DAY-15-OF-FRONTEND](https://github.com/harish-0987/DAY-15-OF-FRONTEND)
+Repository: [harish-0987/DAY-16-OF-FRONTEND](https://github.com/harish-0987/DAY-16-OF-FRONTEND)
 
 ---
 
 ## 📑 Table of Contents
-1. [What is CSS Flexbox?](#-what-is-css-flexbox)
-2. [Why Flexbox? (The Problem It Solves)](#-why-flexbox-the-problem-it-solves)
-3. [The Core Concept: Container vs. Items](#-the-core-concept-container-vs-items)
-4. [The Two Axes: Main Axis & Cross Axis](#-the-two-axes-main-axis--cross-axis)
-5. [Flex Container Properties (Parent)](#-flex-container-properties-parent)
-   - [display: flex / inline-flex](#1-display)
-   - [flex-direction](#2-flex-direction)
-   - [flex-wrap](#3-flex-wrap)
-   - [flex-flow](#4-flex-flow-shorthand)
-   - [justify-content (Main Axis Alignment)](#5-justify-content)
-   - [align-items (Cross Axis Alignment)](#6-align-items)
-   - [align-content (Multi-line Cross Axis Alignment)](#7-align-content)
-   - [gap, row-gap, column-gap](#8-gap-spacing)
-6. [Flex Item Properties (Children)](#-flex-item-properties-children)
-   - [order](#1-order)
-   - [flex-grow](#2-flex-grow)
-   - [flex-shrink](#3-flex-shrink)
-   - [flex-basis](#4-flex-basis)
-   - [flex shorthand](#5-flex-shorthand)
-   - [align-self](#6-align-self)
-7. [Basic-Level Code & Common Patterns](#-basic-level-code--common-patterns)
-   - [Pattern 1: The Perfect Centering Solution](#pattern-1-perfect-horizontal--vertical-centering)
-   - [Pattern 2: Responsive Navbar with Auto Margins](#pattern-2-responsive-navbar-with-auto-margins)
-   - [Pattern 3: Responsive Card Grid](#pattern-3-responsive-card-grid)
-   - [Pattern 4: Media Object (Avatar + Text)](#pattern-4-media-object)
-   - [Pattern 5: Sticky Footer Layout](#pattern-5-sticky-footer-layout)
-8. [Flexbox Cheat Sheet & Property Matrix](#-flexbox-cheat-sheet--property-matrix)
-9. [Interactive Flexbox Lab Guide](#-interactive-flexbox-lab)
-10. [Common Flexbox Gotchas & Best Practices](#-common-flexbox-gotchas--best-practices)
+1. [What is CSS Grid Layout?](#-what-is-css-grid-layout)
+2. [Why CSS Grid? (The 2D Advantage)](#-why-css-grid-the-2d-advantage)
+3. [The Core Anatomy: 6 Pillars of Grid](#-the-core-anatomy-6-pillars-of-grid)
+4. [Basic Level of Code of Grid Box in CSS](#-basic-level-of-code-of-grid-box-in-css)
+   - [Step 1: HTML Structure](#step-1-html-structure)
+   - [Step 2: Basic CSS Grid Rules](#step-2-basic-css-grid-rules)
+   - [Understanding the fr (Fractional) Unit](#understanding-the-fr-fractional-unit)
+   - [The repeat() Function](#the-repeat-function)
+5. [Grid Container Properties (Parent)](#-grid-container-properties-parent)
+   - [display: grid / inline-grid](#1-display)
+   - [grid-template-columns & grid-template-rows](#2-grid-template-columns--grid-template-rows)
+   - [gap, row-gap, column-gap](#3-gap-row-gap-column-gap)
+   - [justify-items, align-items, place-items](#4-justify-items-align-items-place-items)
+   - [justify-content, align-content, place-content](#5-justify-content-align-content-place-content)
+   - [grid-template-areas](#6-grid-template-areas)
+   - [grid-auto-flow, grid-auto-rows, grid-auto-columns](#7-implicit-grid--auto-placement)
+6. [Grid Item Properties (Child Spanning & Placement)](#-grid-item-properties-child-spanning--placement)
+   - [grid-column & grid-row (Line-based placement)](#1-grid-column--grid-row)
+   - [The span keyword](#2-the-span-keyword)
+   - [grid-area](#3-grid-area)
+   - [justify-self, align-self, place-self](#4-justify-self-align-self-place-self)
+7. [5 Practical Real-World Grid Recipes](#-5-practical-real-world-grid-recipes)
+   - [Recipe 1: The Magic Responsive Auto-Fit Cards](#recipe-1-responsive-auto-fit-cards-zero-media-queries)
+   - [Recipe 2: Modern Bento Box Feature Grid](#recipe-2-modern-bento-box-feature-grid)
+   - [Recipe 3: Dashboard Layout with Template Areas](#recipe-3-dashboard-layout-with-template-areas)
+   - [Recipe 4: The 2-Line Perfect Dead-Center Box](#recipe-4-the-2-line-perfect-dead-center-box)
+   - [Recipe 5: 12-Column Responsive Web Grid System](#recipe-5-12-column-responsive-web-grid-system)
+8. [CSS Grid vs Flexbox: When to Use Which?](#-css-grid-vs-flexbox-when-to-use-which)
+9. [Common Gotchas & Best Practices](#-common-gotchas--best-practices)
+10. [CSS Grid Quick Cheat Sheet](#-css-grid-quick-cheat-sheet)
 
 ---
 
-## 📌 What is CSS Flexbox?
+## 📌 What is CSS Grid Layout?
 
-The **Flexible Box Module (Flexbox)** is a 1-dimensional CSS layout model designed to distribute space between items in an interface and provide powerful alignment capabilities, even when the dimensions of items are unknown or dynamic.
+**CSS Grid Layout** is a native, two-dimensional layout system designed specifically for the web. 
 
-> **Key Takeaway:** Flexbox is **one-dimensional**, meaning it handles layout in one direction at a time — either as a **row** (horizontal) or as a **column** (vertical). For two-dimensional layouts (rows AND columns simultaneously), CSS Grid is typically used.
-
----
-
-## ⚡ Why Flexbox? (The Problem It Solves)
-
-Before Flexbox (CSS2 era), web developers had to rely on cumbersome workarounds:
-- **`float: left / right`**: Required manual `clearfix` hacks, unpredictable parent collapses, and was meant for text wrapping, not layout.
-- **`display: inline-block`**: Introduced unwanted whitespace between HTML nodes that required font-size hacks (`font-size: 0`).
-- **`display: table / table-cell`**: Semantic nightmare and lacked responsiveness.
-- **Vertical Centering**: Nearly impossible without obscure `position: absolute; top: 50%; transform: translateY(-50%)` math.
-
-Flexbox solved all of these with declarative, expressive CSS rules.
-
----
-
-## 🧱 The Core Concept: Container vs. Items
-
-Flexbox operates on a strict parent-child hierarchy:
-1. **Flex Container (Parent)**: The element on which `display: flex` or `display: inline-flex` is applied.
-2. **Flex Items (Children)**: The immediate, direct child elements of that flex container.
+While Flexbox is designed to align items in **one direction** at a time (either horizontally along a row OR vertically down a column), CSS Grid provides precise, simultaneous control over **both columns AND rows**.
 
 ```
-┌────────────────────────── FLEX CONTAINER (display: flex) ──────────────────────────┐
-│                                                                                     │
-│   ┌────────────────────┐   ┌────────────────────┐   ┌────────────────────┐          │
-│   │    FLEX ITEM 1     │   │    FLEX ITEM 2     │   │    FLEX ITEM 3     │          │
-│   │   (Direct Child)   │   │   (Direct Child)   │   │   (Direct Child)   │          │
-│   └────────────────────┘   └────────────────────┘   └────────────────────┘          │
-│                                                                                     │
-└─────────────────────────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────┐
+│                      CSS GRID LAYOUT                        │
+│                                                             │
+│         Column 1            Column 2            Column 3    │
+│      ┌───────────────┐   ┌───────────────┐   ┌────────────┐ │
+│Row 1 │   Item (1,1)  │   │   Item (1,2)  │   │ Item (1,3) │ │
+│      └───────────────┘   └───────────────┘   └────────────┘ │
+│      ┌───────────────┐   ┌───────────────┐   ┌────────────┐ │
+│Row 2 │   Item (2,1)  │   │   Item (2,2)  │   │ Item (2,3) │ │
+│      └───────────────┘   └───────────────┘   └────────────┘ │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
 ```
-
-> ⚠️ **Note:** Only direct children become flex items. Grandchildren or deeper nested descendants are NOT flex items unless their own immediate parent is also given `display: flex`.
 
 ---
 
-## 🧭 The Two Axes: Main Axis & Cross Axis
+## ⚡ Why CSS Grid? (The 2D Advantage)
 
-Everything in Flexbox is positioned relative to two perpendicular axes:
+Before CSS Grid was introduced to standard browsers:
+- Complex multi-column page layouts required bloated CSS frameworks (e.g., Bootstrap 12-column float grids).
+- Aligning items across rows required nested `<div>` wrappers inside other `<div>` rows.
+- Dynamic responsive layouts needed dozens of media queries with fragile percentage math (`width: 31.333%`).
+- Equal-height cards across rows and columns were notoriously difficult to synchronize.
 
-```
-                  MAIN AXIS (flex-direction: row)
-     main-start ──────────────────────────────────────► main-end
-        │
-  cross-│   ┌───────────────┐   ┌───────────────┐   ┌───────────────┐
-  start │   │    ITEM 1     │   │    ITEM 2     │   │    ITEM 3     │
-        │   └───────────────┘   └───────────────┘   └───────────────┘
-        ▼
-   CROSS AXIS
-        │
-   cross-end
-```
-
-| Concept | Explanation |
-| :--- | :--- |
-| **Main Axis** | The primary axis along which flex items are laid out. Set by `flex-direction`. |
-| **Main-Start & Main-End** | Items are placed inside the container starting on the main-start side and moving toward main-end. |
-| **Main Size** | The width or height of a flex item along the main axis. |
-| **Cross Axis** | The axis perpendicular (90 degrees) to the main axis. |
-| **Cross-Start & Cross-End** | The start and end points along the cross axis. |
-| **Cross Size** | The width or height of a flex item along the cross axis. |
-
-> 💡 **Crucial Rule:**
-> - When `flex-direction: row` &rarr; Main Axis = **Horizontal (X)**, Cross Axis = **Vertical (Y)**.
-> - When `flex-direction: column` &rarr; Main Axis = **Vertical (Y)**, Cross Axis = **Horizontal (X)**.
+**CSS Grid solved all of these problems natively** with clean declarative markup and powerful track sizing functions like `fr`, `repeat()`, and `minmax()`.
 
 ---
 
-## 📦 Flex Container Properties (Parent)
+## 🧱 The Core Anatomy: 6 Pillars of Grid
 
-These properties are declared on the **parent container** to dictate how its children behave.
+To master CSS Grid, you must understand these 6 fundamental concepts:
+
+```
+ Grid Line 1        Grid Line 2         Grid Line 3        Grid Line 4
+      │                  │                   │                  │
+      ▼                  ▼                   ▼                  ▼
+  ────┬──────────────────┬───────────────────┬──────────────────┬────
+      │                  │                   │                  │
+      │   GRID CELL      │                   │                  │
+      │   (Intersection) │    COLUMN TRACK   │                  │
+      │                  │                   │                  │
+  ────┼─── GUTTER (GAP) ─┼───────────────────┼──────────────────┼──── Grid Line 2
+      │                  │                   │                  │
+      │                  │                   │                  │
+      │    ROW TRACK     │     GRID AREA     │                  │
+      │                  │  (Spans multiple) │                  │
+      │                  │                   │                  │
+  ────┴──────────────────┴───────────────────┴──────────────────┴──── Grid Line 3
+```
+
+1. **Grid Container (Parent)**: The element with `display: grid` or `display: inline-grid`.
+2. **Grid Items (Children)**: The immediate, direct child elements of the grid container.
+3. **Grid Lines**: The numbered invisible horizontal and vertical dividing lines (indexed starting at `1`). Negative indices (`-1`, `-2`) count backwards from the opposite edge.
+4. **Grid Tracks**: The space between any two adjacent grid lines (a row track or a column track).
+5. **Grid Cells**: The single rectangular unit formed by the intersection of one row track and one column track.
+6. **Gutters / Gap**: The empty spacing separating tracks, controlled via `gap`.
+
+---
+
+## 🚀 Basic Level of Code of Grid Box in CSS
+
+Here is the absolute simplest, most practical starter implementation of a CSS Grid box layout.
+
+### Step 1: HTML Structure
+
+Define a container `<div>` with three or more child `<div>` boxes:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Basic CSS Grid Box</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Grid Container with 3 Box Items -->
+    <div class="grid-container">
+        <div class="grid-box">Box 1</div>
+        <div class="grid-box">Box 2</div>
+        <div class="grid-box">Box 3</div>
+    </div>
+
+</body>
+</html>
+```
+
+### Step 2: Basic CSS Grid Rules
+
+```css
+/* 1. Turn the parent container into a CSS Grid */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* Creates 3 equal flexible columns */
+    gap: 16px;                          /* 16px space between boxes */
+}
+
+/* 2. Basic styling for the child grid boxes */
+.grid-box {
+    background-color: #6366f1; /* Indigo background */
+    color: #ffffff;            /* White text */
+    padding: 24px;             /* Internal box padding */
+    border-radius: 8px;        /* Rounded corners */
+    text-align: center;        /* Centered text */
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+```
+
+### Understanding the `fr` (Fractional) Unit
+
+The `fr` unit is CSS Grid's superpower. It represents a fraction of the **available free space** inside the container.
+
+```css
+/* Example 1: 3 equal columns */
+grid-template-columns: 1fr 1fr 1fr;
+
+/* Example 2: The middle box is twice as wide as the outer boxes */
+grid-template-columns: 1fr 2fr 1fr;
+
+/* Example 3: Fixed 250px sidebar with the remaining space going to content */
+grid-template-columns: 250px 1fr;
+```
+
+### The `repeat()` Function
+
+Instead of typing repetitive track lists, use `repeat(count, size)`:
+
+```css
+/* Instead of: 1fr 1fr 1fr */
+grid-template-columns: repeat(3, 1fr);
+
+/* Instead of: 100px 100px 100px 100px */
+grid-template-columns: repeat(4, 100px);
+```
+
+---
+
+## 🛠️ Grid Container Properties (Parent)
 
 ### 1. `display`
-Defines the flex container context.
-
 ```css
-/* Block-level flex container (fills parent width) */
 .container {
-    display: flex;
-}
-
-/* Inline-level flex container (fits content width) */
-.inline-container {
-    display: inline-flex;
+    display: grid;        /* Block-level grid container (takes 100% parent width) */
+    display: inline-grid; /* Inline-level grid (shrink-wraps to child content) */
 }
 ```
 
----
-
-### 2. `flex-direction`
-Establishes the direction of the Main Axis.
-
+### 2. `grid-template-columns` & `grid-template-rows`
+Defines track sizes using units like `px`, `%`, `em`, `rem`, `fr`, `auto`, or `minmax()`.
 ```css
 .container {
-    flex-direction: row;            /* Default: Left to Right */
-    flex-direction: row-reverse;    /* Right to Left */
-    flex-direction: column;         /* Top to Bottom */
-    flex-direction: column-reverse; /* Bottom to Top */
+    /* 3 columns: 200px fixed, flexible center, 150px fixed */
+    grid-template-columns: 200px 1fr 150px;
+
+    /* 3 rows: 60px header, automatic content, 50px footer */
+    grid-template-rows: 60px auto 50px;
 }
 ```
 
-- **`row` (default)**: Items flow horizontally from left to right (in LTR languages).
-- **`row-reverse`**: Items flow horizontally in reverse order (right to left).
-- **`column`**: Items stack vertically from top to bottom.
-- **`column-reverse`**: Items stack vertically in reverse order (bottom to top).
+### 3. `gap`, `row-gap`, `column-gap`
+Replaces older margin workarounds by setting direct gutter widths.
+```css
+.container {
+    gap: 20px;          /* Sets both row-gap and column-gap to 20px */
+    row-gap: 30px;      /* Vertical spacing between rows */
+    column-gap: 15px;   /* Horizontal spacing between columns */
+}
+```
 
----
-
-### 3. `flex-wrap`
-Controls whether flex items are forced into a single line or can wrap onto multiple lines.
+### 4. `justify-items`, `align-items`, `place-items`
+Controls how grid items are aligned **inside** their individual grid cells.
+- Values: `stretch` (default), `start`, `end`, `center`
 
 ```css
 .container {
-    flex-wrap: nowrap;        /* Default: All items squeezed onto 1 line */
-    flex-wrap: wrap;          /* Items break into new lines if space runs out */
-    flex-wrap: wrap-reverse;  /* Items wrap into new lines in reverse direction */
+    justify-items: center; /* Inline (horizontal) alignment inside cell */
+    align-items: center;   /* Block (vertical) alignment inside cell */
+
+    /* Shorthand: place-items: <align-items> <justify-items> */
+    place-items: center;   /* Centers horizontally & vertically */
 }
 ```
 
----
-
-### 4. `flex-flow` (Shorthand)
-Combines `flex-direction` and `flex-wrap` in a single line.
-
-```css
-/* Syntax: flex-flow: <flex-direction> <flex-wrap>; */
-.container {
-    flex-flow: row wrap;
-}
-```
-
----
-
-### 5. `justify-content`
-Aligns flex items along the **Main Axis** and distributes extra free space.
+### 5. `justify-content`, `align-content`, `place-content`
+When the total dimensions of the grid tracks are smaller than the container element, these properties align the **entire grid track system** inside the parent.
+- Values: `start`, `end`, `center`, `stretch`, `space-around`, `space-between`, `space-evenly`
 
 ```css
 .container {
-    justify-content: flex-start;    /* Default: Items packed at main-start */
-    justify-content: flex-end;      /* Items packed at main-end */
-    justify-content: center;        /* Items centered along main axis */
-    justify-content: space-between; /* First item at start, last at end, equal space between */
-    justify-content: space-around;  /* Equal space around each item (half-space at edges) */
-    justify-content: space-evenly;  /* Equal space between items and outer edges */
+    justify-content: space-between;
+    align-content: center;
 }
 ```
 
-#### Visual Diagram:
-```
-flex-start:    [ 1 ][ 2 ][ 3 ]-----------------
-flex-end:      -----------------[ 1 ][ 2 ][ 3 ]
-center:        --------[ 1 ][ 2 ][ 3 ]---------
-space-between: [ 1 ]---------[ 2 ]---------[ 3 ]
-space-around:  --[ 1 ]----- [ 2 ]----- [ 3 ]--
-space-evenly:  ---[ 1 ]---[ 2 ]---[ 3 ]---
-```
-
----
-
-### 6. `align-items`
-Aligns flex items along the **Cross Axis** on the current line.
-
+### 6. `grid-template-areas`
+Allows intuitive ASCII-art layout design by naming areas:
 ```css
 .container {
-    align-items: stretch;     /* Default: Items stretch to fill container height (if height not set) */
-    align-items: flex-start;  /* Items aligned to cross-start (top in row) */
-    align-items: flex-end;    /* Items aligned to cross-end (bottom in row) */
-    align-items: center;      /* Items centered vertically along cross axis */
-    align-items: baseline;    /* Items aligned according to their text baseline */
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: 60px 1fr 50px;
+    grid-template-areas:
+        "header  header"
+        "sidebar content"
+        "footer  footer";
 }
+
+header  { grid-area: header; }
+aside   { grid-area: sidebar; }
+main    { grid-area: content; }
+footer  { grid-area: footer; }
 ```
 
----
-
-### 7. `align-content`
-Aligns multiple flex lines along the **Cross Axis** when there is extra space. **Only takes effect when `flex-wrap: wrap` and items span multiple lines.**
-
+### 7. Implicit Grid & Auto-Placement
+When items exceed the explicitly declared rows or columns, the grid automatically generates implicit tracks:
 ```css
 .container {
-    align-content: stretch;       /* Default: Lines stretch to fill space */
-    align-content: flex-start;    /* Lines packed at cross-start */
-    align-content: flex-end;      /* Lines packed at cross-end */
-    align-content: center;        /* Lines centered along cross axis */
-    align-content: space-between; /* First line at top, last at bottom, space between */
-    align-content: space-around;  /* Equal space around each line */
-    align-content: space-evenly;  /* Equal space between lines and borders */
+    grid-auto-flow: row;            /* default: places new items in rows */
+    grid-auto-flow: column;         /* places new items in columns */
+    grid-auto-flow: row dense;      /* fills empty holes earlier in the grid */
+    grid-auto-rows: minmax(100px, auto); /* sets height for implicit rows */
 }
 ```
 
 ---
 
-### 8. `gap` (Spacing)
-Modern CSS property that defines the gutters between flex items without needing margin resets on edge elements!
+## 🧩 Grid Item Properties (Child Spanning & Placement)
+
+### 1. `grid-column` & `grid-row`
+Positions a child item based on grid line numbers:
 
 ```css
-.container {
-    gap: 20px;               /* 20px between both rows and columns */
-    row-gap: 15px;           /* 15px between wrapped lines */
-    column-gap: 25px;        /* 25px between adjacent items */
+/* Shorthand: <start-line> / <end-line> */
+.featured-item {
+    grid-column: 1 / 3; /* Spans from Column Line 1 to Column Line 3 */
+    grid-row: 1 / 2;    /* Stays on Row Line 1 */
+}
+```
+
+### 2. The `span` Keyword
+Instead of calculating ending line indices, use `span`:
+```css
+.wide-box {
+    grid-column: span 2; /* Expands across 2 columns from its current position */
+}
+
+.tall-box {
+    grid-row: span 3;    /* Expands across 3 vertical rows */
+}
+```
+
+### 3. `justify-self` & `align-self`
+Overrides the parent's alignment for an individual child item:
+```css
+.special-box {
+    justify-self: end;    /* Aligns to the right edge of its cell */
+    align-self: center;   /* Centers vertically inside its cell */
+    place-self: center;   /* Shorthand for both */
 }
 ```
 
 ---
 
-## 🧩 Flex Item Properties (Children)
+## 💡 5 Practical Real-World Grid Recipes
 
-These properties are declared directly on individual **flex items** (the direct children).
-
-### 1. `order`
-Controls the visual rendering order of items without altering the HTML structure.
-- Default: `0`
-- Accepts positive and negative integers (e.g. `-1`, `0`, `1`, `2`).
-- Lower numbers appear first.
+### Recipe 1: Responsive Auto-Fit Cards (Zero Media Queries)
+The single most popular CSS Grid trick on the web today:
 
 ```css
-.item-vip {
-    order: -1; /* Jumps to the very beginning */
-}
-.item-last {
-    order: 99; /* Moves to the very end */
-}
-```
-
----
-
-### 2. `flex-grow`
-Specifies how much a flex item can expand relative to its siblings if free space is available along the main axis.
-- Default: `0` (do not grow, keep natural content width).
-- Value: Unitless number.
-
-```css
-/* All items grow equally to fill space */
-.item {
-    flex-grow: 1;
-}
-
-/* This item takes twice as much remaining space as others */
-.item-featured {
-    flex-grow: 2;
-}
-```
-
----
-
-### 3. `flex-shrink`
-Specifies how much a flex item can shrink relative to its siblings when the container lacks sufficient space.
-- Default: `1` (shrink proportionally to prevent overflow).
-- Set to `0` to prevent an item from ever shrinking (keeps its minimum size).
-
-```css
-/* Do not let avatar or logo shrink */
-.logo {
-    flex-shrink: 0;
-}
-```
-
----
-
-### 4. `flex-basis`
-Defines the default size of an element before remaining space is distributed via `flex-grow` or `flex-shrink`.
-- Default: `auto` (looks at the item's `width` or `height` or content size).
-- Can be set in `px`, `%`, `rem`, or `0`.
-
-```css
-.item {
-    flex-basis: 200px; /* Starts at 200px before growing or shrinking */
-}
-```
-
----
-
-### 5. `flex` (Shorthand)
-The recommended shorthand for `flex-grow`, `flex-shrink`, and `flex-basis`.
-
-```css
-/* Syntax: flex: <flex-grow> <flex-shrink> <flex-basis>; */
-
-.item {
-    flex: 1 1 auto;  /* Standard flexible item */
-    flex: 0 0 250px; /* Rigid item: exactly 250px, won't grow, won't shrink */
-    flex: 1;         /* Equivalent to: flex: 1 1 0% (grows equally) */
-    flex: none;      /* Equivalent to: flex: 0 0 auto (inflexible) */
-}
-```
-
----
-
-### 6. `align-self`
-Allows an individual flex item to override the container's `align-items` setting on the cross axis.
-
-```css
-.item-special {
-    align-self: flex-end; /* Pin only this item to the bottom */
-}
-```
-Values: `auto` (inherits container's `align-items`), `flex-start`, `flex-end`, `center`, `baseline`, `stretch`.
-
----
-
-## 💻 Basic-Level Code & Common Patterns
-
-Here are the 5 most essential real-world layout recipes every frontend developer must know:
-
-### Pattern 1: Perfect Horizontal & Vertical Centering
-The ultimate solution to CSS's most famous problem.
-
-```html
-<div class="center-box">
-    <h1>Centered Perfectly</h1>
-</div>
-```
-```css
-.center-box {
-    display: flex;
-    justify-content: center; /* Horizontally center */
-    align-items: center;     /* Vertically center */
-    height: 300px;
-    background: #f1f5f9;
-}
-```
-
----
-
-### Pattern 2: Responsive Navbar with Auto Margins
-Push navigation links or actions to the far right effortlessly using `margin-left: auto`.
-
-```html
-<header class="navbar">
-    <div class="logo">⚡ DevBrand</div>
-    <nav class="nav-links">
-        <a href="#">Home</a>
-        <a href="#">Projects</a>
-        <a href="#">Blog</a>
-    </nav>
-    <button class="cta-btn">Sign In</button>
-</header>
-```
-```css
-.navbar {
-    display: flex;
-    align-items: center;
-    padding: 16px 24px;
-    background: #0f172a;
-    color: white;
-}
-
-.nav-links {
-    display: flex;
-    gap: 20px;
-    margin-left: 32px;
-}
-
-.cta-btn {
-    margin-left: auto; /* Pushes button all the way to the right! */
-    padding: 8px 16px;
-    background: #4f46e5;
-    color: white;
-    border: none;
-    border-radius: 6px;
-}
-```
-
----
-
-### Pattern 3: Responsive Card Grid
-Cards that wrap automatically onto new lines and share remaining space equally.
-
-```html
-<div class="card-grid">
-    <article class="card">Card 1</article>
-    <article class="card">Card 2</article>
-    <article class="card">Card 3</article>
-</div>
-```
-```css
-.card-grid {
-    display: flex;
-    flex-wrap: wrap;
+.cards-grid {
+    display: grid;
+    /* Auto generates columns, wrapping automatically when below 240px */
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 20px;
 }
-
-.card {
-    flex: 1 1 280px; /* Grow, shrink, base width 280px */
-    padding: 24px;
-    background: #ffffff;
-    border-radius: 12px;
-    border: 1px solid #e2e8f0;
-}
 ```
 
----
+### Recipe 2: Modern Bento Box Feature Grid
+A landing page showcase layout where hero cards command attention:
 
-### Pattern 4: Media Object (Avatar + Text)
-A fixed-size avatar on the left with fluid, auto-expanding text on the right.
-
-```html
-<div class="media">
-    <img src="avatar.jpg" alt="User avatar" class="media-avatar">
-    <div class="media-body">
-        <h4>Harish</h4>
-        <p>Frontend developer building modern web applications daily.</p>
-    </div>
-</div>
-```
 ```css
-.media {
-    display: flex;
-    align-items: flex-start;
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 150px;
     gap: 16px;
 }
 
-.media-avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    flex-shrink: 0; /* Prevents the avatar from squishing! */
+.bento-hero {
+    grid-column: span 2;
+    grid-row: span 2; /* 2x2 featured box */
 }
 
-.media-body {
-    flex-grow: 1; /* Takes all remaining width */
+.bento-wide {
+    grid-column: span 2; /* 2x1 wide banner */
 }
 ```
 
----
+### Recipe 3: Dashboard Layout with Template Areas
+Clean semantic layout definition:
 
-### Pattern 5: Sticky Footer Layout
-Ensure the page footer always sticks to the bottom of the viewport even if content is brief.
-
-```html
-<div class="app-layout">
-    <header>Header</header>
-    <main class="main-content">Short Content</main>
-    <footer>Sticky Footer</footer>
-</div>
-```
 ```css
-.app-layout {
-    display: flex;
-    flex-direction: column;
+.dashboard {
+    display: grid;
+    grid-template-areas:
+        "nav    nav"
+        "side   main"
+        "footer footer";
+    grid-template-columns: 220px 1fr;
+    grid-template-rows: 64px 1fr 48px;
     min-height: 100vh;
 }
+```
 
-.main-content {
-    flex: 1 0 auto; /* Expands to push footer to the viewport bottom */
+### Recipe 4: The 2-Line Perfect Dead-Center Box
+Centering a card dead-center both horizontally and vertically:
+
+```css
+.full-screen-container {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
 }
+```
+
+### Recipe 5: 12-Column Responsive Web Grid System
+A modern native replacement for external grid frameworks:
+
+```css
+.grid-12 {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 16px;
+}
+
+.col-4 { grid-column: span 4; } /* 1/3 width */
+.col-6 { grid-column: span 6; } /* 1/2 width */
+.col-8 { grid-column: span 8; } /* 2/3 width */
+.col-12 { grid-column: span 12; } /* Full width */
 ```
 
 ---
 
-## 📊 Flexbox Cheat Sheet & Property Matrix
+## ⚖️ CSS Grid vs Flexbox: When to Use Which?
 
-| Target | Property | Common Values | Default | Purpose |
-| :--- | :--- | :--- | :--- | :--- |
-| **Container** | `display` | `flex`, `inline-flex` | — | Establishes flex formatting context |
-| **Container** | `flex-direction` | `row`, `row-reverse`, `column`, `column-reverse` | `row` | Sets the main axis orientation |
-| **Container** | `flex-wrap` | `nowrap`, `wrap`, `wrap-reverse` | `nowrap` | Allows items to break into new lines |
-| **Container** | `flex-flow` | `<direction> <wrap>` | `row nowrap` | Shorthand for direction and wrap |
-| **Container** | `justify-content` | `flex-start`, `center`, `flex-end`, `space-between`, `space-around`, `space-evenly` | `flex-start` | Main axis alignment |
-| **Container** | `align-items` | `stretch`, `flex-start`, `center`, `flex-end`, `baseline` | `stretch` | Cross axis alignment per line |
-| **Container** | `align-content` | `stretch`, `flex-start`, `center`, `space-between`, `space-around` | `stretch` | Cross axis alignment for all lines |
-| **Container** | `gap` | `<length>` (e.g. `16px`, `1rem`) | `0` | Spacing between items |
-| **Item** | `order` | `<integer>` (e.g. `-1`, `0`, `2`) | `0` | Visual display order |
-| **Item** | `flex-grow` | `<number>` (e.g. `0`, `1`, `2`) | `0` | Growth factor for free space |
-| **Item** | `flex-shrink` | `<number>` (e.g. `0`, `1`) | `1` | Shrink factor when space is tight |
-| **Item** | `flex-basis` | `auto`, `<length>` (e.g. `200px`) | `auto` | Default base size before distribution |
-| **Item** | `flex` | `<grow> <shrink> <basis>` | `0 1 auto` | Recommended shorthand |
-| **Item** | `align-self` | `auto`, `flex-start`, `center`, `flex-end`, `stretch` | `auto` | Per-item cross axis override |
+| Feature | CSS Flexbox | CSS Grid |
+| :--- | :--- | :--- |
+| **Dimension** | 1-Dimensional (Row OR Column) | 2-Dimensional (Rows AND Columns) |
+| **Philosophy** | Content-first (items push container) | Layout-first (container defines skeleton) |
+| **Track Control** | Independent per row/column | Synchronized rows & columns |
+| **Ideal Scenarios** | Navbars, buttons, chip tags, pills | Page skeletons, dashboards, photo galleries, bento boxes |
+| **Overlapping** | Difficult without absolute positioning | Native via shared grid lines |
+
+> **Pro Tip:** Modern web development combines both! Use **CSS Grid** for macro page structures (overall layout, card grids), and use **CSS Flexbox** inside the grid items for micro components (headers, buttons, avatar + text).
 
 ---
 
-## 🧪 Interactive Flexbox Lab
+## ⚠️ Common Gotchas & Best Practices
 
-The accompanying `index.html` file includes an interactive live learning playground:
-1. **Live Container Controller**: Click buttons to dynamically toggle `flex-direction`, `justify-content`, `align-items`, `flex-wrap`, and `gap`.
-2. **Dynamic Axis Visualizer**: Watch real-time arrows showing Main Axis and Cross Axis directions as you toggle between `row` and `column`.
-3. **Item Inspector**: Select any box to customize `flex-grow`, `order`, or `align-self` on the fly.
-4. **Live Code Generator**: Generates and copies ready-to-use CSS declarations based on your interactive configuration.
-5. **Real-World Showcases**: Interactive tabs showing the Centering recipe, Responsive Navbar, Card Deck, and Media Card in action.
-
----
-
-## 💡 Common Flexbox Gotchas & Best Practices
-
-1. **Avatar/Icon Squishing**: Images or icons inside flex containers shrink by default (`flex-shrink: 1`). Always add `flex-shrink: 0;` to keep their dimensions stable.
-2. **Text Overflow Truncation**: When using `text-overflow: ellipsis;` inside a flex item, set `min-width: 0;` on the flex item; otherwise the container expands to fit the text.
-3. **Margin Auto Magic**: `margin: auto;` or `margin-left: auto;` inside a flex container absorbs all remaining free space in that direction, making it great for pushing items apart.
-4. **`align-content` vs `align-items`**: `align-items` aligns items along each single line; `align-content` aligns entire rows of lines along the cross axis when `flex-wrap: wrap` is enabled.
-5. **Accessibility Warning**: Changing visual order with `order` or `*-reverse` does not change screen reader or keyboard tab order. Use with care.
-
----
-
-## 🚀 How to Run Locally
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/harish-0987/DAY-15-OF-FRONTEND.git
+1. **The `minmax(0, 1fr)` overflow fix**:
+   By default, grid items have `min-width: auto`, which can prevent items from shrinking when containing long unbreakable strings or preformatted code. Fix this with:
+   ```css
+   grid-template-columns: repeat(3, minmax(0, 1fr));
    ```
-2. Navigate into the folder:
-   ```bash
-   cd DAY-15-OF-FRONTEND
-   ```
-3. Open `index.html` in any modern web browser or start a local dev server:
-   ```bash
-   npx serve .
-   ```
+2. **`auto-fill` vs `auto-fit`**:
+   - `auto-fill`: Keeps creating empty ghost columns if there is remaining space.
+   - `auto-fit`: Collapses empty columns to 0 and expands existing items to fill the entire row.
+3. **Only direct children become grid items**: Nested grandchildren are not grid items unless the parent item is also given `display: grid` or `display: subgrid`.
 
 ---
 
-## 👨‍💻 Author
+## 📋 CSS Grid Quick Cheat Sheet
 
-**Harish (harish-0987)**
-- GitHub: [@harish-0987](https://github.com/harish-0987)
-- 100 Days of Frontend Challenge
+```css
+/* Container Properties */
+display: grid | inline-grid;
+grid-template-columns: 1fr 2fr 1fr | repeat(3, 1fr) | repeat(auto-fit, minmax(200px, 1fr));
+grid-template-rows: 100px auto 50px;
+grid-template-areas: "header header" "sidebar main" "footer footer";
+gap: 16px;
+row-gap: 20px;
+column-gap: 12px;
+justify-items: stretch | start | end | center;
+align-items: stretch | start | end | center;
+place-items: <align-items> <justify-items>;
+justify-content: start | end | center | space-between | space-around | space-evenly;
+align-content: start | end | center | space-between | space-around | space-evenly;
+grid-auto-flow: row | column | dense;
 
-&copy; 2026 Harish &bull; Built with HTML5 &amp; Modern Vanilla CSS
+/* Item Properties */
+grid-column-start: 1;
+grid-column-end: 3;
+grid-column: 1 / 3;
+grid-column: span 2;
+grid-row: 1 / 4;
+grid-row: span 2;
+grid-area: header;
+justify-self: start | end | center | stretch;
+align-self: start | end | center | stretch;
+place-self: center;
+```
+
+---
+
+## 🧪 Interactive Studio & Demo
+
+Launch [`index.html`](./index.html) in any modern browser to explore the **Interactive Live CSS Grid Studio**, experiment with live column presets, adjust gap sliders, customize item spanning dynamically, and copy production-ready CSS snippets with a single click.
+
+---
+
+### Author
+Created by **Harish ([@harish-0987](https://github.com/harish-0987))** as part of the **100 Days Frontend Challenge**.
+Repository: [DAY-16-OF-FRONTEND](https://github.com/harish-0987/DAY-16-OF-FRONTEND)

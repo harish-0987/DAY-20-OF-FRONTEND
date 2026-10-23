@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Day 15 Frontend: Complete CSS Flexbox Guide - Container properties, Item flex factors, Interactive Studio, and Practical UI Layouts.">
+    <meta name="description" content="Day 16 Frontend: Complete CSS Grid Box Guide - Basic code snippets, Container & Item properties, Interactive Live Grid Studio, and Practical UI Recipes.">
     <meta name="author" content="Harish (harish-0987)">
-    <title>Harish | Day 15 Frontend - CSS Flexbox</title>
+    <title>Harish | Day 16 Frontend - CSS Grid Box</title>
 
     <!-- Google Fonts for Modern Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,1038 +20,1012 @@
     <div class="page-wrapper">
         <!-- Header Banner -->
         <header class="main-header">
-            <div class="badge-pill">Day 15 of 100 Days Frontend Challenge</div>
-            <h1 class="header-title">CSS Flexbox (Flexible Box Layout)</h1>
+            <div class="badge-pill">Day 16 of 100 Days Frontend Challenge</div>
+            <h1 class="header-title">CSS Grid Box (CSS Grid Layout)</h1>
             <p class="header-subtitle">
-                Master the fundamental 1-dimensional layout engine of modern web design. Learn main and cross axes, container alignment rules, item sizing factors (grow, shrink, basis), and build responsive real-world UI patterns.
+                Master the most powerful 2-dimensional layout engine in modern CSS. Learn grid lines, tracks, columns, rows, the revolutionary <code>fr</code> unit, container rules, item spanning, and interactive real-world grid systems.
             </p>
             <nav class="quick-nav" aria-label="Page navigation">
-                <a href="#core-concepts" class="nav-chip">1. Core Concepts</a>
-                <a href="#axes-system" class="nav-chip">2. Two Axes System</a>
-                <a href="#container-props" class="nav-chip">3. Container (Parent) Props</a>
-                <a href="#item-props" class="nav-chip">4. Item (Child) Props</a>
+                <a href="#core-concepts" class="nav-chip">1. Core Anatomy</a>
+                <a href="#basic-code" class="nav-chip">2. Basic Grid Box Code</a>
+                <a href="#container-props" class="nav-chip">3. Container Properties</a>
+                <a href="#item-props" class="nav-chip">4. Item Spanning & Placement</a>
                 <a href="#interactive-studio" class="nav-chip">5. Interactive Live Studio</a>
                 <a href="#practical-recipes" class="nav-chip">6. Practical UI Recipes</a>
-                <a href="#cheat-sheet" class="nav-chip">7. Quick Cheat Sheet</a>
+                <a href="#grid-vs-flexbox" class="nav-chip">7. Grid vs Flexbox</a>
+                <a href="#cheat-sheet" class="nav-chip">8. Quick Cheat Sheet</a>
             </nav>
         </header>
 
         <!-- Main Content -->
         <main class="content-container">
 
-            <!-- Section 1: Core Concepts -->
+            <!-- Section 1: Core Anatomy -->
             <section id="core-concepts" class="doc-section">
                 <div class="section-badge">Section 01</div>
-                <h2 class="section-heading">What is CSS Flexbox?</h2>
+                <h2 class="section-heading">What is CSS Grid Layout?</h2>
                 <p class="section-lead">
-                    The <strong>Flexible Box Module (Flexbox)</strong> is a one-dimensional layout system designed to align, distribute, and proportion space among items in a container, even when their sizes are unknown or dynamic.
+                    <strong>CSS Grid Layout</strong> is a <strong>two-dimensional</strong> layout system for the web. Unlike Flexbox (which is primarily one-dimensional: either rows OR columns), CSS Grid enables you to control both columns and rows simultaneously.
                 </p>
 
-                <div class="info-callout">
-                    <strong>💡 Why "One-Dimensional"?</strong> Flexbox deals with layout along a single dimension at a time — either as a <strong>horizontal row</strong> or as a <strong>vertical column</strong>. (For simultaneous 2D grids, CSS Grid is used).
+                <div class="info-callout indigo">
+                    <strong>💡 The 2D Revolution:</strong> With CSS Grid, you can align elements into fixed, fractional, or auto-adapting tracks across both the horizontal (inline) and vertical (block) axes at the exact same time.
                 </div>
 
-                <h3 class="subsection-heading">The Core Hierarchy: Flex Container vs. Flex Items</h3>
-                <p>Everything in Flexbox is built upon a parent-child relationship:</p>
+                <h3 class="subsection-heading">The 6 Pillars of Grid Anatomy</h3>
 
-                <div class="concept-diagram">
-                    <div class="diagram-header">
-                        <span class="diagram-title">Flexbox Relationship Architecture</span>
-                        <span class="diagram-badge">display: flex</span>
+                <!-- Grid Anatomy Visual Diagram -->
+                <div class="grid-anatomy-card">
+                    <div class="anatomy-header">
+                        <span class="anatomy-title">Visual Grid Anatomy: Columns, Rows, Lines & Cells</span>
+                        <span class="anatomy-badge">display: grid; gap: 16px;</span>
                     </div>
-                    <div class="flex-hierarchy-canvas">
-                        <span class="container-tag">Parent Flex Container (.container)</span>
-                        <div class="hierarchy-items">
-                            <div class="hierarchy-item">
-                                <span class="item-badge">Direct Child 01</span>
-                                <div class="item-name">Flex Item 1</div>
-                            </div>
-                            <div class="hierarchy-item">
-                                <span class="item-badge">Direct Child 02</span>
-                                <div class="item-name">Flex Item 2</div>
-                            </div>
-                            <div class="hierarchy-item">
-                                <span class="item-badge">Direct Child 03</span>
-                                <div class="item-name">Flex Item 3</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="properties-grid" style="margin-top: 20px;">
-                    <div class="prop-card">
-                        <div class="prop-card-header">
-                            <span class="prop-name">display: flex</span>
-                            <span class="prop-tag tag-container">Container</span>
+                    <div class="grid-visual-canvas">
+                        <div class="anatomy-cell">
+                            <span class="cell-num">Cell (1, 1)</span>
+                            <span class="cell-name">Box 1</span>
                         </div>
-                        <p class="prop-desc">Creates a <strong>block-level</strong> flex container. The container expands to fill 100% of the available parent width.</p>
-                        <div class="code-box">
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>.container {
-    display: flex;
-}</code></pre>
+                        <div class="anatomy-cell">
+                            <span class="cell-num">Cell (1, 2)</span>
+                            <span class="cell-name">Box 2</span>
+                        </div>
+                        <div class="anatomy-cell">
+                            <span class="cell-num">Cell (1, 3)</span>
+                            <span class="cell-name">Box 3</span>
+                        </div>
+                        <div class="anatomy-cell">
+                            <span class="cell-num">Cell (2, 1)</span>
+                            <span class="cell-name">Box 4</span>
+                        </div>
+                        <div class="anatomy-cell">
+                            <span class="cell-num">Cell (2, 2)</span>
+                            <span class="cell-name">Box 5</span>
+                        </div>
+                        <div class="anatomy-cell">
+                            <span class="cell-num">Cell (2, 3)</span>
+                            <span class="cell-name">Box 6</span>
                         </div>
                     </div>
 
-                    <div class="prop-card">
-                        <div class="prop-card-header">
-                            <span class="prop-name">display: inline-flex</span>
-                            <span class="prop-tag tag-container">Container</span>
+                    <div class="anatomy-legend">
+                        <div class="legend-item">
+                            <strong>1. Grid Container</strong>
+                            The parent element with <code>display: grid</code> that establishes the grid formatting context.
                         </div>
-                        <p class="prop-desc">Creates an <strong>inline-level</strong> flex container. The container only takes up as much width as its children require.</p>
-                        <div class="code-box">
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>.container-inline {
-    display: inline-flex;
-}</code></pre>
+                        <div class="legend-item">
+                            <strong>2. Grid Items (Boxes)</strong>
+                            Direct children inside the container that populate grid cells.
+                        </div>
+                        <div class="legend-item">
+                            <strong>3. Grid Lines</strong>
+                            The numbered dividing lines (1, 2, 3...) that define column and row boundaries.
+                        </div>
+                        <div class="legend-item">
+                            <strong>4. Grid Tracks</strong>
+                            The space between any two adjacent grid lines (a complete row or column).
+                        </div>
+                        <div class="legend-item">
+                            <strong>5. Grid Cell</strong>
+                            The fundamental single unit intersection between one row track and one column track.
+                        </div>
+                        <div class="legend-item">
+                            <strong>6. Gutters (Gap)</strong>
+                            The empty space between tracks defined by the <code>gap</code> property.
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Section 2: Two Axes System -->
-            <section id="axes-system" class="doc-section">
+            <!-- Section 2: Basic Level of Code of Grid Box in CSS -->
+            <section id="basic-code" class="doc-section">
                 <div class="section-badge">Section 02</div>
-                <h2 class="section-heading">The Two Axes: Main Axis & Cross Axis</h2>
+                <h2 class="section-heading">Basic Level Code of Grid Box in CSS</h2>
                 <p class="section-lead">
-                    Every alignment property in Flexbox depends on understanding the <strong>Main Axis</strong> and the <strong>Cross Axis</strong>. Their directions change dynamically based on the <code>flex-direction</code> property!
+                    Here is the absolute simplest, cleanest beginner-level code to create a functional CSS Grid box layout in just two steps:
                 </p>
 
-                <div class="axes-card">
-                    <div class="axes-toggle-bar">
-                        <span class="axes-toggle-label">Test Direction:</span>
-                        <button class="btn-pill active" onclick="setAxisDemo('row', this)">flex-direction: row</button>
-                        <button class="btn-pill" onclick="setAxisDemo('row-reverse', this)">row-reverse</button>
-                        <button class="btn-pill" onclick="setAxisDemo('column', this)">column</button>
-                        <button class="btn-pill" onclick="setAxisDemo('column-reverse', this)">column-reverse</button>
+                <!-- Live Preview of Basic Grid -->
+                <div class="basic-grid-showcase">
+                    <div class="preview-label">
+                        <span>Live Visual Output</span>
+                        <code>3-Column Equal Grid Box</code>
                     </div>
-
-                    <div class="axes-display-area">
-                        <div class="axis-indicator axis-main" id="mainAxisIndicator">
-                            <span id="mainAxisText">➔ MAIN AXIS: Left to Right (Horizontal X)</span>
+                    <div class="basic-grid-1">
+                        <div class="basic-box">
+                            <strong>Box 1</strong>
+                            <span>1fr track</span>
                         </div>
-
-                        <div class="axes-sample-box" id="axesSampleBox" style="flex-direction: row;">
-                            <div class="axes-item">Item 1</div>
-                            <div class="axes-item">Item 2</div>
-                            <div class="axes-item">Item 3</div>
+                        <div class="basic-box">
+                            <strong>Box 2</strong>
+                            <span>1fr track</span>
                         </div>
-
-                        <div class="axis-indicator axis-cross" id="crossAxisIndicator">
-                            <span id="crossAxisText">⬇ CROSS AXIS: Top to Bottom (Vertical Y)</span>
+                        <div class="basic-box">
+                            <strong>Box 3</strong>
+                            <span>1fr track</span>
                         </div>
                     </div>
+                </div>
+
+                <!-- Step-by-Step Code Walkthrough -->
+                <div class="steps-container">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Write the HTML Structure</h4>
+                            <p>Create a parent container <code>&lt;div class="grid-container"&gt;</code> with child box elements inside:</p>
+                            <div class="code-box">
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+<pre><code>&lt;!-- Basic HTML Grid Box Structure --&gt;
+&lt;div class="grid-container"&gt;
+    &lt;div class="grid-box"&gt;Box 1&lt;/div&gt;
+    &lt;div class="grid-box"&gt;Box 2&lt;/div&gt;
+    &lt;div class="grid-box"&gt;Box 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Apply the Basic CSS Grid Rules</h4>
+                            <p>Turn the container into a grid with <code>display: grid</code>, declare column widths, and set spacing with <code>gap</code>:</p>
+                            <div class="code-box">
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+<pre><code>/* Basic Level CSS Grid Box */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* 3 equal flexible columns */
+    gap: 15px;                          /* 15px space between boxes */
+}
+
+/* Styling the individual boxes */
+.grid-box {
+    background-color: #6366f1;         /* Indigo background */
+    color: #ffffff;                    /* White text */
+    padding: 20px;                     /* Inner box padding */
+    border-radius: 8px;                /* Rounded corners */
+    text-align: center;                /* Centered text */
+    font-weight: 600;
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Explanation of the Basic Properties -->
+                <h3 class="subsection-heading">Breaking Down the Basic Code</h3>
+                <div class="properties-grid">
+                    <div class="prop-card">
+                        <div class="prop-card-header">
+                            <span class="prop-name">display: grid;</span>
+                            <span class="prop-tag tag-container">Required</span>
+                        </div>
+                        <p class="prop-desc">Turns the container element into a grid parent. All immediate children immediately become flexible grid boxes.</p>
+                    </div>
+
+                    <div class="prop-card">
+                        <div class="prop-card-header">
+                            <span class="prop-name">grid-template-columns</span>
+                            <span class="prop-tag tag-container">Columns</span>
+                        </div>
+                        <p class="prop-desc">Specifies the number and width of each column. <code>1fr 1fr 1fr</code> creates 3 equal columns that automatically stretch and shrink.</p>
+                    </div>
+
+                    <div class="prop-card">
+                        <div class="prop-card-header">
+                            <span class="prop-name">gap: 15px;</span>
+                            <span class="prop-tag tag-container">Spacing</span>
+                        </div>
+                        <p class="prop-desc">Sets the gutter space between rows and columns without needing ugly margin hacks on child elements.</p>
+                    </div>
+
+                    <div class="prop-card">
+                        <div class="prop-card-header">
+                            <span class="prop-name">repeat(3, 1fr)</span>
+                            <span class="prop-tag tag-container">Shorthand</span>
+                        </div>
+                        <p class="prop-desc">A convenient shorthand function that repeats identical columns: <code>repeat(3, 1fr)</code> is identical to <code>1fr 1fr 1fr</code>.</p>
+                    </div>
+                </div>
+
+                <div class="info-callout">
+                    <strong>🌟 What is the <code>fr</code> unit?</strong> <code>fr</code> stands for <strong>Fractional Unit</strong>. <code>1fr</code> represents one part of the available space inside the grid container. If you have <code>grid-template-columns: 1fr 2fr;</code>, the second column gets twice as much space as the first!
                 </div>
             </section>
 
             <!-- Section 3: Container Properties -->
             <section id="container-props" class="doc-section">
                 <div class="section-badge">Section 03</div>
-                <h2 class="section-heading">Flex Container Properties (Parent)</h2>
+                <h2 class="section-heading">CSS Grid Container Properties (Parent)</h2>
                 <p class="section-lead">
-                    These rules are applied to the <strong>parent element</strong> to control the layout, flow, alignment, and spacing of all its direct children.
+                    These properties are applied directly to the parent element to define tracks, sizing, gaps, and cell alignment.
                 </p>
 
                 <div class="properties-grid">
-                    <!-- flex-direction -->
+                    <!-- Property: grid-template-columns -->
                     <div class="prop-card">
                         <div class="prop-card-header">
-                            <span class="prop-name">flex-direction</span>
-                            <span class="prop-tag tag-container">Parent</span>
+                            <span class="prop-name">grid-template-columns</span>
+                            <span class="prop-tag tag-container">Container</span>
                         </div>
-                        <p class="prop-desc">Establishes the main-axis direction. Values: <code>row</code> (default), <code>row-reverse</code>, <code>column</code>, <code>column-reverse</code>.</p>
+                        <p class="prop-desc">Defines column track widths using pixels, percentages, fractions (<code>fr</code>), <code>repeat()</code>, or <code>minmax()</code>.</p>
                         <div class="code-box">
                             <button class="copy-btn" onclick="copyCode(this)">Copy</button>
 <pre><code>.container {
-    flex-direction: row; /* or column */
+    /* 3 equal columns */
+    grid-template-columns: repeat(3, 1fr);
+
+    /* Fixed sidebar + fluid content */
+    grid-template-columns: 240px 1fr;
 }</code></pre>
                         </div>
                     </div>
 
-                    <!-- flex-wrap -->
+                    <!-- Property: grid-template-rows -->
                     <div class="prop-card">
                         <div class="prop-card-header">
-                            <span class="prop-name">flex-wrap</span>
-                            <span class="prop-tag tag-container">Parent</span>
+                            <span class="prop-name">grid-template-rows</span>
+                            <span class="prop-tag tag-container">Container</span>
                         </div>
-                        <p class="prop-desc">Controls whether flex items are forced onto a single line or can wrap onto multiple lines. Values: <code>nowrap</code>, <code>wrap</code>, <code>wrap-reverse</code>.</p>
+                        <p class="prop-desc">Defines explicit row heights. If omitted, rows will automatically size to fit their child contents.</p>
                         <div class="code-box">
                             <button class="copy-btn" onclick="copyCode(this)">Copy</button>
 <pre><code>.container {
-    flex-wrap: wrap; /* allows multi-line */
+    /* Header (70px), content (auto), footer (60px) */
+    grid-template-rows: 70px auto 60px;
 }</code></pre>
                         </div>
                     </div>
 
-                    <!-- flex-flow -->
+                    <!-- Property: gap, row-gap, column-gap -->
                     <div class="prop-card">
                         <div class="prop-card-header">
-                            <span class="prop-name">flex-flow</span>
-                            <span class="prop-tag tag-container">Shorthand</span>
+                            <span class="prop-name">gap / row-gap / col-gap</span>
+                            <span class="prop-tag tag-container">Container</span>
                         </div>
-                        <p class="prop-desc">Combines <code>flex-direction</code> and <code>flex-wrap</code> into a single convenient declaration.</p>
+                        <p class="prop-desc">Controls gutter spacing between items. <code>gap: 20px;</code> applies 20px between rows and columns.</p>
                         <div class="code-box">
                             <button class="copy-btn" onclick="copyCode(this)">Copy</button>
 <pre><code>.container {
-    /* &lt;direction&gt; &lt;wrap&gt; */
-    flex-flow: row wrap;
+    gap: 20px;             /* row & col gap */
+    row-gap: 30px;         /* only rows */
+    column-gap: 15px;      /* only cols */
 }</code></pre>
                         </div>
                     </div>
 
-                    <!-- justify-content -->
+                    <!-- Property: justify-items & align-items -->
                     <div class="prop-card">
                         <div class="prop-card-header">
-                            <span class="prop-name">justify-content</span>
-                            <span class="prop-tag tag-container">Main Axis</span>
+                            <span class="prop-name">justify-items & align-items</span>
+                            <span class="prop-tag tag-container">Alignment</span>
                         </div>
-                        <p class="prop-desc">Aligns items along the <strong>Main Axis</strong>. Values: <code>flex-start</code>, <code>center</code>, <code>flex-end</code>, <code>space-between</code>, <code>space-around</code>, <code>space-evenly</code>.</p>
+                        <p class="prop-desc">Aligns all grid items inside their cells along the inline (horizontal) and block (vertical) axes.</p>
                         <div class="code-box">
                             <button class="copy-btn" onclick="copyCode(this)">Copy</button>
 <pre><code>.container {
-    justify-content: space-between;
+    justify-items: center; /* start | end | center | stretch */
+    align-items: center;   /* start | end | center | stretch */
+    place-items: center;   /* shorthand for both! */
 }</code></pre>
                         </div>
                     </div>
 
-                    <!-- align-items -->
+                    <!-- Property: grid-template-areas -->
                     <div class="prop-card">
                         <div class="prop-card-header">
-                            <span class="prop-name">align-items</span>
-                            <span class="prop-tag tag-container">Cross Axis</span>
+                            <span class="prop-name">grid-template-areas</span>
+                            <span class="prop-tag tag-container">Template Areas</span>
                         </div>
-                        <p class="prop-desc">Aligns items along the <strong>Cross Axis</strong> for the current line. Values: <code>stretch</code> (default), <code>flex-start</code>, <code>center</code>, <code>flex-end</code>, <code>baseline</code>.</p>
+                        <p class="prop-desc">Visual ASCII-art style layout definition by naming specific grid areas.</p>
                         <div class="code-box">
                             <button class="copy-btn" onclick="copyCode(this)">Copy</button>
 <pre><code>.container {
-    align-items: center;
+    grid-template-areas:
+        "header  header"
+        "sidebar content"
+        "footer  footer";
 }</code></pre>
                         </div>
                     </div>
 
-                    <!-- align-content -->
+                    <!-- Property: auto-fit and minmax -->
                     <div class="prop-card">
                         <div class="prop-card-header">
-                            <span class="prop-name">align-content</span>
-                            <span class="prop-tag tag-container">Multi-Line</span>
+                            <span class="prop-name">minmax() & auto-fit</span>
+                            <span class="prop-tag tag-container">Responsive</span>
                         </div>
-                        <p class="prop-desc">Aligns multi-line flex tracks along the cross axis. Only active when <code>flex-wrap: wrap</code> is set and items wrap onto 2+ lines.</p>
+                        <p class="prop-desc">The ultimate responsive pattern: automatically generates columns that wrap without writing media queries.</p>
                         <div class="code-box">
                             <button class="copy-btn" onclick="copyCode(this)">Copy</button>
 <pre><code>.container {
-    align-content: space-around;
-}</code></pre>
-                        </div>
-                    </div>
-
-                    <!-- gap -->
-                    <div class="prop-card">
-                        <div class="prop-card-header">
-                            <span class="prop-name">gap (row-gap, col-gap)</span>
-                            <span class="prop-tag tag-container">Spacing</span>
-                        </div>
-                        <p class="prop-desc">Defines precise gutters between flex items without annoying margin-reset hacks on first/last items!</p>
-                        <div class="code-box">
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>.container {
-    gap: 1.5rem; /* row & col gap */
+    /* Auto responsive columns, min 200px wide */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }</code></pre>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Section 4: Item Properties -->
+            <!-- Section 4: Item Spanning & Placement -->
             <section id="item-props" class="doc-section">
                 <div class="section-badge">Section 04</div>
-                <h2 class="section-heading">Flex Item Properties (Children)</h2>
+                <h2 class="section-heading">Grid Item Properties (Children Placement)</h2>
                 <p class="section-lead">
-                    These properties are applied directly to individual <strong>child elements</strong> to define how each item sizes, shrinks, grows, or aligns relative to its siblings.
+                    Grid items can be made to span multiple columns or rows, or be explicitly placed at precise grid line numbers.
                 </p>
 
                 <div class="properties-grid">
-                    <!-- order -->
                     <div class="prop-card">
                         <div class="prop-card-header">
-                            <span class="prop-name">order</span>
-                            <span class="prop-tag tag-item">Child Item</span>
+                            <span class="prop-name">grid-column: span X</span>
+                            <span class="prop-tag tag-item">Spanning</span>
                         </div>
-                        <p class="prop-desc">Controls the visual render order independently of the source HTML. Default is <code>0</code>. Accepts positive and negative numbers.</p>
+                        <p class="prop-desc">Allows a box to stretch across multiple horizontal column tracks.</p>
                         <div class="code-box">
                             <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>.item-first {
-    order: -1; /* jumps to start */
+<pre><code>/* Box spans across 2 columns */
+.featured-box {
+    grid-column: span 2;
+}
+
+/* Or from Line 1 to Line 3 */
+.banner {
+    grid-column: 1 / 3;
 }</code></pre>
                         </div>
                     </div>
 
-                    <!-- flex-grow -->
                     <div class="prop-card">
                         <div class="prop-card-header">
-                            <span class="prop-name">flex-grow</span>
-                            <span class="prop-tag tag-item">Child Item</span>
+                            <span class="prop-name">grid-row: span Y</span>
+                            <span class="prop-tag tag-item">Spanning</span>
                         </div>
-                        <p class="prop-desc">Defines an item's ability to grow to absorb remaining free space along the main axis. Default: <code>0</code> (does not grow).</p>
+                        <p class="prop-desc">Allows a box to stretch vertically across multiple row tracks.</p>
                         <div class="code-box">
                             <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>.item-expand {
-    flex-grow: 1; /* fills space */
+<pre><code>/* Box spans across 2 vertical rows */
+.tall-box {
+    grid-row: span 2;
+}
+
+/* Or from Line 1 to Line 4 */
+.sidebar {
+    grid-row: 1 / 4;
 }</code></pre>
                         </div>
                     </div>
 
-                    <!-- flex-shrink -->
                     <div class="prop-card">
                         <div class="prop-card-header">
-                            <span class="prop-name">flex-shrink</span>
-                            <span class="prop-tag tag-item">Child Item</span>
+                            <span class="prop-name">grid-area</span>
+                            <span class="prop-tag tag-item">Named Area</span>
                         </div>
-                        <p class="prop-desc">Defines an item's ability to shrink when space is restricted. Default: <code>1</code>. Set to <code>0</code> to prevent squishing.</p>
+                        <p class="prop-desc">Assigns an item to a named area defined in <code>grid-template-areas</code>.</p>
                         <div class="code-box">
                             <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>.avatar-icon {
-    flex-shrink: 0; /* never squish */
-}</code></pre>
+<pre><code>header { grid-area: header; }
+aside  { grid-area: sidebar; }
+main   { grid-area: content; }
+footer { grid-area: footer; }</code></pre>
                         </div>
                     </div>
 
-                    <!-- flex-basis -->
                     <div class="prop-card">
                         <div class="prop-card-header">
-                            <span class="prop-name">flex-basis</span>
-                            <span class="prop-tag tag-item">Child Item</span>
+                            <span class="prop-name">justify-self & align-self</span>
+                            <span class="prop-tag tag-item">Item Align</span>
                         </div>
-                        <p class="prop-desc">Sets default initial size of an item before space distribution. Accepts <code>px</code>, <code>%</code>, <code>rem</code>, or <code>auto</code>.</p>
+                        <p class="prop-desc">Overrides the parent's alignment for an individual grid item.</p>
                         <div class="code-box">
                             <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>.sidebar {
-    flex-basis: 260px;
-}</code></pre>
-                        </div>
-                    </div>
-
-                    <!-- flex shorthand -->
-                    <div class="prop-card">
-                        <div class="prop-card-header">
-                            <span class="prop-name">flex (Shorthand)</span>
-                            <span class="prop-tag tag-item">Recommended</span>
-                        </div>
-                        <p class="prop-desc">Shorthand for <code>flex-grow</code>, <code>flex-shrink</code>, and <code>flex-basis</code> combined. E.g. <code>flex: 1 1 200px;</code>.</p>
-                        <div class="code-box">
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>.card {
-    /* &lt;grow&gt; &lt;shrink&gt; &lt;basis&gt; */
-    flex: 1 1 250px;
-}</code></pre>
-                        </div>
-                    </div>
-
-                    <!-- align-self -->
-                    <div class="prop-card">
-                        <div class="prop-card-header">
-                            <span class="prop-name">align-self</span>
-                            <span class="prop-tag tag-item">Cross Axis</span>
-                        </div>
-                        <p class="prop-desc">Overrides the container's <code>align-items</code> value for this single item. Values: <code>auto</code>, <code>flex-start</code>, <code>center</code>, <code>flex-end</code>, <code>stretch</code>.</p>
-                        <div class="code-box">
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>.special-child {
-    align-self: flex-end;
+<pre><code>.special-box {
+    justify-self: end;    /* align right inside cell */
+    align-self: center;   /* align vertical center */
 }</code></pre>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Section 5: Interactive Flexbox Studio -->
+            <!-- Section 5: Interactive Live Grid Studio -->
             <section id="interactive-studio" class="doc-section">
                 <div class="section-badge">Section 05</div>
-                <h2 class="section-heading">Interactive Flexbox Studio (Live Lab)</h2>
+                <h2 class="section-heading">Interactive Live Grid Studio</h2>
                 <p class="section-lead">
-                    Tweak live properties in real-time. Watch how container directions, alignment values, gaps, and item flex factors change the layout dynamically.
+                    Experiment with grid columns, row heights, gutters, and item alignments in real time. Click any box in the canvas below to inspect and customize its spanning!
                 </p>
 
                 <div class="studio-wrapper">
-                    <!-- Controls Sidebar -->
-                    <div class="studio-controls-panel">
-                        <div class="control-group">
-                            <label class="control-label">
-                                <span>Direction:</span>
-                                <span class="control-prop-name">flex-direction</span>
-                            </label>
-                            <select id="ctrlDirection" class="control-select" onchange="updateStudio()">
-                                <option value="row" selected>row</option>
-                                <option value="row-reverse">row-reverse</option>
-                                <option value="column">column</option>
-                                <option value="column-reverse">column-reverse</option>
-                            </select>
+                    <div class="studio-header">
+                        <div class="studio-title">
+                            <span>🎮 CSS Grid Visual Playground</span>
                         </div>
-
-                        <div class="control-group">
-                            <label class="control-label">
-                                <span>Main Axis:</span>
-                                <span class="control-prop-name">justify-content</span>
-                            </label>
-                            <select id="ctrlJustify" class="control-select" onchange="updateStudio()">
-                                <option value="flex-start" selected>flex-start</option>
-                                <option value="center">center</option>
-                                <option value="flex-end">flex-end</option>
-                                <option value="space-between">space-between</option>
-                                <option value="space-around">space-around</option>
-                                <option value="space-evenly">space-evenly</option>
-                            </select>
-                        </div>
-
-                        <div class="control-group">
-                            <label class="control-label">
-                                <span>Cross Axis:</span>
-                                <span class="control-prop-name">align-items</span>
-                            </label>
-                            <select id="ctrlAlign" class="control-select" onchange="updateStudio()">
-                                <option value="stretch">stretch</option>
-                                <option value="flex-start">flex-start</option>
-                                <option value="center" selected>center</option>
-                                <option value="flex-end">flex-end</option>
-                                <option value="baseline">baseline</option>
-                            </select>
-                        </div>
-
-                        <div class="control-group">
-                            <label class="control-label">
-                                <span>Wrapping:</span>
-                                <span class="control-prop-name">flex-wrap</span>
-                            </label>
-                            <select id="ctrlWrap" class="control-select" onchange="updateStudio()">
-                                <option value="nowrap" selected>nowrap</option>
-                                <option value="wrap">wrap</option>
-                                <option value="wrap-reverse">wrap-reverse</option>
-                            </select>
-                        </div>
-
-                        <div class="control-group">
-                            <label class="control-label">
-                                <span>Item Spacing:</span>
-                                <span class="control-prop-name">gap</span>
-                            </label>
-                            <select id="ctrlGap" class="control-select" onchange="updateStudio()">
-                                <option value="8px">8px</option>
-                                <option value="16px" selected>16px</option>
-                                <option value="24px">24px</option>
-                                <option value="32px">32px</option>
-                            </select>
-                        </div>
-
-                        <div class="control-group">
-                            <label class="control-label">Manage Items:</label>
-                            <div class="btn-group-row">
-                                <button class="btn-action" onclick="addItem()">+ Add Box</button>
-                                <button class="btn-action" onclick="removeItem()">- Remove Box</button>
-                                <button class="btn-action" onclick="resetStudio()">Reset</button>
-                            </div>
-                        </div>
+                        <span id="studioBadge" style="font-family: var(--font-mono); font-size: 0.85rem; color: #a5b4fc;">Live Engine Active</span>
                     </div>
 
-                    <!-- Live Stage & Inspector -->
-                    <div class="studio-stage-panel">
-                        <!-- Inspector for Selected Item -->
-                        <div class="item-inspector-bar">
-                            <div class="inspector-title">
-                                <span>🎯 Item Inspector:</span>
-                                <span id="selectedItemLabel">Box #1 Selected</span>
-                            </div>
-                            <div class="inspector-field">
-                                <label>grow:</label>
-                                <input type="number" id="itemGrow" value="0" min="0" max="10" onchange="applyItemProperty()">
-                            </div>
-                            <div class="inspector-field">
-                                <label>order:</label>
-                                <input type="number" id="itemOrder" value="0" min="-10" max="10" onchange="applyItemProperty()">
-                            </div>
-                            <div class="inspector-field">
-                                <label>align-self:</label>
-                                <select id="itemAlignSelf" onchange="applyItemProperty()">
-                                    <option value="auto" selected>auto</option>
-                                    <option value="flex-start">flex-start</option>
-                                    <option value="center">center</option>
-                                    <option value="flex-end">flex-end</option>
-                                    <option value="stretch">stretch</option>
+                    <div class="studio-layout">
+                        <!-- Studio Controls -->
+                        <div class="studio-controls">
+                            <!-- Columns Preset -->
+                            <div class="control-group">
+                                <label class="control-label" for="colPreset">
+                                    <span>grid-template-columns</span>
+                                </label>
+                                <select id="colPreset" class="control-select" onchange="updateStudio()">
+                                    <option value="repeat(3, 1fr)">repeat(3, 1fr) — 3 Equal Cols</option>
+                                    <option value="repeat(2, 1fr)">repeat(2, 1fr) — 2 Equal Cols</option>
+                                    <option value="repeat(4, 1fr)">repeat(4, 1fr) — 4 Equal Cols</option>
+                                    <option value="1fr 2fr">1fr 2fr — Asymmetric (1:2)</option>
+                                    <option value="200px 1fr 150px">200px 1fr 150px — Mixed</option>
+                                    <option value="repeat(auto-fit, minmax(140px, 1fr))">repeat(auto-fit, minmax(140px, 1fr)) — Auto Responsive</option>
                                 </select>
                             </div>
+
+                            <!-- Gap Slider -->
+                            <div class="control-group">
+                                <label class="control-label" for="gapSlider">
+                                    <span>gap:</span>
+                                    <span id="gapVal">16px</span>
+                                </label>
+                                <div class="slider-container">
+                                    <input type="range" id="gapSlider" class="control-slider" min="0" max="40" value="16" oninput="updateStudio()">
+                                </div>
+                            </div>
+
+                            <!-- Row Height -->
+                            <div class="control-group">
+                                <label class="control-label" for="rowHeight">
+                                    <span>grid-auto-rows</span>
+                                </label>
+                                <select id="rowHeight" class="control-select" onchange="updateStudio()">
+                                    <option value="minmax(80px, auto)">minmax(80px, auto) (Default)</option>
+                                    <option value="100px">100px (Fixed)</option>
+                                    <option value="130px">130px (Medium)</option>
+                                    <option value="auto">auto (Content based)</option>
+                                </select>
+                            </div>
+
+                            <!-- Justify-Items -->
+                            <div class="control-group">
+                                <label class="control-label" for="justifyItems">
+                                    <span>justify-items</span>
+                                </label>
+                                <select id="justifyItems" class="control-select" onchange="updateStudio()">
+                                    <option value="stretch">stretch (Default)</option>
+                                    <option value="start">start</option>
+                                    <option value="center">center</option>
+                                    <option value="end">end</option>
+                                </select>
+                            </div>
+
+                            <!-- Align-Items -->
+                            <div class="control-group">
+                                <label class="control-label" for="alignItems">
+                                    <span>align-items</span>
+                                </label>
+                                <select id="alignItems" class="control-select" onchange="updateStudio()">
+                                    <option value="stretch">stretch (Default)</option>
+                                    <option value="start">start</option>
+                                    <option value="center">center</option>
+                                    <option value="end">end</option>
+                                </select>
+                            </div>
+
+                            <!-- Box Count Control -->
+                            <div class="control-group">
+                                <label class="control-label">
+                                    <span>Grid Boxes Count</span>
+                                    <span id="itemCountDisplay">6 Boxes</span>
+                                </label>
+                                <div class="item-count-controls">
+                                    <button class="btn-sm" onclick="changeBoxCount(1)">+ Add Box</button>
+                                    <button class="btn-sm" onclick="changeBoxCount(-1)">- Remove Box</button>
+                                </div>
+                            </div>
+
+                            <button class="btn-reset" onclick="resetStudio()">Reset All Settings</button>
                         </div>
 
-                        <!-- Live Container Canvas -->
-                        <div class="live-stage-container" id="liveStage">
-                            <div class="stage-badge">&lt;div class="flex-container"&gt;</div>
-                            <div class="flex-box-item selected" onclick="selectItem(this, 1)">
-                                <span class="item-index">1</span>
-                                <span class="item-meta">flex item</span>
+                        <!-- Stage Canvas & Code Output -->
+                        <div class="studio-stage">
+                            <div class="stage-canvas-outer">
+                                <div id="gridCanvas" class="grid-playground">
+                                    <!-- Boxes are rendered dynamically via JS -->
+                                </div>
                             </div>
-                            <div class="flex-box-item" onclick="selectItem(this, 2)">
-                                <span class="item-index">2</span>
-                                <span class="item-meta">flex item</span>
-                            </div>
-                            <div class="flex-box-item" onclick="selectItem(this, 3)">
-                                <span class="item-index">3</span>
-                                <span class="item-meta">flex item</span>
-                            </div>
-                            <div class="flex-box-item" onclick="selectItem(this, 4)">
-                                <span class="item-index">4</span>
-                                <span class="item-meta">flex item</span>
-                            </div>
-                        </div>
 
-                        <!-- Real-Time Generated CSS Block -->
-                        <div class="live-code-card">
-                            <div class="code-title">Generated Container CSS</div>
-                            <button class="copy-btn" onclick="copyCode(this)">Copy CSS</button>
-                            <pre class="live-code-text" id="generatedCssCode">.flex-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: nowrap;
-    gap: 16px;
-}</pre>
+                            <!-- Selected Item Inspector -->
+                            <div class="item-inspector-bar">
+                                <span class="inspector-tag" id="selectedBoxTag">Box #1 Selected</span>
+                                <div class="inspector-controls">
+                                    <div class="inspector-item">
+                                        <label for="itemColSpan">grid-column:</label>
+                                        <select id="itemColSpan" class="control-select" style="width: auto; padding: 4px 8px;" onchange="applySelectedSpan()">
+                                            <option value="auto">auto (1 col)</option>
+                                            <option value="span 2">span 2 cols</option>
+                                            <option value="span 3">span 3 cols</option>
+                                        </select>
+                                    </div>
+                                    <div class="inspector-item">
+                                        <label for="itemRowSpan">grid-row:</label>
+                                        <select id="itemRowSpan" class="control-select" style="width: auto; padding: 4px 8px;" onchange="applySelectedSpan()">
+                                            <option value="auto">auto (1 row)</option>
+                                            <option value="span 2">span 2 rows</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Live Code Output -->
+                            <div class="studio-output-panel">
+                                <div class="studio-code-header">
+                                    <span class="studio-code-title">Generated CSS Code</span>
+                                    <button class="copy-btn" onclick="copyStudioCode(this)">Copy CSS</button>
+                                </div>
+                                <pre><code id="studioCssCode">/* Generating CSS... */</code></pre>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Section 6: Practical Real-World Patterns -->
+            <!-- Section 6: Practical Real-World UI Recipes -->
             <section id="practical-recipes" class="doc-section">
                 <div class="section-badge">Section 06</div>
-                <h2 class="section-heading">Basic-Level Real-World Layout Recipes</h2>
+                <h2 class="section-heading">Practical Real-World Grid Recipes</h2>
                 <p class="section-lead">
-                    Here are the 5 essential UI patterns you will use constantly in production websites. Click each tab to inspect the interactive live preview and clean starter code.
+                    Click through these industry standard UI patterns built with CSS Grid:
                 </p>
 
-                <nav class="pattern-tabs-nav" aria-label="Pattern tabs">
-                    <button class="tab-btn active" onclick="switchPattern('pattern-center', this)">1. Perfect Center</button>
-                    <button class="tab-btn" onclick="switchPattern('pattern-navbar', this)">2. Responsive Navbar</button>
-                    <button class="tab-btn" onclick="switchPattern('pattern-cards', this)">3. Fluid Card Grid</button>
-                    <button class="tab-btn" onclick="switchPattern('pattern-media', this)">4. Media Object</button>
-                    <button class="tab-btn" onclick="switchPattern('pattern-footer', this)">5. Sticky Footer</button>
-                </nav>
+                <div class="recipes-card">
+                    <nav class="tabs-nav" aria-label="Recipes navigation">
+                        <button class="tab-btn active" onclick="switchRecipe('recipe-autofit', this)">1. Responsive Auto-Fit Cards</button>
+                        <button class="tab-btn" onclick="switchRecipe('recipe-bento', this)">2. Bento Box Feature Grid</button>
+                        <button class="tab-btn" onclick="switchRecipe('recipe-dashboard', this)">3. Dashboard Template Areas</button>
+                        <button class="tab-btn" onclick="switchRecipe('recipe-center', this)">4. Ultimate Center Box</button>
+                    </nav>
 
-                <!-- Pattern 1: Perfect Center -->
-                <div id="pattern-center" class="pattern-content active">
-                    <div class="recipe-display-card">
-                        <div class="recipe-preview-box">
-                            <div class="demo-center-parent">
-                                <div class="demo-center-child">
-                                    <h4>🎯 Perfect Center</h4>
-                                    <p>Horizontally &amp; vertically centered with 2 lines of CSS!</p>
+                    <!-- Recipe 1: Responsive Cards -->
+                    <div id="recipe-autofit" class="tab-content active">
+                        <h3>Responsive Card Grid (Zero Media Queries)</h3>
+                        <p>Uses <code>repeat(auto-fit, minmax(220px, 1fr))</code> to automatically create columns that adapt seamlessly from mobile to wide screens:</p>
+
+                        <div class="responsive-cards-grid">
+                            <div class="product-card">
+                                <div>
+                                    <div class="product-icon icon-purple">⚡</div>
+                                    <h4>Fast Performance</h4>
+                                    <p>Optimized rendering with hardware accelerated CSS layouts.</p>
+                                </div>
+                                <div class="card-footer">
+                                    <span>CSS Grid</span>
+                                    <span>Learn →</span>
+                                </div>
+                            </div>
+
+                            <div class="product-card">
+                                <div>
+                                    <div class="product-icon icon-emerald">📐</div>
+                                    <h4>2D Alignment</h4>
+                                    <p>Simultaneous row and column track control with sub-pixel precision.</p>
+                                </div>
+                                <div class="card-footer">
+                                    <span>Tracks</span>
+                                    <span>Learn →</span>
+                                </div>
+                            </div>
+
+                            <div class="product-card">
+                                <div>
+                                    <div class="product-icon icon-cyan">📱</div>
+                                    <h4>Fluid Responsive</h4>
+                                    <p>Never write bulky media queries again for simple responsive card grids.</p>
+                                </div>
+                                <div class="card-footer">
+                                    <span>minmax()</span>
+                                    <span>Learn →</span>
+                                </div>
+                            </div>
+
+                            <div class="product-card">
+                                <div>
+                                    <div class="product-icon icon-amber">🛡️</div>
+                                    <h4>Cross Browser</h4>
+                                    <p>Supported across all modern browsers: Chrome, Edge, Safari, Firefox.</p>
+                                </div>
+                                <div class="card-footer">
+                                    <span>Standard</span>
+                                    <span>Learn →</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="recipe-explanation">
-                            <strong>Why it works:</strong> Setting <code>justify-content: center</code> centers items along the main axis (X), while <code>align-items: center</code> centers items along the cross axis (Y).
-                        </div>
-                        <div class="recipe-code-wrapper">
-                            <div class="recipe-code-col">
-                                <div class="recipe-col-title">HTML Structure</div>
-                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>&lt;div class="center-container"&gt;
-    &lt;div class="card"&gt;
-        &lt;h4&gt;Perfect Center&lt;/h4&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-                            </div>
-                            <div class="recipe-code-col">
-                                <div class="recipe-col-title">CSS Stylesheet</div>
-                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>.center-container {
-    display: flex;
-    justify-content: center; /* X-axis */
-    align-items: center;     /* Y-axis */
-    min-height: 220px;
+
+                        <div class="code-box">
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+<pre><code>.responsive-cards-grid {
+    display: grid;
+    /* The magic responsive formula: */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
 }</code></pre>
-                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Pattern 2: Responsive Navbar -->
-                <div id="pattern-navbar" class="pattern-content">
-                    <div class="recipe-display-card">
-                        <div class="recipe-preview-box">
-                            <header class="demo-navbar">
-                                <div class="demo-brand">⚡ DevBrand</div>
-                                <nav class="demo-nav-links">
-                                    <a href="#core-concepts">Home</a>
-                                    <a href="#container-props">Features</a>
-                                    <a href="#interactive-studio">Studio</a>
-                                </nav>
-                                <button class="demo-nav-cta">Sign In</button>
-                            </header>
-                        </div>
-                        <div class="recipe-explanation">
-                            <strong>The Flex Trick:</strong> Applying <code>margin-left: auto</code> to the CTA button absorbs all remaining space along the row, effortlessly pushing it to the far right edge!
-                        </div>
-                        <div class="recipe-code-wrapper">
-                            <div class="recipe-code-col">
-                                <div class="recipe-col-title">HTML Structure</div>
-                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>&lt;header class="navbar"&gt;
-    &lt;div class="brand"&gt;⚡ DevBrand&lt;/div&gt;
-    &lt;nav class="links"&gt;
-        &lt;a href="#"&gt;Home&lt;/a&gt;
-        &lt;a href="#"&gt;Features&lt;/a&gt;
-    &lt;/nav&gt;
-    &lt;button class="cta-btn"&gt;Sign In&lt;/button&gt;
-&lt;/header&gt;</code></pre>
+                    <!-- Recipe 2: Bento Grid -->
+                    <div id="recipe-bento" class="tab-content">
+                        <h3>Bento Box Feature Showcase</h3>
+                        <p>The modern Apple/Linear-style Bento Grid using <code>grid-column: span 2</code> and <code>grid-row: span 2</code>:</p>
+
+                        <div class="bento-grid">
+                            <div class="bento-item bento-feat-1">
+                                <h4>Featured Core Feature</h4>
+                                <p>Spans 2 columns and 2 rows to command visual hierarchy on modern landing pages.</p>
                             </div>
-                            <div class="recipe-code-col">
-                                <div class="recipe-col-title">CSS Stylesheet</div>
-                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>.navbar {
-    display: flex;
-    align-items: center;
+                            <div class="bento-item bento-feat-2">
+                                <h4>Analytics Dashboard</h4>
+                                <p>Spans 2 columns across the top right.</p>
+                            </div>
+                            <div class="bento-item bento-feat-3">
+                                <h4>Security 2FA</h4>
+                                <p>1x1 box unit.</p>
+                            </div>
+                            <div class="bento-item bento-feat-4">
+                                <h4>Cloud Sync</h4>
+                                <p>1x1 box unit.</p>
+                            </div>
+                        </div>
+
+                        <div class="code-box">
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+<pre><code>.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 140px;
     gap: 16px;
 }
-.cta-btn {
-    margin-left: auto; /* Pushes to far right */
+
+.bento-feat-1 {
+    grid-column: span 2;
+    grid-row: span 2; /* 2x2 large hero box */
+}
+
+.bento-feat-2 {
+    grid-column: span 2; /* 2-column wide box */
 }</code></pre>
-                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Pattern 3: Fluid Card Grid -->
-                <div id="pattern-cards" class="pattern-content">
-                    <div class="recipe-display-card">
-                        <div class="recipe-preview-box">
-                            <div class="demo-card-deck">
-                                <div class="demo-card">
-                                    <span class="demo-card-tag">HTML5</span>
-                                    <h4>Semantic Elements</h4>
-                                    <p>Clean structure for modern search engines and accessibility.</p>
-                                </div>
-                                <div class="demo-card">
-                                    <span class="demo-card-tag">CSS3</span>
-                                    <h4>Flexbox Architecture</h4>
-                                    <p>Flexible 1D responsive alignment without floats.</p>
-                                </div>
-                                <div class="demo-card">
-                                    <span class="demo-card-tag">JavaScript</span>
-                                    <h4>DOM Manipulation</h4>
-                                    <p>Interactive web interfaces with snappy performance.</p>
-                                </div>
+                    <!-- Recipe 3: Dashboard Layout -->
+                    <div id="recipe-dashboard" class="tab-content">
+                        <h3>Dashboard Layout with <code>grid-template-areas</code></h3>
+                        <p>Declare your layout semantically by mapping names to cells:</p>
+
+                        <div class="dashboard-grid">
+                            <div class="dash-header">Dashboard Header (grid-area: header)</div>
+                            <div class="dash-sidebar">Sidebar Navigation (grid-area: sidebar)</div>
+                            <div class="dash-main">
+                                <h4>Main Analytics Workspace (grid-area: main)</h4>
+                                <p>Responsive workspace content placed dynamically.</p>
                             </div>
+                            <div class="dash-footer">Footer Bar (grid-area: footer)</div>
                         </div>
-                        <div class="recipe-explanation">
-                            <strong>Why it works:</strong> The container uses <code>flex-wrap: wrap; gap: 16px;</code> and each card uses <code>flex: 1 1 200px;</code>. Cards automatically wrap into new rows on small screens and share remaining space equally!
-                        </div>
-                        <div class="recipe-code-wrapper">
-                            <div class="recipe-code-col">
-                                <div class="recipe-col-title">HTML Structure</div>
-                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>&lt;div class="card-grid"&gt;
-    &lt;div class="card"&gt;Card 1&lt;/div&gt;
-    &lt;div class="card"&gt;Card 2&lt;/div&gt;
-    &lt;div class="card"&gt;Card 3&lt;/div&gt;
-&lt;/div&gt;</code></pre>
-                            </div>
-                            <div class="recipe-code-col">
-                                <div class="recipe-col-title">CSS Stylesheet</div>
-                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>.card-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
+
+                        <div class="code-box">
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+<pre><code>.dashboard-grid {
+    display: grid;
+    grid-template-areas:
+        "header  header  header"
+        "sidebar main    main"
+        "sidebar main    main"
+        "footer  footer  footer";
+    grid-template-columns: 200px 1fr 1fr;
+    grid-template-rows: 60px 140px 140px 50px;
+    gap: 12px;
 }
-.card {
-    /* grow: 1, shrink: 1, base: 200px */
-    flex: 1 1 200px;
-}</code></pre>
-                            </div>
+
+.dash-header  { grid-area: header; }
+.dash-sidebar { grid-area: sidebar; }
+.dash-main    { grid-area: main; }
+.dash-footer  { grid-area: footer; }</code></pre>
                         </div>
                     </div>
-                </div>
 
-                <!-- Pattern 4: Media Object -->
-                <div id="pattern-media" class="pattern-content">
-                    <div class="recipe-display-card">
-                        <div class="recipe-preview-box">
-                            <div class="demo-media-card">
-                                <div class="demo-avatar">H</div>
-                                <div class="demo-media-body">
-                                    <h4>Harish (harish-0987)</h4>
-                                    <p>Full-Stack developer crafting daily frontend web apps with semantic HTML and clean, responsive CSS.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="recipe-explanation">
-                            <strong>Crucial Rule:</strong> Always give the avatar <code>flex-shrink: 0;</code> so that long text in the sibling body never shrinks or squishes your image/icon!
-                        </div>
-                        <div class="recipe-code-wrapper">
-                            <div class="recipe-code-col">
-                                <div class="recipe-col-title">HTML Structure</div>
-                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>&lt;div class="media"&gt;
-    &lt;div class="avatar"&gt;H&lt;/div&gt;
-    &lt;div class="media-body"&gt;
-        &lt;h4&gt;Harish&lt;/h4&gt;
-        &lt;p&gt;Frontend developer building daily...&lt;/p&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-                            </div>
-                            <div class="recipe-code-col">
-                                <div class="recipe-col-title">CSS Stylesheet</div>
-                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>.media {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-}
-.avatar {
-    flex-shrink: 0; /* Prevents squishing */
-}
-.media-body {
-    flex-grow: 1;
-}</code></pre>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <!-- Recipe 4: Perfect Centering -->
+                    <div id="recipe-center" class="tab-content">
+                        <h3>The Ultimate Dead-Center Box with <code>place-items: center</code></h3>
+                        <p>The cleanest 2-line vertical and horizontal centering technique in CSS history:</p>
 
-                <!-- Pattern 5: Sticky Footer -->
-                <div id="pattern-footer" class="pattern-content">
-                    <div class="recipe-display-card">
-                        <div class="recipe-preview-box">
-                            <div class="demo-layout-frame">
-                                <div class="demo-layout-header">Website Header (Fixed height)</div>
-                                <div class="demo-layout-body">
-                                    <p>Page Content (Even if short, the footer below stays firmly anchored at the bottom).</p>
-                                </div>
-                                <div class="demo-layout-footer">&copy; 2026 100 Days Frontend &bull; Sticky Footer</div>
+                        <div class="center-box-preview">
+                            <div class="centered-content">
+                                <h4>🎯 Perfectly Centered Box</h4>
+                                <p>Centered both vertically and horizontally in just 2 lines of CSS!</p>
                             </div>
                         </div>
-                        <div class="recipe-explanation">
-                            <strong>Why it works:</strong> The parent layout uses <code>display: flex; flex-direction: column; min-height: 100vh;</code> and the middle <code>main</code> element has <code>flex: 1 0 auto;</code> which expands to push the footer down.
-                        </div>
-                        <div class="recipe-code-wrapper">
-                            <div class="recipe-code-col">
-                                <div class="recipe-col-title">HTML Structure</div>
-                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>&lt;div class="app-layout"&gt;
-    &lt;header&gt;Header&lt;/header&gt;
-    &lt;main&gt;Page Content&lt;/main&gt;
-    &lt;footer&gt;Sticky Footer&lt;/footer&gt;
-&lt;/div&gt;</code></pre>
-                            </div>
-                            <div class="recipe-code-col">
-                                <div class="recipe-col-title">CSS Stylesheet</div>
-                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>.app-layout {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-main {
-    flex: 1 0 auto; /* Expands remaining height */
+
+                        <div class="code-box">
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+<pre><code>.container {
+    display: grid;
+    place-items: center; /* Horizontally & vertically centers children! */
+    height: 100vh;
 }</code></pre>
-                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Section 7: Cheat Sheet Table -->
-            <section id="cheat-sheet" class="doc-section">
+            <!-- Section 7: Grid vs Flexbox -->
+            <section id="grid-vs-flexbox" class="doc-section">
                 <div class="section-badge">Section 07</div>
-                <h2 class="section-heading">Flexbox Quick Reference &amp; Cheat Sheet</h2>
-                <p class="section-lead">A fast reference guide for all container and item properties.</p>
+                <h2 class="section-heading">CSS Grid vs Flexbox: When to Use Which?</h2>
+                <p class="section-lead">
+                    Both layout systems are complementary. The golden rule is: <strong>Flexbox is for 1D content-driven flows; CSS Grid is for 2D layout-driven structures.</strong>
+                </p>
 
-                <div class="table-responsive">
-                    <table class="cheat-table">
+                <div class="table-wrapper">
+                    <table class="comp-table">
                         <thead>
                             <tr>
-                                <th>Target</th>
-                                <th>Property</th>
-                                <th>Default</th>
-                                <th>Available Values</th>
-                                <th>Description</th>
+                                <th>Feature</th>
+                                <th>CSS Flexbox</th>
+                                <th>CSS Grid</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>Container</strong></td>
-                                <td><code>display</code></td>
-                                <td><code>block</code></td>
-                                <td><code>flex</code>, <code>inline-flex</code></td>
-                                <td>Activates flexbox context for direct children.</td>
+                                <td><strong>Dimensionality</strong></td>
+                                <td>1-Dimensional (Row OR Column)</td>
+                                <td>2-Dimensional (Rows AND Columns simultaneously)</td>
                             </tr>
                             <tr>
-                                <td><strong>Container</strong></td>
-                                <td><code>flex-direction</code></td>
-                                <td><code>row</code></td>
-                                <td><code>row</code>, <code>row-reverse</code>, <code>column</code>, <code>column-reverse</code></td>
-                                <td>Defines the direction of the Main Axis.</td>
+                                <td><strong>Approach</strong></td>
+                                <td>Content-first (items dictate size)</td>
+                                <td>Layout-first (container defines track framework)</td>
                             </tr>
                             <tr>
-                                <td><strong>Container</strong></td>
-                                <td><code>flex-wrap</code></td>
-                                <td><code>nowrap</code></td>
-                                <td><code>nowrap</code>, <code>wrap</code>, <code>wrap-reverse</code></td>
-                                <td>Allows flex items to break into multiple lines.</td>
+                                <td><strong>Best Used For</strong></td>
+                                <td>Navbars, button sets, media items, chips</td>
+                                <td>Page layouts, image galleries, dashboards, card systems</td>
                             </tr>
                             <tr>
-                                <td><strong>Container</strong></td>
-                                <td><code>justify-content</code></td>
-                                <td><code>flex-start</code></td>
-                                <td><code>flex-start</code>, <code>center</code>, <code>flex-end</code>, <code>space-between</code>, <code>space-around</code>, <code>space-evenly</code></td>
-                                <td>Aligns items along the Main Axis.</td>
+                                <td><strong>Item Placement</strong></td>
+                                <td>Sequential ordering via <code>order</code></td>
+                                <td>Arbitrary 2D positioning via line numbers or areas</td>
                             </tr>
                             <tr>
-                                <td><strong>Container</strong></td>
-                                <td><code>align-items</code></td>
-                                <td><code>stretch</code></td>
-                                <td><code>stretch</code>, <code>flex-start</code>, <code>center</code>, <code>flex-end</code>, <code>baseline</code></td>
-                                <td>Aligns items along the Cross Axis on the current line.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Container</strong></td>
-                                <td><code>gap</code></td>
-                                <td><code>0</code></td>
-                                <td><code>&lt;length&gt;</code> (e.g. <code>16px</code>, <code>1rem</code>)</td>
-                                <td>Gutter spacing between adjacent flex items.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Child Item</strong></td>
-                                <td><code>order</code></td>
-                                <td><code>0</code></td>
-                                <td><code>&lt;integer&gt;</code> (e.g. <code>-1</code>, <code>0</code>, <code>2</code>)</td>
-                                <td>Controls visual order independent of HTML order.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Child Item</strong></td>
-                                <td><code>flex-grow</code></td>
-                                <td><code>0</code></td>
-                                <td><code>&lt;number&gt;</code> (e.g. <code>0</code>, <code>1</code>, <code>2</code>)</td>
-                                <td>Proportional ability to grow and take free space.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Child Item</strong></td>
-                                <td><code>flex-shrink</code></td>
-                                <td><code>1</code></td>
-                                <td><code>&lt;number&gt;</code> (e.g. <code>0</code>, <code>1</code>)</td>
-                                <td>Proportional ability to shrink when space is tight.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Child Item</strong></td>
-                                <td><code>flex-basis</code></td>
-                                <td><code>auto</code></td>
-                                <td><code>auto</code>, <code>&lt;length&gt;</code> (e.g. <code>200px</code>)</td>
-                                <td>Initial base size before distributing space.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Child Item</strong></td>
-                                <td><code>align-self</code></td>
-                                <td><code>auto</code></td>
-                                <td><code>auto</code>, <code>flex-start</code>, <code>center</code>, <code>flex-end</code>, <code>stretch</code></td>
-                                <td>Overrides parent's <code>align-items</code> for this item.</td>
+                                <td><strong>Overlapping Items</strong></td>
+                                <td>Difficult (requires negative margin / absolute)</td>
+                                <td>Native (items can share cells and overlap with z-index)</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </section>
+
+            <!-- Section 8: Quick Cheat Sheet -->
+            <section id="cheat-sheet" class="doc-section">
+                <div class="section-badge">Section 08</div>
+                <h2 class="section-heading">CSS Grid Quick Cheat Sheet</h2>
+                <div class="properties-grid">
+                    <div class="prop-card">
+                        <span class="prop-name">display: grid;</span>
+                        <p class="prop-desc">Initializes a block-level grid container.</p>
+                    </div>
+                    <div class="prop-card">
+                        <span class="prop-name">grid-template-columns: repeat(3, 1fr);</span>
+                        <p class="prop-desc">Creates 3 equal-width columns.</p>
+                    </div>
+                    <div class="prop-card">
+                        <span class="prop-name">gap: 20px;</span>
+                        <p class="prop-desc">Sets 20px space between grid rows & columns.</p>
+                    </div>
+                    <div class="prop-card">
+                        <span class="prop-name">grid-column: span 2;</span>
+                        <p class="prop-desc">Makes an item stretch across 2 column tracks.</p>
+                    </div>
+                    <div class="prop-card">
+                        <span class="prop-name">grid-row: span 2;</span>
+                        <p class="prop-desc">Makes an item stretch vertically across 2 row tracks.</p>
+                    </div>
+                    <div class="prop-card">
+                        <span class="prop-name">place-items: center;</span>
+                        <p class="prop-desc">Centers all items horizontally and vertically in cells.</p>
+                    </div>
+                </div>
+            </section>
+
         </main>
 
         <!-- Footer -->
         <footer class="main-footer">
-            <p>
-                <strong>Day 15 of 100 Days Frontend Challenge</strong> &bull; Crafted by <a href="https://github.com/harish-0987" target="_blank" rel="noopener">Harish (harish-0987)</a>
-            </p>
-            <p style="margin-top: 6px; font-size: 0.8rem;">
-                Repository: <a href="https://github.com/harish-0987/DAY-15-OF-FRONTEND" target="_blank" rel="noopener">harish-0987/DAY-15-OF-FRONTEND</a>
-            </p>
+            <p>Day 16 of the 100 Days Frontend Challenge • Created with ❤️ by <a href="https://github.com/harish-0987" target="_blank" rel="noopener">Harish (harish-0987)</a></p>
+            <p style="margin-top: 6px; font-size: 0.82rem; color: #94a3b8;">Repository: <a href="https://github.com/harish-0987/DAY-16-OF-FRONTEND" target="_blank" rel="noopener">harish-0987/DAY-16-OF-FRONTEND</a></p>
         </footer>
     </div>
 
-    <!-- Interactive Script -->
+    <!-- Interactive JavaScript Engine -->
     <script>
-        // 1. Two Axes Visualizer Toggle
-        function setAxisDemo(direction, btn) {
-            const container = document.getElementById('axesSampleBox');
-            const mainLabel = document.getElementById('mainAxisText');
-            const crossLabel = document.getElementById('crossAxisText');
-            
-            // Update active button
-            const buttons = btn.parentElement.querySelectorAll('.btn-pill');
-            buttons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+        // State
+        let boxCount = 6;
+        let selectedBoxIndex = 1;
+        const boxSpans = {}; // { index: { col: 'auto', row: 'auto' } }
 
-            container.style.flexDirection = direction;
+        function renderBoxes() {
+            const canvas = document.getElementById('gridCanvas');
+            canvas.innerHTML = '';
 
-            if (direction === 'row') {
-                mainLabel.textContent = '➔ MAIN AXIS: Left to Right (Horizontal X)';
-                crossLabel.textContent = '⬇ CROSS AXIS: Top to Bottom (Vertical Y)';
-            } else if (direction === 'row-reverse') {
-                mainLabel.textContent = '⬅ MAIN AXIS: Right to Left (Horizontal X)';
-                crossLabel.textContent = '⬇ CROSS AXIS: Top to Bottom (Vertical Y)';
-            } else if (direction === 'column') {
-                mainLabel.textContent = '⬇ MAIN AXIS: Top to Bottom (Vertical Y)';
-                crossLabel.textContent = '➔ CROSS AXIS: Left to Right (Horizontal X)';
-            } else if (direction === 'column-reverse') {
-                mainLabel.textContent = '⬆ MAIN AXIS: Bottom to Top (Vertical Y)';
-                crossLabel.textContent = '➔ CROSS AXIS: Left to Right (Horizontal X)';
+            for (let i = 1; i <= boxCount; i++) {
+                const box = document.createElement('div');
+                box.className = 'grid-box-item';
+                if (i === selectedBoxIndex) {
+                    box.classList.add('selected');
+                }
+
+                // Apply saved span if any
+                if (boxSpans[i]) {
+                    box.style.gridColumn = boxSpans[i].col;
+                    box.style.gridRow = boxSpans[i].row;
+                }
+
+                box.innerHTML = `
+                    <span class="item-title">Box #${i}</span>
+                    <span class="item-sub">${boxSpans[i]?.col !== 'auto' && boxSpans[i]?.col ? boxSpans[i].col : '1x1'}</span>
+                `;
+
+                box.onclick = () => selectBox(i);
+                canvas.appendChild(box);
             }
         }
 
-        // 2. Interactive Flexbox Studio
-        let selectedItemElement = null;
-        let selectedIndex = 1;
+        function selectBox(index) {
+            selectedBoxIndex = index;
+            document.getElementById('selectedBoxTag').textContent = `Box #${index} Selected`;
+
+            const current = boxSpans[index] || { col: 'auto', row: 'auto' };
+            document.getElementById('itemColSpan').value = current.col || 'auto';
+            document.getElementById('itemRowSpan').value = current.row || 'auto';
+
+            renderBoxes();
+        }
+
+        function applySelectedSpan() {
+            const col = document.getElementById('itemColSpan').value;
+            const row = document.getElementById('itemRowSpan').value;
+            boxSpans[selectedBoxIndex] = { col, row };
+            renderBoxes();
+            updateCssOutput();
+        }
+
+        function changeBoxCount(delta) {
+            const newCount = boxCount + delta;
+            if (newCount >= 1 && newCount <= 12) {
+                boxCount = newCount;
+                document.getElementById('itemCountDisplay').textContent = `${boxCount} Boxes`;
+                if (selectedBoxIndex > boxCount) {
+                    selectedBoxIndex = boxCount;
+                }
+                renderBoxes();
+                updateStudio();
+            }
+        }
 
         function updateStudio() {
-            const stage = document.getElementById('liveStage');
-            const dir = document.getElementById('ctrlDirection').value;
-            const justify = document.getElementById('ctrlJustify').value;
-            const align = document.getElementById('ctrlAlign').value;
-            const wrap = document.getElementById('ctrlWrap').value;
-            const gap = document.getElementById('ctrlGap').value;
+            const canvas = document.getElementById('gridCanvas');
+            const colVal = document.getElementById('colPreset').value;
+            const gapVal = document.getElementById('gapSlider').value;
+            const rowVal = document.getElementById('rowHeight').value;
+            const justifyVal = document.getElementById('justifyItems').value;
+            const alignVal = document.getElementById('alignItems').value;
 
-            stage.style.flexDirection = dir;
-            stage.style.justifyContent = justify;
-            stage.style.alignItems = align;
-            stage.style.flexWrap = wrap;
-            stage.style.gap = gap;
+            document.getElementById('gapVal').textContent = `${gapVal}px`;
 
-            const codeOutput = document.getElementById('generatedCssCode');
-            codeOutput.textContent = `.flex-container {
-    display: flex;
-    flex-direction: ${dir};
-    justify-content: ${justify};
-    align-items: ${align};
-    flex-wrap: ${wrap};
-    gap: ${gap};
-}`;
+            canvas.style.gridTemplateColumns = colVal;
+            canvas.style.gap = `${gapVal}px`;
+            canvas.style.gridAutoRows = rowVal;
+            canvas.style.justifyItems = justifyVal;
+            canvas.style.alignItems = alignVal;
+
+            updateCssOutput();
         }
 
-        function addItem() {
-            const stage = document.getElementById('liveStage');
-            const items = stage.querySelectorAll('.flex-box-item');
-            if (items.length >= 8) {
-                alert('Maximum 8 boxes reached for the visual studio demo.');
-                return;
-            }
-            const newIndex = items.length + 1;
-            const newBox = document.createElement('div');
-            newBox.className = 'flex-box-item';
-            newBox.onclick = function() { selectItem(this, newIndex); };
-            newBox.innerHTML = `
-                <span class="item-index">${newIndex}</span>
-                <span class="item-meta">flex item</span>
-            `;
-            stage.appendChild(newBox);
-        }
+        function updateCssOutput() {
+            const colVal = document.getElementById('colPreset').value;
+            const gapVal = document.getElementById('gapSlider').value;
+            const rowVal = document.getElementById('rowHeight').value;
+            const justifyVal = document.getElementById('justifyItems').value;
+            const alignVal = document.getElementById('alignItems').value;
 
-        function removeItem() {
-            const stage = document.getElementById('liveStage');
-            const items = stage.querySelectorAll('.flex-box-item');
-            if (items.length <= 1) {
-                alert('At least one item is required in the flex container.');
-                return;
+            let code = `.grid-container {\n`;
+            code += `    display: grid;\n`;
+            code += `    grid-template-columns: ${colVal};\n`;
+            if (rowVal !== 'auto' && rowVal !== 'minmax(80px, auto)') {
+                code += `    grid-auto-rows: ${rowVal};\n`;
             }
-            const lastItem = items[items.length - 1];
-            if (lastItem === selectedItemElement) {
-                selectedItemElement = null;
+            code += `    gap: ${gapVal}px;\n`;
+            if (justifyVal !== 'stretch') {
+                code += `    justify-items: ${justifyVal};\n`;
             }
-            stage.removeChild(lastItem);
-            // Select first item
-            const remaining = stage.querySelectorAll('.flex-box-item');
-            selectItem(remaining[0], 1);
+            if (alignVal !== 'stretch') {
+                code += `    align-items: ${alignVal};\n`;
+            }
+            code += `}\n`;
+
+            // Check if any box has spanning
+            for (let i = 1; i <= boxCount; i++) {
+                if (boxSpans[i] && (boxSpans[i].col !== 'auto' || boxSpans[i].row !== 'auto')) {
+                    code += `\n/* Item #${i} Custom Spanning */\n.box-${i} {\n`;
+                    if (boxSpans[i].col && boxSpans[i].col !== 'auto') {
+                        code += `    grid-column: ${boxSpans[i].col};\n`;
+                    }
+                    if (boxSpans[i].row && boxSpans[i].row !== 'auto') {
+                        code += `    grid-row: ${boxSpans[i].row};\n`;
+                    }
+                    code += `}\n`;
+                }
+            }
+
+            document.getElementById('studioCssCode').textContent = code;
         }
 
         function resetStudio() {
-            document.getElementById('ctrlDirection').value = 'row';
-            document.getElementById('ctrlJustify').value = 'flex-start';
-            document.getElementById('ctrlAlign').value = 'center';
-            document.getElementById('ctrlWrap').value = 'nowrap';
-            document.getElementById('ctrlGap').value = '16px';
-            
-            const stage = document.getElementById('liveStage');
-            const items = stage.querySelectorAll('.flex-box-item');
-            items.forEach((item, index) => {
-                item.style.flexGrow = '0';
-                item.style.order = '0';
-                item.style.alignSelf = 'auto';
-            });
-
-            document.getElementById('itemGrow').value = 0;
-            document.getElementById('itemOrder').value = 0;
-            document.getElementById('itemAlignSelf').value = 'auto';
-
+            document.getElementById('colPreset').value = 'repeat(3, 1fr)';
+            document.getElementById('gapSlider').value = '16';
+            document.getElementById('rowHeight').value = 'minmax(80px, auto)';
+            document.getElementById('justifyItems').value = 'stretch';
+            document.getElementById('alignItems').value = 'stretch';
+            for (let key in boxSpans) delete boxSpans[key];
+            boxCount = 6;
+            selectedBoxIndex = 1;
+            document.getElementById('itemCountDisplay').textContent = '6 Boxes';
+            selectBox(1);
             updateStudio();
         }
 
-        function selectItem(element, index) {
-            const allItems = document.querySelectorAll('.flex-box-item');
-            allItems.forEach(i => i.classList.remove('selected'));
-            element.classList.add('selected');
-            selectedItemElement = element;
-            selectedIndex = index;
-
-            document.getElementById('selectedItemLabel').textContent = `Box #${index} Selected`;
-            document.getElementById('itemGrow').value = element.style.flexGrow || 0;
-            document.getElementById('itemOrder').value = element.style.order || 0;
-            document.getElementById('itemAlignSelf').value = element.style.alignSelf || 'auto';
+        function switchRecipe(recipeId, btn) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById(recipeId).classList.add('active');
         }
 
-        function applyItemProperty() {
-            if (!selectedItemElement) {
-                const first = document.querySelector('.flex-box-item');
-                if (first) selectItem(first, 1);
-            }
-            if (selectedItemElement) {
-                const growVal = document.getElementById('itemGrow').value;
-                const orderVal = document.getElementById('itemOrder').value;
-                const alignSelfVal = document.getElementById('itemAlignSelf').value;
-
-                selectedItemElement.style.flexGrow = growVal;
-                selectedItemElement.style.order = orderVal;
-                selectedItemElement.style.alignSelf = alignSelfVal;
-            }
-        }
-
-        // 3. Practical Pattern Tabs
-        function switchPattern(patternId, tabBtn) {
-            const allTabs = document.querySelectorAll('.tab-btn');
-            allTabs.forEach(t => t.classList.remove('active'));
-            tabBtn.classList.add('active');
-
-            const allContents = document.querySelectorAll('.pattern-content');
-            allContents.forEach(c => c.classList.remove('active'));
-            document.getElementById(patternId).classList.add('active');
-        }
-
-        // 4. One-Click Code Copy
         function copyCode(btn) {
             const pre = btn.parentElement.querySelector('pre');
             if (pre) {
                 navigator.clipboard.writeText(pre.textContent.trim()).then(() => {
-                    const originalText = btn.textContent;
+                    const original = btn.textContent;
                     btn.textContent = 'Copied! ✓';
                     btn.style.background = '#10b981';
-                    btn.style.color = 'white';
-                    btn.style.borderColor = '#10b981';
+                    btn.style.color = '#ffffff';
                     setTimeout(() => {
-                        btn.textContent = originalText;
+                        btn.textContent = original;
                         btn.style.background = '';
                         btn.style.color = '';
-                        btn.style.borderColor = '';
                     }, 2000);
-                }).catch(err => {
-                    console.error('Copy failed:', err);
                 });
             }
         }
 
-        // Initialize on page load
+        function copyStudioCode(btn) {
+            const text = document.getElementById('studioCssCode').textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                const orig = btn.textContent;
+                btn.textContent = 'Copied! ✓';
+                btn.style.background = '#10b981';
+                setTimeout(() => {
+                    btn.textContent = orig;
+                    btn.style.background = '';
+                }, 2000);
+            });
+        }
+
+        // Init
         window.addEventListener('DOMContentLoaded', () => {
+            renderBoxes();
             updateStudio();
-            const firstItem = document.querySelector('.flex-box-item');
-            if (firstItem) selectItem(firstItem, 1);
         });
     </script>
 </body>
