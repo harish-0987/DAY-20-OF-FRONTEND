@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- 1. The Core Responsive Viewport Meta Tag (Crucial for mobile devices) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Day 16 Frontend: Complete CSS Grid Box Guide - Basic code snippets, Container & Item properties, Interactive Live Grid Studio, and Practical UI Recipes.">
+    <meta name="description" content="Day 17 Frontend: Complete Responsive Web Design (RWD) Guide - Core concepts, basic level code, CSS media queries, fluid units, and interactive viewport simulator.">
     <meta name="author" content="Harish (harish-0987)">
-    <title>Harish | Day 16 Frontend - CSS Grid Box</title>
+    <title>Harish | Day 17 Frontend - Responsive Web Design</title>
 
     <!-- Google Fonts for Modern Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,820 +21,696 @@
     <div class="page-wrapper">
         <!-- Header Banner -->
         <header class="main-header">
-            <div class="badge-pill">Day 16 of 100 Days Frontend Challenge</div>
-            <h1 class="header-title">CSS Grid Box (CSS Grid Layout)</h1>
+            <div class="badge-pill">Day 17 of 100 Days Frontend Challenge</div>
+            <h1 class="header-title">Responsive Web Design (RWD)</h1>
             <p class="header-subtitle">
-                Master the most powerful 2-dimensional layout engine in modern CSS. Learn grid lines, tracks, columns, rows, the revolutionary <code>fr</code> unit, container rules, item spanning, and interactive real-world grid systems.
+                Master the fundamental art of building websites that look stunning and function effortlessly on every screen size—from smartphones and tablets to laptops and widescreen monitors—using basic HTML, fluid CSS units, and media queries.
             </p>
+
+            <!-- Live Window Width Indicator -->
+            <div class="live-screen-tracker" id="live-screen-tracker">
+                <span class="tracker-dot"></span>
+                <span class="tracker-label">Your Live Viewport:</span>
+                <span class="tracker-value" id="current-viewport-size">1200px × 800px</span>
+                <span class="tracker-badge" id="current-breakpoint-badge">Desktop (lg)</span>
+            </div>
+
             <nav class="quick-nav" aria-label="Page navigation">
-                <a href="#core-concepts" class="nav-chip">1. Core Anatomy</a>
-                <a href="#basic-code" class="nav-chip">2. Basic Grid Box Code</a>
-                <a href="#container-props" class="nav-chip">3. Container Properties</a>
-                <a href="#item-props" class="nav-chip">4. Item Spanning & Placement</a>
-                <a href="#interactive-studio" class="nav-chip">5. Interactive Live Studio</a>
-                <a href="#practical-recipes" class="nav-chip">6. Practical UI Recipes</a>
-                <a href="#grid-vs-flexbox" class="nav-chip">7. Grid vs Flexbox</a>
-                <a href="#cheat-sheet" class="nav-chip">8. Quick Cheat Sheet</a>
+                <a href="#core-concepts" class="nav-chip">1. What is RWD?</a>
+                <a href="#four-pillars" class="nav-chip">2. 4 Core Pillars</a>
+                <a href="#basic-code" class="nav-chip">3. Basic Level Code</a>
+                <a href="#breakpoints" class="nav-chip">4. Standard Breakpoints</a>
+                <a href="#interactive-simulator" class="nav-chip highlight-chip">5. Live Resizer Studio</a>
+                <a href="#fixed-vs-fluid" class="nav-chip">6. Fixed vs Fluid Demo</a>
+                <a href="#responsive-recipes" class="nav-chip">7. Practical Recipes</a>
+                <a href="#cheat-sheet" class="nav-chip">8. Cheat Sheet</a>
             </nav>
         </header>
 
         <!-- Main Content -->
         <main class="content-container">
 
-            <!-- Section 1: Core Anatomy -->
+            <!-- Section 1: Core Concepts -->
             <section id="core-concepts" class="doc-section">
                 <div class="section-badge">Section 01</div>
-                <h2 class="section-heading">What is CSS Grid Layout?</h2>
+                <h2 class="section-heading">What is Responsive Web Design?</h2>
                 <p class="section-lead">
-                    <strong>CSS Grid Layout</strong> is a <strong>two-dimensional</strong> layout system for the web. Unlike Flexbox (which is primarily one-dimensional: either rows OR columns), CSS Grid enables you to control both columns and rows simultaneously.
+                    <strong>Responsive Web Design (RWD)</strong> is an approach to web development where a website's layout, images, navigation, and typography automatically adjust and adapt to fit the screen resolution and orientation of any viewing device.
                 </p>
 
-                <div class="info-callout indigo">
-                    <strong>💡 The 2D Revolution:</strong> With CSS Grid, you can align elements into fixed, fractional, or auto-adapting tracks across both the horizontal (inline) and vertical (block) axes at the exact same time.
+                <div class="info-callout teal">
+                    <strong>💡 Why is Responsive Design Essential?</strong> Over 58% of global web traffic comes from mobile phones, tablets, and handheld devices. A non-responsive website forces users to pinch-to-zoom, scroll horizontally, and struggle with tiny unclickable buttons, resulting in poor user experience and lower search engine rankings.
                 </div>
 
-                <h3 class="subsection-heading">The 6 Pillars of Grid Anatomy</h3>
-
-                <!-- Grid Anatomy Visual Diagram -->
-                <div class="grid-anatomy-card">
-                    <div class="anatomy-header">
-                        <span class="anatomy-title">Visual Grid Anatomy: Columns, Rows, Lines & Cells</span>
-                        <span class="anatomy-badge">display: grid; gap: 16px;</span>
+                <!-- Visual Comparison: Fixed vs Responsive -->
+                <div class="comparison-grid">
+                    <div class="comparison-card bad">
+                        <div class="card-status-bar">
+                            <span class="status-icon">❌</span>
+                            <span class="status-title">Old-School Fixed Layout</span>
+                        </div>
+                        <div class="comparison-illustration">
+                            <div class="mock-device mobile-frame">
+                                <div class="fixed-content-box">
+                                    <div class="mock-line wide"></div>
+                                    <div class="mock-line wide"></div>
+                                    <div class="overflow-warning">⚠️ Overflow / Cut off</div>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="comparison-points">
+                            <li>Uses hardcoded pixel widths (e.g., <code>width: 960px;</code>)</li>
+                            <li>Causes frustrating horizontal scrollbars on phones</li>
+                            <li>Text is microscopic or clipped on mobile screens</li>
+                            <li>Images burst through container borders</li>
+                        </ul>
                     </div>
 
-                    <div class="grid-visual-canvas">
-                        <div class="anatomy-cell">
-                            <span class="cell-num">Cell (1, 1)</span>
-                            <span class="cell-name">Box 1</span>
+                    <div class="comparison-card good">
+                        <div class="card-status-bar">
+                            <span class="status-icon">✅</span>
+                            <span class="status-title">Modern Responsive Layout</span>
                         </div>
-                        <div class="anatomy-cell">
-                            <span class="cell-num">Cell (1, 2)</span>
-                            <span class="cell-name">Box 2</span>
+                        <div class="comparison-illustration">
+                            <div class="mock-device mobile-frame">
+                                <div class="fluid-content-box">
+                                    <div class="mock-line full"></div>
+                                    <div class="mock-line full"></div>
+                                    <div class="mock-badge">✨ Perfectly Fits Screen</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="anatomy-cell">
-                            <span class="cell-num">Cell (1, 3)</span>
-                            <span class="cell-name">Box 3</span>
-                        </div>
-                        <div class="anatomy-cell">
-                            <span class="cell-num">Cell (2, 1)</span>
-                            <span class="cell-name">Box 4</span>
-                        </div>
-                        <div class="anatomy-cell">
-                            <span class="cell-num">Cell (2, 2)</span>
-                            <span class="cell-name">Box 5</span>
-                        </div>
-                        <div class="anatomy-cell">
-                            <span class="cell-num">Cell (2, 3)</span>
-                            <span class="cell-name">Box 6</span>
-                        </div>
-                    </div>
-
-                    <div class="anatomy-legend">
-                        <div class="legend-item">
-                            <strong>1. Grid Container</strong>
-                            The parent element with <code>display: grid</code> that establishes the grid formatting context.
-                        </div>
-                        <div class="legend-item">
-                            <strong>2. Grid Items (Boxes)</strong>
-                            Direct children inside the container that populate grid cells.
-                        </div>
-                        <div class="legend-item">
-                            <strong>3. Grid Lines</strong>
-                            The numbered dividing lines (1, 2, 3...) that define column and row boundaries.
-                        </div>
-                        <div class="legend-item">
-                            <strong>4. Grid Tracks</strong>
-                            The space between any two adjacent grid lines (a complete row or column).
-                        </div>
-                        <div class="legend-item">
-                            <strong>5. Grid Cell</strong>
-                            The fundamental single unit intersection between one row track and one column track.
-                        </div>
-                        <div class="legend-item">
-                            <strong>6. Gutters (Gap)</strong>
-                            The empty space between tracks defined by the <code>gap</code> property.
-                        </div>
+                        <ul class="comparison-points">
+                            <li>Uses relative units (<code>%</code>, <code>rem</code>, <code>vw</code>, <code>max-width</code>)</li>
+                            <li>Content reflows gracefully into 1 column on phones</li>
+                            <li>Images scale fluidly (<code>max-width: 100%</code>)</li>
+                            <li>Adapts smoothly to portrait, landscape, and tablets</li>
+                        </ul>
                     </div>
                 </div>
             </section>
 
-            <!-- Section 2: Basic Level of Code of Grid Box in CSS -->
-            <section id="basic-code" class="doc-section">
+            <!-- Section 2: 4 Core Pillars -->
+            <section id="four-pillars" class="doc-section">
                 <div class="section-badge">Section 02</div>
-                <h2 class="section-heading">Basic Level Code of Grid Box in CSS</h2>
+                <h2 class="section-heading">The 4 Core Pillars of Responsive Design</h2>
                 <p class="section-lead">
-                    Here is the absolute simplest, cleanest beginner-level code to create a functional CSS Grid box layout in just two steps:
+                    Every responsive web page in existence is built upon these four foundational pillars:
                 </p>
 
-                <!-- Live Preview of Basic Grid -->
-                <div class="basic-grid-showcase">
-                    <div class="preview-label">
-                        <span>Live Visual Output</span>
-                        <code>3-Column Equal Grid Box</code>
-                    </div>
-                    <div class="basic-grid-1">
-                        <div class="basic-box">
-                            <strong>Box 1</strong>
-                            <span>1fr track</span>
-                        </div>
-                        <div class="basic-box">
-                            <strong>Box 2</strong>
-                            <span>1fr track</span>
-                        </div>
-                        <div class="basic-box">
-                            <strong>Box 3</strong>
-                            <span>1fr track</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step-by-Step Code Walkthrough -->
-                <div class="steps-container">
-                    <div class="step-card">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
-                            <h4>Write the HTML Structure</h4>
-                            <p>Create a parent container <code>&lt;div class="grid-container"&gt;</code> with child box elements inside:</p>
-                            <div class="code-box">
-                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>&lt;!-- Basic HTML Grid Box Structure --&gt;
-&lt;div class="grid-container"&gt;
-    &lt;div class="grid-box"&gt;Box 1&lt;/div&gt;
-    &lt;div class="grid-box"&gt;Box 2&lt;/div&gt;
-    &lt;div class="grid-box"&gt;Box 3&lt;/div&gt;
-&lt;/div&gt;</code></pre>
-                            </div>
+                <div class="pillars-grid">
+                    <!-- Pillar 1 -->
+                    <div class="pillar-card">
+                        <div class="pillar-icon">📱</div>
+                        <div class="pillar-number">Pillar 1</div>
+                        <h3 class="pillar-title">1. Viewport Meta Tag</h3>
+                        <p class="pillar-desc">
+                            Instructs mobile web browsers to render the website at the actual device screen width instead of simulating a giant 980px desktop screen.
+                        </p>
+                        <div class="code-snippet-inline">
+                            <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code>
                         </div>
                     </div>
 
-                    <div class="step-card">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
-                            <h4>Apply the Basic CSS Grid Rules</h4>
-                            <p>Turn the container into a grid with <code>display: grid</code>, declare column widths, and set spacing with <code>gap</code>:</p>
-                            <div class="code-box">
-                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>/* Basic Level CSS Grid Box */
-.grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr; /* 3 equal flexible columns */
-    gap: 15px;                          /* 15px space between boxes */
-}
-
-/* Styling the individual boxes */
-.grid-box {
-    background-color: #6366f1;         /* Indigo background */
-    color: #ffffff;                    /* White text */
-    padding: 20px;                     /* Inner box padding */
-    border-radius: 8px;                /* Rounded corners */
-    text-align: center;                /* Centered text */
-    font-weight: 600;
-}</code></pre>
-                            </div>
+                    <!-- Pillar 2 -->
+                    <div class="pillar-card">
+                        <div class="pillar-icon">📐</div>
+                        <div class="pillar-number">Pillar 2</div>
+                        <h3 class="pillar-title">2. Fluid & Relative Units</h3>
+                        <p class="pillar-desc">
+                            Replace rigid pixel units (<code>px</code>) with dynamic units such as percentages (<code>%</code>), viewport units (<code>vw</code>, <code>vh</code>), <code>rem</code>, and <code>clamp()</code>.
+                        </p>
+                        <div class="code-snippet-inline">
+                            <code>width: 100%; max-width: 1200px;</code>
                         </div>
                     </div>
-                </div>
 
-                <!-- Explanation of the Basic Properties -->
-                <h3 class="subsection-heading">Breaking Down the Basic Code</h3>
-                <div class="properties-grid">
-                    <div class="prop-card">
-                        <div class="prop-card-header">
-                            <span class="prop-name">display: grid;</span>
-                            <span class="prop-tag tag-container">Required</span>
+                    <!-- Pillar 3 -->
+                    <div class="pillar-card">
+                        <div class="pillar-icon">🖼️</div>
+                        <div class="pillar-number">Pillar 3</div>
+                        <h3 class="pillar-title">3. Flexible Media & Images</h3>
+                        <p class="pillar-desc">
+                            Prevent photos and videos from spilling outside their container by setting maximum boundaries and auto-calculated aspect ratio heights.
+                        </p>
+                        <div class="code-snippet-inline">
+                            <code>img { max-width: 100%; height: auto; }</code>
                         </div>
-                        <p class="prop-desc">Turns the container element into a grid parent. All immediate children immediately become flexible grid boxes.</p>
                     </div>
 
-                    <div class="prop-card">
-                        <div class="prop-card-header">
-                            <span class="prop-name">grid-template-columns</span>
-                            <span class="prop-tag tag-container">Columns</span>
+                    <!-- Pillar 4 -->
+                    <div class="pillar-card">
+                        <div class="pillar-icon">⚡</div>
+                        <div class="pillar-number">Pillar 4</div>
+                        <h3 class="pillar-title">4. CSS Media Queries</h3>
+                        <p class="pillar-desc">
+                            Conditional style rules that apply specific CSS only when the screen meets certain width, height, or orientation breakpoints.
+                        </p>
+                        <div class="code-snippet-inline">
+                            <code>@media (min-width: 768px) { ... }</code>
                         </div>
-                        <p class="prop-desc">Specifies the number and width of each column. <code>1fr 1fr 1fr</code> creates 3 equal columns that automatically stretch and shrink.</p>
                     </div>
-
-                    <div class="prop-card">
-                        <div class="prop-card-header">
-                            <span class="prop-name">gap: 15px;</span>
-                            <span class="prop-tag tag-container">Spacing</span>
-                        </div>
-                        <p class="prop-desc">Sets the gutter space between rows and columns without needing ugly margin hacks on child elements.</p>
-                    </div>
-
-                    <div class="prop-card">
-                        <div class="prop-card-header">
-                            <span class="prop-name">repeat(3, 1fr)</span>
-                            <span class="prop-tag tag-container">Shorthand</span>
-                        </div>
-                        <p class="prop-desc">A convenient shorthand function that repeats identical columns: <code>repeat(3, 1fr)</code> is identical to <code>1fr 1fr 1fr</code>.</p>
-                    </div>
-                </div>
-
-                <div class="info-callout">
-                    <strong>🌟 What is the <code>fr</code> unit?</strong> <code>fr</code> stands for <strong>Fractional Unit</strong>. <code>1fr</code> represents one part of the available space inside the grid container. If you have <code>grid-template-columns: 1fr 2fr;</code>, the second column gets twice as much space as the first!
                 </div>
             </section>
 
-            <!-- Section 3: Container Properties -->
-            <section id="container-props" class="doc-section">
+            <!-- Section 3: Basic Level Code for Responsive Design -->
+            <section id="basic-code" class="doc-section">
                 <div class="section-badge">Section 03</div>
-                <h2 class="section-heading">CSS Grid Container Properties (Parent)</h2>
+                <h2 class="section-heading">Basic Level of Code for Responsive Design</h2>
                 <p class="section-lead">
-                    These properties are applied directly to the parent element to define tracks, sizing, gaps, and cell alignment.
+                    Here are the essential, beginner-friendly snippets of code you need to master responsive web design. Keep them simple, practical, and clean.
                 </p>
 
-                <div class="properties-grid">
-                    <!-- Property: grid-template-columns -->
-                    <div class="prop-card">
-                        <div class="prop-card-header">
-                            <span class="prop-name">grid-template-columns</span>
-                            <span class="prop-tag tag-container">Container</span>
+                <!-- Snippet 1: The Essential HTML Viewport -->
+                <div class="code-showcase-card">
+                    <div class="code-header">
+                        <div class="code-title-group">
+                            <span class="code-step-tag">Step 1</span>
+                            <span class="code-title">The Essential Viewport Tag (HTML)</span>
                         </div>
-                        <p class="prop-desc">Defines column track widths using pixels, percentages, fractions (<code>fr</code>), <code>repeat()</code>, or <code>minmax()</code>.</p>
-                        <div class="code-box">
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>.container {
-    /* 3 equal columns */
-    grid-template-columns: repeat(3, 1fr);
-
-    /* Fixed sidebar + fluid content */
-    grid-template-columns: 240px 1fr;
-}</code></pre>
-                        </div>
+                        <span class="code-badge">Always in &lt;head&gt;</span>
                     </div>
-
-                    <!-- Property: grid-template-rows -->
-                    <div class="prop-card">
-                        <div class="prop-card-header">
-                            <span class="prop-name">grid-template-rows</span>
-                            <span class="prop-tag tag-container">Container</span>
-                        </div>
-                        <p class="prop-desc">Defines explicit row heights. If omitted, rows will automatically size to fit their child contents.</p>
-                        <div class="code-box">
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>.container {
-    /* Header (70px), content (auto), footer (60px) */
-    grid-template-rows: 70px auto 60px;
-}</code></pre>
-                        </div>
+                    <p class="code-description">
+                        Without this single line of HTML in your <code>&lt;head&gt;</code>, mobile browsers will assume your site was made for desktops in 2005 and shrink it into an unreadable miniature view.
+                    </p>
+                    <div class="code-block-wrapper">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;!-- Crucial for responsive design --&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;My Responsive Web Page&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Page content goes here --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
                     </div>
-
-                    <!-- Property: gap, row-gap, column-gap -->
-                    <div class="prop-card">
-                        <div class="prop-card-header">
-                            <span class="prop-name">gap / row-gap / col-gap</span>
-                            <span class="prop-tag tag-container">Container</span>
-                        </div>
-                        <p class="prop-desc">Controls gutter spacing between items. <code>gap: 20px;</code> applies 20px between rows and columns.</p>
-                        <div class="code-box">
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>.container {
-    gap: 20px;             /* row & col gap */
-    row-gap: 30px;         /* only rows */
-    column-gap: 15px;      /* only cols */
-}</code></pre>
-                        </div>
-                    </div>
-
-                    <!-- Property: justify-items & align-items -->
-                    <div class="prop-card">
-                        <div class="prop-card-header">
-                            <span class="prop-name">justify-items & align-items</span>
-                            <span class="prop-tag tag-container">Alignment</span>
-                        </div>
-                        <p class="prop-desc">Aligns all grid items inside their cells along the inline (horizontal) and block (vertical) axes.</p>
-                        <div class="code-box">
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>.container {
-    justify-items: center; /* start | end | center | stretch */
-    align-items: center;   /* start | end | center | stretch */
-    place-items: center;   /* shorthand for both! */
-}</code></pre>
-                        </div>
-                    </div>
-
-                    <!-- Property: grid-template-areas -->
-                    <div class="prop-card">
-                        <div class="prop-card-header">
-                            <span class="prop-name">grid-template-areas</span>
-                            <span class="prop-tag tag-container">Template Areas</span>
-                        </div>
-                        <p class="prop-desc">Visual ASCII-art style layout definition by naming specific grid areas.</p>
-                        <div class="code-box">
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>.container {
-    grid-template-areas:
-        "header  header"
-        "sidebar content"
-        "footer  footer";
-}</code></pre>
-                        </div>
-                    </div>
-
-                    <!-- Property: auto-fit and minmax -->
-                    <div class="prop-card">
-                        <div class="prop-card-header">
-                            <span class="prop-name">minmax() & auto-fit</span>
-                            <span class="prop-tag tag-container">Responsive</span>
-                        </div>
-                        <p class="prop-desc">The ultimate responsive pattern: automatically generates columns that wrap without writing media queries.</p>
-                        <div class="code-box">
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>.container {
-    /* Auto responsive columns, min 200px wide */
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-}</code></pre>
-                        </div>
+                    <div class="code-footer-tip">
+                        <strong>Explanation:</strong> <code>width=device-width</code> tells the browser to match the page width to the screen's physical pixels. <code>initial-scale=1.0</code> sets the default zoom level to 100%.
                     </div>
                 </div>
-            </section>
 
-            <!-- Section 4: Item Spanning & Placement -->
-            <section id="item-props" class="doc-section">
-                <div class="section-badge">Section 04</div>
-                <h2 class="section-heading">Grid Item Properties (Children Placement)</h2>
-                <p class="section-lead">
-                    Grid items can be made to span multiple columns or rows, or be explicitly placed at precise grid line numbers.
-                </p>
-
-                <div class="properties-grid">
-                    <div class="prop-card">
-                        <div class="prop-card-header">
-                            <span class="prop-name">grid-column: span X</span>
-                            <span class="prop-tag tag-item">Spanning</span>
+                <!-- Snippet 2: Basic Fluid Container -->
+                <div class="code-showcase-card">
+                    <div class="code-header">
+                        <div class="code-title-group">
+                            <span class="code-step-tag">Step 2</span>
+                            <span class="code-title">The Basic Fluid Container (CSS)</span>
                         </div>
-                        <p class="prop-desc">Allows a box to stretch across multiple horizontal column tracks.</p>
-                        <div class="code-box">
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>/* Box spans across 2 columns */
-.featured-box {
-    grid-column: span 2;
-}
-
-/* Or from Line 1 to Line 3 */
-.banner {
-    grid-column: 1 / 3;
-}</code></pre>
-                        </div>
+                        <span class="code-badge">Centering & Scaling</span>
                     </div>
-
-                    <div class="prop-card">
-                        <div class="prop-card-header">
-                            <span class="prop-name">grid-row: span Y</span>
-                            <span class="prop-tag tag-item">Spanning</span>
-                        </div>
-                        <p class="prop-desc">Allows a box to stretch vertically across multiple row tracks.</p>
-                        <div class="code-box">
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>/* Box spans across 2 vertical rows */
-.tall-box {
-    grid-row: span 2;
-}
-
-/* Or from Line 1 to Line 4 */
-.sidebar {
-    grid-row: 1 / 4;
+                    <p class="code-description">
+                        Never set a fixed <code>width: 1200px;</code> on a wrapper. Instead, use <code>width: 100%;</code> combined with <code>max-width</code> so it fills smaller screens safely and caps at your desired size on wide monitors.
+                    </p>
+                    <div class="code-block-wrapper">
+                        <pre><code class="language-css">/* The universal responsive container */
+.container {
+    width: 100%;             /* Fills 100% of the screen on mobile phones */
+    max-width: 1100px;       /* Stops expanding on large desktop screens */
+    margin-left: auto;       /* Centers the container horizontally */
+    margin-right: auto;
+    padding-left: 16px;      /* Prevents content from touching phone screen edges */
+    padding-right: 16px;
+    box-sizing: border-box;  /* Ensures padding does NOT cause overflow */
 }</code></pre>
-                        </div>
-                    </div>
-
-                    <div class="prop-card">
-                        <div class="prop-card-header">
-                            <span class="prop-name">grid-area</span>
-                            <span class="prop-tag tag-item">Named Area</span>
-                        </div>
-                        <p class="prop-desc">Assigns an item to a named area defined in <code>grid-template-areas</code>.</p>
-                        <div class="code-box">
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>header { grid-area: header; }
-aside  { grid-area: sidebar; }
-main   { grid-area: content; }
-footer { grid-area: footer; }</code></pre>
-                        </div>
-                    </div>
-
-                    <div class="prop-card">
-                        <div class="prop-card-header">
-                            <span class="prop-name">justify-self & align-self</span>
-                            <span class="prop-tag tag-item">Item Align</span>
-                        </div>
-                        <p class="prop-desc">Overrides the parent's alignment for an individual grid item.</p>
-                        <div class="code-box">
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>.special-box {
-    justify-self: end;    /* align right inside cell */
-    align-self: center;   /* align vertical center */
-}</code></pre>
-                        </div>
                     </div>
                 </div>
-            </section>
 
-            <!-- Section 5: Interactive Live Grid Studio -->
-            <section id="interactive-studio" class="doc-section">
-                <div class="section-badge">Section 05</div>
-                <h2 class="section-heading">Interactive Live Grid Studio</h2>
-                <p class="section-lead">
-                    Experiment with grid columns, row heights, gutters, and item alignments in real time. Click any box in the canvas below to inspect and customize its spanning!
-                </p>
-
-                <div class="studio-wrapper">
-                    <div class="studio-header">
-                        <div class="studio-title">
-                            <span>🎮 CSS Grid Visual Playground</span>
+                <!-- Snippet 3: Basic Responsive Image -->
+                <div class="code-showcase-card">
+                    <div class="code-header">
+                        <div class="code-title-group">
+                            <span class="code-step-tag">Step 3</span>
+                            <span class="code-title">The Golden Responsive Image Rule (CSS)</span>
                         </div>
-                        <span id="studioBadge" style="font-family: var(--font-mono); font-size: 0.85rem; color: #a5b4fc;">Live Engine Active</span>
+                        <span class="code-badge">Zero Image Spills</span>
                     </div>
-
-                    <div class="studio-layout">
-                        <!-- Studio Controls -->
-                        <div class="studio-controls">
-                            <!-- Columns Preset -->
-                            <div class="control-group">
-                                <label class="control-label" for="colPreset">
-                                    <span>grid-template-columns</span>
-                                </label>
-                                <select id="colPreset" class="control-select" onchange="updateStudio()">
-                                    <option value="repeat(3, 1fr)">repeat(3, 1fr) — 3 Equal Cols</option>
-                                    <option value="repeat(2, 1fr)">repeat(2, 1fr) — 2 Equal Cols</option>
-                                    <option value="repeat(4, 1fr)">repeat(4, 1fr) — 4 Equal Cols</option>
-                                    <option value="1fr 2fr">1fr 2fr — Asymmetric (1:2)</option>
-                                    <option value="200px 1fr 150px">200px 1fr 150px — Mixed</option>
-                                    <option value="repeat(auto-fit, minmax(140px, 1fr))">repeat(auto-fit, minmax(140px, 1fr)) — Auto Responsive</option>
-                                </select>
-                            </div>
-
-                            <!-- Gap Slider -->
-                            <div class="control-group">
-                                <label class="control-label" for="gapSlider">
-                                    <span>gap:</span>
-                                    <span id="gapVal">16px</span>
-                                </label>
-                                <div class="slider-container">
-                                    <input type="range" id="gapSlider" class="control-slider" min="0" max="40" value="16" oninput="updateStudio()">
-                                </div>
-                            </div>
-
-                            <!-- Row Height -->
-                            <div class="control-group">
-                                <label class="control-label" for="rowHeight">
-                                    <span>grid-auto-rows</span>
-                                </label>
-                                <select id="rowHeight" class="control-select" onchange="updateStudio()">
-                                    <option value="minmax(80px, auto)">minmax(80px, auto) (Default)</option>
-                                    <option value="100px">100px (Fixed)</option>
-                                    <option value="130px">130px (Medium)</option>
-                                    <option value="auto">auto (Content based)</option>
-                                </select>
-                            </div>
-
-                            <!-- Justify-Items -->
-                            <div class="control-group">
-                                <label class="control-label" for="justifyItems">
-                                    <span>justify-items</span>
-                                </label>
-                                <select id="justifyItems" class="control-select" onchange="updateStudio()">
-                                    <option value="stretch">stretch (Default)</option>
-                                    <option value="start">start</option>
-                                    <option value="center">center</option>
-                                    <option value="end">end</option>
-                                </select>
-                            </div>
-
-                            <!-- Align-Items -->
-                            <div class="control-group">
-                                <label class="control-label" for="alignItems">
-                                    <span>align-items</span>
-                                </label>
-                                <select id="alignItems" class="control-select" onchange="updateStudio()">
-                                    <option value="stretch">stretch (Default)</option>
-                                    <option value="start">start</option>
-                                    <option value="center">center</option>
-                                    <option value="end">end</option>
-                                </select>
-                            </div>
-
-                            <!-- Box Count Control -->
-                            <div class="control-group">
-                                <label class="control-label">
-                                    <span>Grid Boxes Count</span>
-                                    <span id="itemCountDisplay">6 Boxes</span>
-                                </label>
-                                <div class="item-count-controls">
-                                    <button class="btn-sm" onclick="changeBoxCount(1)">+ Add Box</button>
-                                    <button class="btn-sm" onclick="changeBoxCount(-1)">- Remove Box</button>
-                                </div>
-                            </div>
-
-                            <button class="btn-reset" onclick="resetStudio()">Reset All Settings</button>
-                        </div>
-
-                        <!-- Stage Canvas & Code Output -->
-                        <div class="studio-stage">
-                            <div class="stage-canvas-outer">
-                                <div id="gridCanvas" class="grid-playground">
-                                    <!-- Boxes are rendered dynamically via JS -->
-                                </div>
-                            </div>
-
-                            <!-- Selected Item Inspector -->
-                            <div class="item-inspector-bar">
-                                <span class="inspector-tag" id="selectedBoxTag">Box #1 Selected</span>
-                                <div class="inspector-controls">
-                                    <div class="inspector-item">
-                                        <label for="itemColSpan">grid-column:</label>
-                                        <select id="itemColSpan" class="control-select" style="width: auto; padding: 4px 8px;" onchange="applySelectedSpan()">
-                                            <option value="auto">auto (1 col)</option>
-                                            <option value="span 2">span 2 cols</option>
-                                            <option value="span 3">span 3 cols</option>
-                                        </select>
-                                    </div>
-                                    <div class="inspector-item">
-                                        <label for="itemRowSpan">grid-row:</label>
-                                        <select id="itemRowSpan" class="control-select" style="width: auto; padding: 4px 8px;" onchange="applySelectedSpan()">
-                                            <option value="auto">auto (1 row)</option>
-                                            <option value="span 2">span 2 rows</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Live Code Output -->
-                            <div class="studio-output-panel">
-                                <div class="studio-code-header">
-                                    <span class="studio-code-title">Generated CSS Code</span>
-                                    <button class="copy-btn" onclick="copyStudioCode(this)">Copy CSS</button>
-                                </div>
-                                <pre><code id="studioCssCode">/* Generating CSS... */</code></pre>
-                            </div>
-                        </div>
+                    <p class="code-description">
+                        This 3-line CSS rule is the golden rule for images, SVGs, and videos. It ensures media never overflows its parent container while maintaining its natural aspect ratio.
+                    </p>
+                    <div class="code-block-wrapper">
+                        <pre><code class="language-css">/* The golden rule for responsive media */
+img, video {
+    max-width: 100%;    /* Image shrinks down if container is smaller than image */
+    height: auto;        /* Preserves the original aspect ratio (prevents squishing) */
+    display: block;      /* Removes annoying default bottom whitespace gap */
+}</code></pre>
                     </div>
                 </div>
-            </section>
 
-            <!-- Section 6: Practical Real-World UI Recipes -->
-            <section id="practical-recipes" class="doc-section">
-                <div class="section-badge">Section 06</div>
-                <h2 class="section-heading">Practical Real-World Grid Recipes</h2>
-                <p class="section-lead">
-                    Click through these industry standard UI patterns built with CSS Grid:
-                </p>
-
-                <div class="recipes-card">
-                    <nav class="tabs-nav" aria-label="Recipes navigation">
-                        <button class="tab-btn active" onclick="switchRecipe('recipe-autofit', this)">1. Responsive Auto-Fit Cards</button>
-                        <button class="tab-btn" onclick="switchRecipe('recipe-bento', this)">2. Bento Box Feature Grid</button>
-                        <button class="tab-btn" onclick="switchRecipe('recipe-dashboard', this)">3. Dashboard Template Areas</button>
-                        <button class="tab-btn" onclick="switchRecipe('recipe-center', this)">4. Ultimate Center Box</button>
-                    </nav>
-
-                    <!-- Recipe 1: Responsive Cards -->
-                    <div id="recipe-autofit" class="tab-content active">
-                        <h3>Responsive Card Grid (Zero Media Queries)</h3>
-                        <p>Uses <code>repeat(auto-fit, minmax(220px, 1fr))</code> to automatically create columns that adapt seamlessly from mobile to wide screens:</p>
-
-                        <div class="responsive-cards-grid">
-                            <div class="product-card">
-                                <div>
-                                    <div class="product-icon icon-purple">⚡</div>
-                                    <h4>Fast Performance</h4>
-                                    <p>Optimized rendering with hardware accelerated CSS layouts.</p>
-                                </div>
-                                <div class="card-footer">
-                                    <span>CSS Grid</span>
-                                    <span>Learn →</span>
-                                </div>
-                            </div>
-
-                            <div class="product-card">
-                                <div>
-                                    <div class="product-icon icon-emerald">📐</div>
-                                    <h4>2D Alignment</h4>
-                                    <p>Simultaneous row and column track control with sub-pixel precision.</p>
-                                </div>
-                                <div class="card-footer">
-                                    <span>Tracks</span>
-                                    <span>Learn →</span>
-                                </div>
-                            </div>
-
-                            <div class="product-card">
-                                <div>
-                                    <div class="product-icon icon-cyan">📱</div>
-                                    <h4>Fluid Responsive</h4>
-                                    <p>Never write bulky media queries again for simple responsive card grids.</p>
-                                </div>
-                                <div class="card-footer">
-                                    <span>minmax()</span>
-                                    <span>Learn →</span>
-                                </div>
-                            </div>
-
-                            <div class="product-card">
-                                <div>
-                                    <div class="product-icon icon-amber">🛡️</div>
-                                    <h4>Cross Browser</h4>
-                                    <p>Supported across all modern browsers: Chrome, Edge, Safari, Firefox.</p>
-                                </div>
-                                <div class="card-footer">
-                                    <span>Standard</span>
-                                    <span>Learn →</span>
-                                </div>
-                            </div>
+                <!-- Snippet 4: Basic Media Query (Mobile-First) -->
+                <div class="code-showcase-card">
+                    <div class="code-header">
+                        <div class="code-title-group">
+                            <span class="code-step-tag">Step 4</span>
+                            <span class="code-title">Basic Mobile-First Media Query Syntax (CSS)</span>
                         </div>
-
-                        <div class="code-box">
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>.responsive-cards-grid {
-    display: grid;
-    /* The magic responsive formula: */
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-}</code></pre>
-                        </div>
+                        <span class="code-badge">The Core Mechanism</span>
                     </div>
-
-                    <!-- Recipe 2: Bento Grid -->
-                    <div id="recipe-bento" class="tab-content">
-                        <h3>Bento Box Feature Showcase</h3>
-                        <p>The modern Apple/Linear-style Bento Grid using <code>grid-column: span 2</code> and <code>grid-row: span 2</code>:</p>
-
-                        <div class="bento-grid">
-                            <div class="bento-item bento-feat-1">
-                                <h4>Featured Core Feature</h4>
-                                <p>Spans 2 columns and 2 rows to command visual hierarchy on modern landing pages.</p>
-                            </div>
-                            <div class="bento-item bento-feat-2">
-                                <h4>Analytics Dashboard</h4>
-                                <p>Spans 2 columns across the top right.</p>
-                            </div>
-                            <div class="bento-item bento-feat-3">
-                                <h4>Security 2FA</h4>
-                                <p>1x1 box unit.</p>
-                            </div>
-                            <div class="bento-item bento-feat-4">
-                                <h4>Cloud Sync</h4>
-                                <p>1x1 box unit.</p>
-                            </div>
-                        </div>
-
-                        <div class="code-box">
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>.bento-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: 140px;
+                    <p class="code-description">
+                        In a mobile-first approach, you write default styles for small screens, then use <code>@media (min-width: 768px)</code> to enhance layout for tablets and desktops.
+                    </p>
+                    <div class="code-block-wrapper">
+                        <pre><code class="language-css">/* 1. DEFAULT: Mobile layout (1 column stacked vertically) */
+.card-grid {
+    display: flex;
+    flex-direction: column;
     gap: 16px;
 }
 
-.bento-feat-1 {
-    grid-column: span 2;
-    grid-row: span 2; /* 2x2 large hero box */
+/* 2. TABLET & DESKTOP: When screen is at least 768px wide */
+@media screen and (min-width: 768px) {
+    .card-grid {
+        flex-direction: row;        /* Switches from vertical stack to horizontal row */
+        flex-wrap: wrap;
+    }
+
+    .card-item {
+        flex: 1;                    /* All cards share equal width side-by-side */
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Snippet 5: Basic Responsive Navigation -->
+                <div class="code-showcase-card">
+                    <div class="code-header">
+                        <div class="code-title-group">
+                            <span class="code-step-tag">Step 5</span>
+                            <span class="code-title">Basic Responsive Navigation Bar</span>
+                        </div>
+                        <span class="code-badge">Stack on Mobile, Row on Desktop</span>
+                    </div>
+                    <p class="code-description">
+                        Navigation links stack vertically on small devices and align horizontally across the top on larger screens.
+                    </p>
+                    <div class="code-block-wrapper">
+                        <pre><code class="language-html">&lt;nav class="navbar"&gt;
+    &lt;div class="nav-logo"&gt;MyLogo&lt;/div&gt;
+    &lt;ul class="nav-links"&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Features&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+                    </div>
+                    <div class="code-block-wrapper" style="margin-top: 12px;">
+                        <pre><code class="language-css">/* Mobile default: column */
+.navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
 }
 
-.bento-feat-2 {
-    grid-column: span 2; /* 2-column wide box */
-}</code></pre>
-                        </div>
-                    </div>
-
-                    <!-- Recipe 3: Dashboard Layout -->
-                    <div id="recipe-dashboard" class="tab-content">
-                        <h3>Dashboard Layout with <code>grid-template-areas</code></h3>
-                        <p>Declare your layout semantically by mapping names to cells:</p>
-
-                        <div class="dashboard-grid">
-                            <div class="dash-header">Dashboard Header (grid-area: header)</div>
-                            <div class="dash-sidebar">Sidebar Navigation (grid-area: sidebar)</div>
-                            <div class="dash-main">
-                                <h4>Main Analytics Workspace (grid-area: main)</h4>
-                                <p>Responsive workspace content placed dynamically.</p>
-                            </div>
-                            <div class="dash-footer">Footer Bar (grid-area: footer)</div>
-                        </div>
-
-                        <div class="code-box">
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>.dashboard-grid {
-    display: grid;
-    grid-template-areas:
-        "header  header  header"
-        "sidebar main    main"
-        "sidebar main    main"
-        "footer  footer  footer";
-    grid-template-columns: 200px 1fr 1fr;
-    grid-template-rows: 60px 140px 140px 50px;
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
     gap: 12px;
+    margin-top: 12px;
 }
 
-.dash-header  { grid-area: header; }
-.dash-sidebar { grid-area: sidebar; }
-.dash-main    { grid-area: main; }
-.dash-footer  { grid-area: footer; }</code></pre>
-                        </div>
-                    </div>
+/* Desktop: row */
+@media (min-width: 768px) {
+    .navbar {
+        flex-direction: row;
+        justify-content: space-between;
+    }
 
-                    <!-- Recipe 4: Perfect Centering -->
-                    <div id="recipe-center" class="tab-content">
-                        <h3>The Ultimate Dead-Center Box with <code>place-items: center</code></h3>
-                        <p>The cleanest 2-line vertical and horizontal centering technique in CSS history:</p>
-
-                        <div class="center-box-preview">
-                            <div class="centered-content">
-                                <h4>🎯 Perfectly Centered Box</h4>
-                                <p>Centered both vertically and horizontally in just 2 lines of CSS!</p>
-                            </div>
-                        </div>
-
-                        <div class="code-box">
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre><code>.container {
-    display: grid;
-    place-items: center; /* Horizontally & vertically centers children! */
-    height: 100vh;
+    .nav-links {
+        flex-direction: row;
+        gap: 24px;
+        margin-top: 0;
+    }
 }</code></pre>
+                    </div>
+                </div>
+
+                <!-- Snippet 6: Basic Fluid Typography with clamp() -->
+                <div class="code-showcase-card">
+                    <div class="code-header">
+                        <div class="code-title-group">
+                            <span class="code-step-tag">Step 6</span>
+                            <span class="code-title">Modern Fluid Typography with CSS clamp()</span>
                         </div>
+                        <span class="code-badge">No Media Queries Needed!</span>
+                    </div>
+                    <p class="code-description">
+                        <code>clamp(minimum, preferred, maximum)</code> scales headings smoothly between small screens and large monitors without requiring multiple media query overrides.
+                    </p>
+                    <div class="code-block-wrapper">
+                        <pre><code class="language-css">/* Fluid Heading: minimum 24px, grows with viewport, caps at 48px */
+h1 {
+    font-size: clamp(1.5rem, 4vw + 1rem, 3rem);
+}
+
+/* Fluid Body Text: minimum 15px, caps at 18px */
+p {
+    font-size: clamp(0.95rem, 1vw + 0.75rem, 1.125rem);
+}</code></pre>
                     </div>
                 </div>
             </section>
 
-            <!-- Section 7: Grid vs Flexbox -->
-            <section id="grid-vs-flexbox" class="doc-section">
-                <div class="section-badge">Section 07</div>
-                <h2 class="section-heading">CSS Grid vs Flexbox: When to Use Which?</h2>
+            <!-- Section 4: Standard Breakpoints & Mobile-First vs Desktop-First -->
+            <section id="breakpoints" class="doc-section">
+                <div class="section-badge">Section 04</div>
+                <h2 class="section-heading">Standard Breakpoints & Strategies</h2>
                 <p class="section-lead">
-                    Both layout systems are complementary. The golden rule is: <strong>Flexbox is for 1D content-driven flows; CSS Grid is for 2D layout-driven structures.</strong>
+                    A <strong>breakpoint</strong> is the exact viewport width at which a media query triggers to reorganize your layout.
                 </p>
 
-                <div class="table-wrapper">
-                    <table class="comp-table">
+                <!-- Breakpoints Reference Table -->
+                <div class="table-card">
+                    <table class="responsive-table">
                         <thead>
                             <tr>
-                                <th>Feature</th>
-                                <th>CSS Flexbox</th>
-                                <th>CSS Grid</th>
+                                <th>Device Class</th>
+                                <th>Breakpoint Range</th>
+                                <th>Media Query (Mobile-First)</th>
+                                <th>Typical UI Adaptation</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>Dimensionality</strong></td>
-                                <td>1-Dimensional (Row OR Column)</td>
-                                <td>2-Dimensional (Rows AND Columns simultaneously)</td>
+                                <td><span class="device-badge mobile">📱 Mobile</span></td>
+                                <td><code>&lt; 640px</code></td>
+                                <td>Default styles (No query needed)</td>
+                                <td>Single-column, stacked layout, hamburger menu</td>
                             </tr>
                             <tr>
-                                <td><strong>Approach</strong></td>
-                                <td>Content-first (items dictate size)</td>
-                                <td>Layout-first (container defines track framework)</td>
+                                <td><span class="device-badge tablet">📟 Tablet</span></td>
+                                <td><code>640px – 1023px</code></td>
+                                <td><code>@media (min-width: 640px)</code></td>
+                                <td>2-column grid, compact horizontal navigation</td>
                             </tr>
                             <tr>
-                                <td><strong>Best Used For</strong></td>
-                                <td>Navbars, button sets, media items, chips</td>
-                                <td>Page layouts, image galleries, dashboards, card systems</td>
+                                <td><span class="device-badge laptop">💻 Laptop / Desktop</span></td>
+                                <td><code>1024px – 1279px</code></td>
+                                <td><code>@media (min-width: 1024px)</code></td>
+                                <td>3 to 4-column cards, sidebar navigation, multi-pane layouts</td>
                             </tr>
                             <tr>
-                                <td><strong>Item Placement</strong></td>
-                                <td>Sequential ordering via <code>order</code></td>
-                                <td>Arbitrary 2D positioning via line numbers or areas</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Overlapping Items</strong></td>
-                                <td>Difficult (requires negative margin / absolute)</td>
-                                <td>Native (items can share cells and overlap with z-index)</td>
+                                <td><span class="device-badge ultrawide">🖥️ Large Monitor</span></td>
+                                <td><code>≥ 1280px</code></td>
+                                <td><code>@media (min-width: 1280px)</code></td>
+                                <td>Max-width container centering, generous whitespace, multi-track grids</td>
                             </tr>
                         </tbody>
                     </table>
+                </div>
+
+                <!-- Mobile-First vs Desktop-First Comparison -->
+                <div class="strategy-comparison">
+                    <div class="strategy-card active-strategy">
+                        <div class="strategy-badge">🌟 Recommended Industry Standard</div>
+                        <h3>Mobile-First Design (min-width)</h3>
+                        <p>Write your basic CSS for phones first. Then progressively add columns, complex grids, and hover effects as the screen expands.</p>
+                        <pre><code class="language-css">/* Base: phone */
+.column { width: 100%; }
+
+/* Tablet & larger */
+@media (min-width: 768px) {
+    .column { width: 50%; }
+}
+
+/* Desktop & larger */
+@media (min-width: 1024px) {
+    .column { width: 33.333%; }
+}</code></pre>
+                    </div>
+
+                    <div class="strategy-card">
+                        <div class="strategy-badge subtle">Alternative Approach</div>
+                        <h3>Desktop-First Design (max-width)</h3>
+                        <p>Write CSS for big desktop monitors first. Then use <code>max-width</code> to strip away columns and stack elements as screens get smaller.</p>
+                        <pre><code class="language-css">/* Base: desktop */
+.column { width: 33.333%; }
+
+/* Tablet & smaller */
+@media (max-width: 1023px) {
+    .column { width: 50%; }
+}
+
+/* Phone only */
+@media (max-width: 767px) {
+    .column { width: 100%; }
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Interactive Responsive Viewport Simulator -->
+            <section id="interactive-simulator" class="doc-section">
+                <div class="section-badge">Section 05</div>
+                <h2 class="section-heading">Interactive Live Responsive Resizer Studio</h2>
+                <p class="section-lead">
+                    Test responsive behavior right inside your browser! Click the device buttons below or drag the width slider to resize the simulated viewport and watch how the basic responsive code adapts in real time.
+                </p>
+
+                <!-- Simulator Control Bar -->
+                <div class="simulator-controls">
+                    <div class="preset-buttons" role="group" aria-label="Device Presets">
+                        <button class="preset-btn" data-width="375" id="btn-mobile">
+                            <span class="btn-icon">📱</span> Mobile (375px)
+                        </button>
+                        <button class="preset-btn" data-width="768" id="btn-tablet">
+                            <span class="btn-icon">📟</span> Tablet (768px)
+                        </button>
+                        <button class="preset-btn" data-width="1024" id="btn-laptop">
+                            <span class="btn-icon">💻</span> Laptop (1024px)
+                        </button>
+                        <button class="preset-btn active" data-width="100%" id="btn-full">
+                            <span class="btn-icon">🖥️</span> Full (100%)
+                        </button>
+                    </div>
+
+                    <div class="slider-group">
+                        <label for="width-slider" class="slider-label">Custom Width:</label>
+                        <input type="range" id="width-slider" min="320" max="1100" value="1100" class="width-slider">
+                        <span class="slider-value-display" id="slider-readout">1100px</span>
+                    </div>
+                </div>
+
+                <!-- Device Simulator Frame -->
+                <div class="simulator-wrapper">
+                    <div class="simulator-device-bar">
+                        <div class="device-indicators">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <div class="simulator-url-bar">
+                            <span class="lock-icon">🔒</span> https://harish-responsive-demo.local
+                        </div>
+                        <div class="simulator-size-tag" id="sim-size-tag">Width: 100% | Breakpoint: Desktop (lg)</div>
+                    </div>
+
+                    <!-- The Actual Resizable Stage -->
+                    <div class="simulator-stage" id="simulator-stage">
+                        <!-- Inside: A Complete Mini Responsive Webpage -->
+                        <div class="sample-page">
+                            
+                            <!-- Sample Navigation -->
+                            <nav class="sample-nav">
+                                <div class="sample-logo">🚀 DevBrand</div>
+                                <button class="sample-nav-toggle" id="sample-nav-toggle" aria-label="Toggle Menu">
+                                    <span class="toggle-bar"></span>
+                                    <span class="toggle-bar"></span>
+                                    <span class="toggle-bar"></span>
+                                </button>
+                                <ul class="sample-nav-menu" id="sample-nav-menu">
+                                    <li><a href="javascript:void(0)" class="active">Overview</a></li>
+                                    <li><a href="javascript:void(0)">Features</a></li>
+                                    <li><a href="javascript:void(0)">Pricing</a></li>
+                                    <li><a href="javascript:void(0)">Docs</a></li>
+                                </ul>
+                            </nav>
+
+                            <!-- Sample Hero -->
+                            <section class="sample-hero">
+                                <div class="sample-hero-badge">Responsive Grid & Flexbox</div>
+                                <h3 class="sample-hero-title">Build Once, Run Beautifully Everywhere</h3>
+                                <p class="sample-hero-text">
+                                    Notice how this entire mock page changes its layout as you resize the simulator above! The navigation transforms, the hero stacks, and cards collapse into 1, 2, or 3 columns.
+                                </p>
+                            </section>
+
+                            <!-- Sample Responsive Card Grid -->
+                            <section class="sample-grid">
+                                <div class="sample-card">
+                                    <div class="sample-card-icon">⚡</div>
+                                    <h4>Fluid Columns</h4>
+                                    <p>Adapts from 1-column on phones to 2-columns on tablets and 3-columns on laptops.</p>
+                                    <span class="sample-card-tag">CSS Flex / Grid</span>
+                                </div>
+                                <div class="sample-card">
+                                    <div class="sample-card-icon">📐</div>
+                                    <h4>Fluid Spacing</h4>
+                                    <p>Margins and padding scale smoothly to preserve precious mobile viewport space.</p>
+                                    <span class="sample-card-tag">Relative Units</span>
+                                </div>
+                                <div class="sample-card">
+                                    <div class="sample-card-icon">🖼️</div>
+                                    <h4>Fluid Images</h4>
+                                    <p>Images will never overflow their boundaries thanks to max-width: 100%.</p>
+                                    <span class="sample-card-tag">Aspect Ratio</span>
+                                </div>
+                            </section>
+
+                            <!-- Sample Footer -->
+                            <footer class="sample-footer">
+                                <span>Day 17 Responsive Studio</span>
+                                <span>Simulated Viewport Test</span>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: Interactive Fixed vs Fluid Demo -->
+            <section id="fixed-vs-fluid" class="doc-section">
+                <div class="section-badge">Section 06</div>
+                <h2 class="section-heading">Interactive Demo: Fixed vs Fluid Width</h2>
+                <p class="section-lead">
+                    See why setting fixed pixel widths like <code>width: 700px;</code> is dangerous for responsive web pages. Toggle the button below to see how fixed elements cause bad horizontal scrolling while fluid elements adjust automatically.
+                </p>
+
+                <div class="interactive-toggle-box">
+                    <button class="toggle-action-btn" id="toggle-width-mode-btn">
+                        Switch to: <strong id="next-mode-text">Fixed 650px Width (See the Problem)</strong>
+                    </button>
+                    <span class="mode-status-indicator" id="current-mode-status">Current Mode: <strong>Fluid (Responsive max-width: 100%)</strong></span>
+                </div>
+
+                <div class="demo-overflow-container">
+                    <div class="demo-box fluid-mode" id="demo-target-box">
+                        <div class="demo-box-header">
+                            <span class="demo-box-title" id="demo-box-label">Mode: Fluid Responsive (max-width: 100%)</span>
+                            <span class="demo-box-rule" id="demo-box-css-rule">CSS: width: 100%; max-width: 650px;</span>
+                        </div>
+                        <p class="demo-box-content">
+                            When screen space shrinks, this fluid box automatically constrains itself to never exceed the parent width. If you switch to "Fixed Width", it forces an ugly horizontal scrollbar whenever the container is narrower than 650px!
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: Practical Recipes -->
+            <section id="responsive-recipes" class="doc-section">
+                <div class="section-badge">Section 07</div>
+                <h2 class="section-heading">3 Essential Responsive UI Recipes</h2>
+                <p class="section-lead">
+                    Ready-to-use basic responsive patterns used across millions of modern websites.
+                </p>
+
+                <div class="recipes-container">
+                    <!-- Recipe 1 -->
+                    <div class="recipe-card">
+                        <div class="recipe-header">
+                            <span class="recipe-num">Recipe 01</span>
+                            <h3>Responsive 1-to-2-to-3 Column Card Grid</h3>
+                        </div>
+                        <p>The standard e-commerce / blog card pattern: 1 col on mobile, 2 on tablet, 3 on desktop.</p>
+                        <pre><code class="language-css">/* Basic Responsive Cards */
+.cards-container {
+    display: grid;
+    grid-template-columns: 1fr;           /* 1 column on mobile */
+    gap: 16px;
+}
+
+@media (min-width: 600px) {
+    .cards-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablet */
+    }
+}
+
+@media (min-width: 992px) {
+    .cards-container {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
+    }
+}</code></pre>
+                    </div>
+
+                    <!-- Recipe 2 -->
+                    <div class="recipe-card">
+                        <div class="recipe-header">
+                            <span class="recipe-num">Recipe 02</span>
+                            <h3>Zero-Media-Query Auto-Fit Responsive Grid</h3>
+                        </div>
+                        <p>Modern CSS Grid trick that automatically adds or drops columns based on available space without needing a single media query!</p>
+                        <pre><code class="language-css">/* Magic auto-fit grid */
+.auto-grid {
+    display: grid;
+    /* Cards are at least 260px wide, expanding equally to fill rows */
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}</code></pre>
+                    </div>
+
+                    <!-- Recipe 3 -->
+                    <div class="recipe-card">
+                        <div class="recipe-header">
+                            <span class="recipe-num">Recipe 03</span>
+                            <h3>Responsive Stacked-to-Split Hero Section</h3>
+                        </div>
+                        <p>Hero with text on the left and image on the right. Stacks vertically on mobile and splits into a 50/50 side-by-side layout on desktop.</p>
+                        <pre><code class="language-css">/* Mobile: Stacked */
+.hero {
+    display: flex;
+    flex-direction: column-reverse; /* Put image above text on phone if needed */
+    gap: 24px;
+    align-items: center;
+}
+
+/* Desktop: Side-by-side */
+@media (min-width: 768px) {
+    .hero {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .hero-content, .hero-media {
+        flex: 1;
+    }
+}</code></pre>
+                    </div>
                 </div>
             </section>
 
             <!-- Section 8: Quick Cheat Sheet -->
             <section id="cheat-sheet" class="doc-section">
                 <div class="section-badge">Section 08</div>
-                <h2 class="section-heading">CSS Grid Quick Cheat Sheet</h2>
-                <div class="properties-grid">
-                    <div class="prop-card">
-                        <span class="prop-name">display: grid;</span>
-                        <p class="prop-desc">Initializes a block-level grid container.</p>
+                <h2 class="section-heading">Responsive Design Quick Cheat Sheet</h2>
+                <p class="section-lead">
+                    Quick reference of core rules, best practices, and common rookie pitfalls.
+                </p>
+
+                <div class="cheat-sheet-grid">
+                    <div class="cheat-card">
+                        <h4>✅ Golden Rules of RWD</h4>
+                        <ul class="cheat-list">
+                            <li><strong>Always include</strong> <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code> in HTML.</li>
+                            <li><strong>Use relative units</strong> (<code>%</code>, <code>rem</code>, <code>vw</code>) rather than fixed pixel dimensions.</li>
+                            <li><strong>Add</strong> <code>max-width: 100%; height: auto;</code> to all images and videos.</li>
+                            <li><strong>Adopt Mobile-First</strong>: style small screens first using <code>@media (min-width: ...)</code>.</li>
+                            <li><strong>Design for touch</strong>: buttons and touch targets should be at least <code>44px × 44px</code>.</li>
+                        </ul>
                     </div>
-                    <div class="prop-card">
-                        <span class="prop-name">grid-template-columns: repeat(3, 1fr);</span>
-                        <p class="prop-desc">Creates 3 equal-width columns.</p>
-                    </div>
-                    <div class="prop-card">
-                        <span class="prop-name">gap: 20px;</span>
-                        <p class="prop-desc">Sets 20px space between grid rows & columns.</p>
-                    </div>
-                    <div class="prop-card">
-                        <span class="prop-name">grid-column: span 2;</span>
-                        <p class="prop-desc">Makes an item stretch across 2 column tracks.</p>
-                    </div>
-                    <div class="prop-card">
-                        <span class="prop-name">grid-row: span 2;</span>
-                        <p class="prop-desc">Makes an item stretch vertically across 2 row tracks.</p>
-                    </div>
-                    <div class="prop-card">
-                        <span class="prop-name">place-items: center;</span>
-                        <p class="prop-desc">Centers all items horizontally and vertically in cells.</p>
+
+                    <div class="cheat-card">
+                        <h4>❌ Common Mistakes to Avoid</h4>
+                        <ul class="cheat-list">
+                            <li><strong>Hardcoding element widths</strong> (e.g. <code>width: 1000px;</code>) which causes horizontal scrolling.</li>
+                            <li><strong>Disabling zoom</strong> (e.g. <code>user-scalable=no</code>) which hurts accessibility for visually impaired users.</li>
+                            <li><strong>Using fixed pixel font-sizes</strong> for headings that overflow phone screens.</li>
+                            <li><strong>Relying solely on desktop browser DevTools</strong> without testing on real mobile devices.</li>
+                            <li><strong>Targeting specific device brands</strong> instead of letting content dictate natural breakpoints.</li>
+                        </ul>
                     </div>
                 </div>
             </section>
@@ -841,192 +718,153 @@ footer { grid-area: footer; }</code></pre>
         </main>
 
         <!-- Footer -->
-        <footer class="main-footer">
-            <p>Day 16 of the 100 Days Frontend Challenge • Created with ❤️ by <a href="https://github.com/harish-0987" target="_blank" rel="noopener">Harish (harish-0987)</a></p>
-            <p style="margin-top: 6px; font-size: 0.82rem; color: #94a3b8;">Repository: <a href="https://github.com/harish-0987/DAY-16-OF-FRONTEND" target="_blank" rel="noopener">harish-0987/DAY-16-OF-FRONTEND</a></p>
+        <footer class="page-footer">
+            <div class="footer-inner">
+                <p><strong>Day 17 of 100 Days Frontend Challenge</strong> &bull; Crafted by Harish (<a href="https://github.com/harish-0987" target="_blank" rel="noopener">harish-0987</a>)</p>
+                <p class="footer-links">
+                    <a href="https://github.com/harish-0987/DAY-16-OF-FRONTEND" target="_blank" rel="noopener">Day 16: CSS Grid Box</a> &bull;
+                    <a href="https://github.com/harish-0987/DAY-17-OF-FRONTEND" target="_blank" rel="noopener">Day 17: Responsive Design</a> &bull;
+                    <a href="#core-concepts">Back to Top ↑</a>
+                </p>
+            </div>
         </footer>
+
     </div>
 
-    <!-- Interactive JavaScript Engine -->
+    <!-- Interactive Simulator & Helper Script -->
     <script>
-        // State
-        let boxCount = 6;
-        let selectedBoxIndex = 1;
-        const boxSpans = {}; // { index: { col: 'auto', row: 'auto' } }
+        // 1. Live Window Viewport Tracker
+        function updateLiveViewportDisplay() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const sizeEl = document.getElementById('current-viewport-size');
+            const badgeEl = document.getElementById('current-breakpoint-badge');
 
-        function renderBoxes() {
-            const canvas = document.getElementById('gridCanvas');
-            canvas.innerHTML = '';
+            if (sizeEl) {
+                sizeEl.textContent = `${width}px × ${height}px`;
+            }
 
-            for (let i = 1; i <= boxCount; i++) {
-                const box = document.createElement('div');
-                box.className = 'grid-box-item';
-                if (i === selectedBoxIndex) {
-                    box.classList.add('selected');
+            if (badgeEl) {
+                if (width < 640) {
+                    badgeEl.textContent = 'Mobile (<640px)';
+                    badgeEl.className = 'tracker-badge mobile';
+                } else if (width < 1024) {
+                    badgeEl.textContent = 'Tablet (640-1023px)';
+                    badgeEl.className = 'tracker-badge tablet';
+                } else if (width < 1280) {
+                    badgeEl.textContent = 'Desktop (1024-1279px)';
+                    badgeEl.className = 'tracker-badge laptop';
+                } else {
+                    badgeEl.textContent = 'Large Desktop (≥1280px)';
+                    badgeEl.className = 'tracker-badge desktop';
+                }
+            }
+        }
+
+        window.addEventListener('resize', updateLiveViewportDisplay);
+        window.addEventListener('DOMContentLoaded', updateLiveViewportDisplay);
+
+        // 2. Interactive Viewport Simulator Controls
+        const simulatorStage = document.getElementById('simulator-stage');
+        const widthSlider = document.getElementById('width-slider');
+        const sliderReadout = document.getElementById('slider-readout');
+        const simSizeTag = document.getElementById('sim-size-tag');
+        const presetBtns = document.querySelectorAll('.preset-btn');
+
+        function setSimulatorWidth(widthValue) {
+            if (!simulatorStage) return;
+
+            presetBtns.forEach(btn => btn.classList.remove('active'));
+
+            if (widthValue === '100%') {
+                simulatorStage.style.width = '100%';
+                simulatorStage.classList.remove('sim-mobile');
+                if (sliderReadout) sliderReadout.textContent = '100% (Full)';
+                if (simSizeTag) simSizeTag.textContent = 'Width: 100% | Breakpoint: Desktop (lg)';
+                const fullBtn = document.getElementById('btn-full');
+                if (fullBtn) fullBtn.classList.add('active');
+            } else {
+                const numericPx = parseInt(widthValue, 10);
+                simulatorStage.style.width = `${numericPx}px`;
+                if (widthSlider) widthSlider.value = numericPx;
+                if (sliderReadout) sliderReadout.textContent = `${numericPx}px`;
+
+                let bpName = 'Mobile';
+                if (numericPx >= 1024) {
+                    bpName = 'Laptop / Desktop (lg)';
+                    simulatorStage.classList.remove('sim-mobile');
+                } else if (numericPx >= 640) {
+                    bpName = 'Tablet (md)';
+                    simulatorStage.classList.remove('sim-mobile');
+                } else {
+                    bpName = 'Mobile (sm)';
+                    simulatorStage.classList.add('sim-mobile');
                 }
 
-                // Apply saved span if any
-                if (boxSpans[i]) {
-                    box.style.gridColumn = boxSpans[i].col;
-                    box.style.gridRow = boxSpans[i].row;
-                }
+                if (simSizeTag) simSizeTag.textContent = `Width: ${numericPx}px | Breakpoint: ${bpName}`;
 
-                box.innerHTML = `
-                    <span class="item-title">Box #${i}</span>
-                    <span class="item-sub">${boxSpans[i]?.col !== 'auto' && boxSpans[i]?.col ? boxSpans[i].col : '1x1'}</span>
-                `;
-
-                box.onclick = () => selectBox(i);
-                canvas.appendChild(box);
-            }
-        }
-
-        function selectBox(index) {
-            selectedBoxIndex = index;
-            document.getElementById('selectedBoxTag').textContent = `Box #${index} Selected`;
-
-            const current = boxSpans[index] || { col: 'auto', row: 'auto' };
-            document.getElementById('itemColSpan').value = current.col || 'auto';
-            document.getElementById('itemRowSpan').value = current.row || 'auto';
-
-            renderBoxes();
-        }
-
-        function applySelectedSpan() {
-            const col = document.getElementById('itemColSpan').value;
-            const row = document.getElementById('itemRowSpan').value;
-            boxSpans[selectedBoxIndex] = { col, row };
-            renderBoxes();
-            updateCssOutput();
-        }
-
-        function changeBoxCount(delta) {
-            const newCount = boxCount + delta;
-            if (newCount >= 1 && newCount <= 12) {
-                boxCount = newCount;
-                document.getElementById('itemCountDisplay').textContent = `${boxCount} Boxes`;
-                if (selectedBoxIndex > boxCount) {
-                    selectedBoxIndex = boxCount;
-                }
-                renderBoxes();
-                updateStudio();
-            }
-        }
-
-        function updateStudio() {
-            const canvas = document.getElementById('gridCanvas');
-            const colVal = document.getElementById('colPreset').value;
-            const gapVal = document.getElementById('gapSlider').value;
-            const rowVal = document.getElementById('rowHeight').value;
-            const justifyVal = document.getElementById('justifyItems').value;
-            const alignVal = document.getElementById('alignItems').value;
-
-            document.getElementById('gapVal').textContent = `${gapVal}px`;
-
-            canvas.style.gridTemplateColumns = colVal;
-            canvas.style.gap = `${gapVal}px`;
-            canvas.style.gridAutoRows = rowVal;
-            canvas.style.justifyItems = justifyVal;
-            canvas.style.alignItems = alignVal;
-
-            updateCssOutput();
-        }
-
-        function updateCssOutput() {
-            const colVal = document.getElementById('colPreset').value;
-            const gapVal = document.getElementById('gapSlider').value;
-            const rowVal = document.getElementById('rowHeight').value;
-            const justifyVal = document.getElementById('justifyItems').value;
-            const alignVal = document.getElementById('alignItems').value;
-
-            let code = `.grid-container {\n`;
-            code += `    display: grid;\n`;
-            code += `    grid-template-columns: ${colVal};\n`;
-            if (rowVal !== 'auto' && rowVal !== 'minmax(80px, auto)') {
-                code += `    grid-auto-rows: ${rowVal};\n`;
-            }
-            code += `    gap: ${gapVal}px;\n`;
-            if (justifyVal !== 'stretch') {
-                code += `    justify-items: ${justifyVal};\n`;
-            }
-            if (alignVal !== 'stretch') {
-                code += `    align-items: ${alignVal};\n`;
-            }
-            code += `}\n`;
-
-            // Check if any box has spanning
-            for (let i = 1; i <= boxCount; i++) {
-                if (boxSpans[i] && (boxSpans[i].col !== 'auto' || boxSpans[i].row !== 'auto')) {
-                    code += `\n/* Item #${i} Custom Spanning */\n.box-${i} {\n`;
-                    if (boxSpans[i].col && boxSpans[i].col !== 'auto') {
-                        code += `    grid-column: ${boxSpans[i].col};\n`;
+                presetBtns.forEach(btn => {
+                    if (btn.dataset.width === String(numericPx)) {
+                        btn.classList.add('active');
                     }
-                    if (boxSpans[i].row && boxSpans[i].row !== 'auto') {
-                        code += `    grid-row: ${boxSpans[i].row};\n`;
-                    }
-                    code += `}\n`;
-                }
-            }
-
-            document.getElementById('studioCssCode').textContent = code;
-        }
-
-        function resetStudio() {
-            document.getElementById('colPreset').value = 'repeat(3, 1fr)';
-            document.getElementById('gapSlider').value = '16';
-            document.getElementById('rowHeight').value = 'minmax(80px, auto)';
-            document.getElementById('justifyItems').value = 'stretch';
-            document.getElementById('alignItems').value = 'stretch';
-            for (let key in boxSpans) delete boxSpans[key];
-            boxCount = 6;
-            selectedBoxIndex = 1;
-            document.getElementById('itemCountDisplay').textContent = '6 Boxes';
-            selectBox(1);
-            updateStudio();
-        }
-
-        function switchRecipe(recipeId, btn) {
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            btn.classList.add('active');
-            document.getElementById(recipeId).classList.add('active');
-        }
-
-        function copyCode(btn) {
-            const pre = btn.parentElement.querySelector('pre');
-            if (pre) {
-                navigator.clipboard.writeText(pre.textContent.trim()).then(() => {
-                    const original = btn.textContent;
-                    btn.textContent = 'Copied! ✓';
-                    btn.style.background = '#10b981';
-                    btn.style.color = '#ffffff';
-                    setTimeout(() => {
-                        btn.textContent = original;
-                        btn.style.background = '';
-                        btn.style.color = '';
-                    }, 2000);
                 });
             }
         }
 
-        function copyStudioCode(btn) {
-            const text = document.getElementById('studioCssCode').textContent;
-            navigator.clipboard.writeText(text).then(() => {
-                const orig = btn.textContent;
-                btn.textContent = 'Copied! ✓';
-                btn.style.background = '#10b981';
-                setTimeout(() => {
-                    btn.textContent = orig;
-                    btn.style.background = '';
-                }, 2000);
+        presetBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const width = btn.dataset.width;
+                setSimulatorWidth(width);
+            });
+        });
+
+        if (widthSlider) {
+            widthSlider.addEventListener('input', (e) => {
+                setSimulatorWidth(e.target.value);
             });
         }
 
-        // Init
-        window.addEventListener('DOMContentLoaded', () => {
-            renderBoxes();
-            updateStudio();
-        });
+        // 3. Sample Navigation Hamburger Toggle inside simulator
+        const sampleNavToggle = document.getElementById('sample-nav-toggle');
+        const sampleNavMenu = document.getElementById('sample-nav-menu');
+
+        if (sampleNavToggle && sampleNavMenu) {
+            sampleNavToggle.addEventListener('click', () => {
+                sampleNavMenu.classList.toggle('open');
+                sampleNavToggle.classList.toggle('active');
+            });
+        }
+
+        // 4. Fixed vs Fluid Demo Toggle
+        const toggleWidthModeBtn = document.getElementById('toggle-width-mode-btn');
+        const demoTargetBox = document.getElementById('demo-target-box');
+        const demoBoxLabel = document.getElementById('demo-box-label');
+        const demoBoxCssRule = document.getElementById('demo-box-css-rule');
+        const currentModeStatus = document.getElementById('current-mode-status');
+        const nextModeText = document.getElementById('next-mode-text');
+
+        let isFluid = true;
+
+        if (toggleWidthModeBtn && demoTargetBox) {
+            toggleWidthModeBtn.addEventListener('click', () => {
+                isFluid = !isFluid;
+                if (isFluid) {
+                    demoTargetBox.classList.remove('fixed-mode');
+                    demoTargetBox.classList.add('fluid-mode');
+                    demoBoxLabel.textContent = 'Mode: Fluid Responsive (max-width: 100%)';
+                    demoBoxCssRule.textContent = 'CSS: width: 100%; max-width: 650px;';
+                    currentModeStatus.innerHTML = 'Current Mode: <strong style="color: var(--accent-emerald);">Fluid (Responsive max-width: 100%)</strong>';
+                    nextModeText.textContent = 'Fixed 650px Width (See the Problem)';
+                } else {
+                    demoTargetBox.classList.remove('fluid-mode');
+                    demoTargetBox.classList.add('fixed-mode');
+                    demoBoxLabel.textContent = 'Mode: Rigid Fixed Width (width: 650px)';
+                    demoBoxCssRule.textContent = 'CSS: width: 650px; (No max-width)';
+                    currentModeStatus.innerHTML = 'Current Mode: <strong style="color: var(--accent-rose);">Fixed 650px (Rigid - Causes Overflow)</strong>';
+                    nextModeText.textContent = 'Fluid Responsive Width (See the Fix)';
+                }
+            });
+        }
     </script>
 </body>
 </html>
