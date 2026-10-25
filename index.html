@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- 1. The Core Responsive Viewport Meta Tag (Crucial for mobile devices) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Day 17 Frontend: Complete Responsive Web Design (RWD) Guide - Core concepts, basic level code, CSS media queries, fluid units, and interactive viewport simulator.">
+    <meta name="description" content="Day 18 Frontend: What is JavaScript in Frontend? Concise theory, fundamental starter code, DOM manipulation, and interactive live demonstrations.">
     <meta name="author" content="Harish (harish-0987)">
-    <title>Harish | Day 17 Frontend - Responsive Web Design</title>
+    <title>Harish | Day 18 Frontend - What is JavaScript in Frontend?</title>
 
     <!-- Google Fonts for Modern Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,696 +20,387 @@
     <div class="page-wrapper">
         <!-- Header Banner -->
         <header class="main-header">
-            <div class="badge-pill">Day 17 of 100 Days Frontend Challenge</div>
-            <h1 class="header-title">Responsive Web Design (RWD)</h1>
+            <div class="header-badges">
+                <span class="badge-pill">Day 18 of 100 Days Frontend Challenge</span>
+                <span class="badge-lang">JavaScript (JS)</span>
+            </div>
+            <h1 class="header-title">What is <span class="highlight-js">JavaScript</span> in Frontend?</h1>
             <p class="header-subtitle">
-                Master the fundamental art of building websites that look stunning and function effortlessly on every screen size—from smartphones and tablets to laptops and widescreen monitors—using basic HTML, fluid CSS units, and media queries.
+                The programming language that brings the web to life. While HTML builds the skeleton and CSS paints the skin, JavaScript provides the <strong>brain, muscles, and reflexes</strong> that allow websites to think, interact, and respond to users.
             </p>
 
-            <!-- Live Window Width Indicator -->
-            <div class="live-screen-tracker" id="live-screen-tracker">
-                <span class="tracker-dot"></span>
-                <span class="tracker-label">Your Live Viewport:</span>
-                <span class="tracker-value" id="current-viewport-size">1200px × 800px</span>
-                <span class="tracker-badge" id="current-breakpoint-badge">Desktop (lg)</span>
-            </div>
-
             <nav class="quick-nav" aria-label="Page navigation">
-                <a href="#core-concepts" class="nav-chip">1. What is RWD?</a>
-                <a href="#four-pillars" class="nav-chip">2. 4 Core Pillars</a>
-                <a href="#basic-code" class="nav-chip">3. Basic Level Code</a>
-                <a href="#breakpoints" class="nav-chip">4. Standard Breakpoints</a>
-                <a href="#interactive-simulator" class="nav-chip highlight-chip">5. Live Resizer Studio</a>
-                <a href="#fixed-vs-fluid" class="nav-chip">6. Fixed vs Fluid Demo</a>
-                <a href="#responsive-recipes" class="nav-chip">7. Practical Recipes</a>
-                <a href="#cheat-sheet" class="nav-chip">8. Cheat Sheet</a>
+                <a href="#theory-section" class="nav-chip">1. Core Theory</a>
+                <a href="#trio-analogy" class="nav-chip">2. HTML + CSS + JS Trio</a>
+                <a href="#basic-code" class="nav-chip">3. Essential JS Code</a>
+                <a href="#interactive-lab" class="nav-chip highlight-chip">4. Live JS Playground</a>
+                <a href="#dom-basics" class="nav-chip">5. DOM in 3 Steps</a>
+                <a href="#takeaway" class="nav-chip">6. Key Takeaway</a>
             </nav>
         </header>
 
         <!-- Main Content -->
         <main class="content-container">
 
-            <!-- Section 1: Core Concepts -->
-            <section id="core-concepts" class="doc-section">
-                <div class="section-badge">Section 01</div>
-                <h2 class="section-heading">What is Responsive Web Design?</h2>
+            <!-- Section 1: The Theory (Concise, punchy, clear) -->
+            <section id="theory-section" class="doc-section">
+                <div class="section-badge">Theory 01</div>
+                <h2 class="section-heading">What is JavaScript in Frontend?</h2>
                 <p class="section-lead">
-                    <strong>Responsive Web Design (RWD)</strong> is an approach to web development where a website's layout, images, navigation, and typography automatically adjust and adapt to fit the screen resolution and orientation of any viewing device.
+                    In frontend web development, <strong>JavaScript (JS)</strong> is a lightweight, high-level, interpreted programming language executed directly by web browsers to make static web pages <strong>interactive, dynamic, and responsive to user actions</strong>.
                 </p>
 
-                <div class="info-callout teal">
-                    <strong>💡 Why is Responsive Design Essential?</strong> Over 58% of global web traffic comes from mobile phones, tablets, and handheld devices. A non-responsive website forces users to pinch-to-zoom, scroll horizontally, and struggle with tiny unclickable buttons, resulting in poor user experience and lower search engine rankings.
-                </div>
-
-                <!-- Visual Comparison: Fixed vs Responsive -->
-                <div class="comparison-grid">
-                    <div class="comparison-card bad">
-                        <div class="card-status-bar">
-                            <span class="status-icon">❌</span>
-                            <span class="status-title">Old-School Fixed Layout</span>
-                        </div>
-                        <div class="comparison-illustration">
-                            <div class="mock-device mobile-frame">
-                                <div class="fixed-content-box">
-                                    <div class="mock-line wide"></div>
-                                    <div class="mock-line wide"></div>
-                                    <div class="overflow-warning">⚠️ Overflow / Cut off</div>
-                                </div>
-                            </div>
-                        </div>
-                        <ul class="comparison-points">
-                            <li>Uses hardcoded pixel widths (e.g., <code>width: 960px;</code>)</li>
-                            <li>Causes frustrating horizontal scrollbars on phones</li>
-                            <li>Text is microscopic or clipped on mobile screens</li>
-                            <li>Images burst through container borders</li>
-                        </ul>
+                <div class="theory-grid">
+                    <div class="theory-card">
+                        <div class="card-icon">⚡</div>
+                        <h3>1. Dynamic Behavior</h3>
+                        <p>Without JavaScript, a website is a static document like a digital brochure. JavaScript lets content change, appear, disappear, or animate without reloading the whole page.</p>
                     </div>
 
-                    <div class="comparison-card good">
-                        <div class="card-status-bar">
-                            <span class="status-icon">✅</span>
-                            <span class="status-title">Modern Responsive Layout</span>
-                        </div>
-                        <div class="comparison-illustration">
-                            <div class="mock-device mobile-frame">
-                                <div class="fluid-content-box">
-                                    <div class="mock-line full"></div>
-                                    <div class="mock-line full"></div>
-                                    <div class="mock-badge">✨ Perfectly Fits Screen</div>
-                                </div>
-                            </div>
-                        </div>
-                        <ul class="comparison-points">
-                            <li>Uses relative units (<code>%</code>, <code>rem</code>, <code>vw</code>, <code>max-width</code>)</li>
-                            <li>Content reflows gracefully into 1 column on phones</li>
-                            <li>Images scale fluidly (<code>max-width: 100%</code>)</li>
-                            <li>Adapts smoothly to portrait, landscape, and tablets</li>
-                        </ul>
+                    <div class="theory-card">
+                        <div class="card-icon">🎯</div>
+                        <h3>2. Event-Driven</h3>
+                        <p>Frontend JS is primarily event-driven. It continuously waits ("listens") for user events—like mouse clicks, key presses, form submissions, or scrolling—and executes logic when they happen.</p>
+                    </div>
+
+                    <div class="theory-card">
+                        <div class="card-icon">🌳</div>
+                        <h3>3. DOM Controller</h3>
+                        <p>Browsers convert HTML into a live object tree called the <strong>DOM (Document Object Model)</strong>. JavaScript has the power to read, modify, add, or delete any HTML tag or CSS rule on this tree in real time.</p>
+                    </div>
+
+                    <div class="theory-card">
+                        <div class="card-icon">🌐</div>
+                        <h3>4. Client-Side Execution</h3>
+                        <p>Frontend JavaScript runs directly on the visitor’s device (browser engine like Chrome's V8 or Firefox's SpiderMonkey), making UI updates instant without constant server roundtrips.</p>
                     </div>
                 </div>
             </section>
 
-            <!-- Section 2: 4 Core Pillars -->
-            <section id="four-pillars" class="doc-section">
-                <div class="section-badge">Section 02</div>
-                <h2 class="section-heading">The 4 Core Pillars of Responsive Design</h2>
+            <!-- Section 2: The Trio Visualizer -->
+            <section id="trio-analogy" class="doc-section">
+                <div class="section-badge">Visual Concept</div>
+                <h2 class="section-heading">The Holy Trinity of Frontend</h2>
                 <p class="section-lead">
-                    Every responsive web page in existence is built upon these four foundational pillars:
+                    Every webpage you see is the combined work of three distinct technologies:
                 </p>
 
-                <div class="pillars-grid">
-                    <!-- Pillar 1 -->
-                    <div class="pillar-card">
-                        <div class="pillar-icon">📱</div>
-                        <div class="pillar-number">Pillar 1</div>
-                        <h3 class="pillar-title">1. Viewport Meta Tag</h3>
-                        <p class="pillar-desc">
-                            Instructs mobile web browsers to render the website at the actual device screen width instead of simulating a giant 980px desktop screen.
-                        </p>
-                        <div class="code-snippet-inline">
-                            <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code>
-                        </div>
+                <!-- Comparison Trio Cards -->
+                <div class="trio-cards">
+                    <div class="trio-card html-card">
+                        <div class="trio-tag">HTML</div>
+                        <div class="trio-emoji">🦴</div>
+                        <h4>The Skeleton (Structure)</h4>
+                        <p>Defines elements, text, buttons, images, forms, and document architecture.</p>
+                        <div class="trio-formula">"What is on the page"</div>
                     </div>
 
-                    <!-- Pillar 2 -->
-                    <div class="pillar-card">
-                        <div class="pillar-icon">📐</div>
-                        <div class="pillar-number">Pillar 2</div>
-                        <h3 class="pillar-title">2. Fluid & Relative Units</h3>
-                        <p class="pillar-desc">
-                            Replace rigid pixel units (<code>px</code>) with dynamic units such as percentages (<code>%</code>), viewport units (<code>vw</code>, <code>vh</code>), <code>rem</code>, and <code>clamp()</code>.
-                        </p>
-                        <div class="code-snippet-inline">
-                            <code>width: 100%; max-width: 1200px;</code>
-                        </div>
+                    <div class="trio-card css-card">
+                        <div class="trio-tag">CSS</div>
+                        <div class="trio-emoji">🎨</div>
+                        <h4>The Skin & Clothes (Style)</h4>
+                        <p>Defines colors, fonts, layouts, spacing, shadows, and visual transitions.</p>
+                        <div class="trio-formula">"How it looks & feels"</div>
                     </div>
 
-                    <!-- Pillar 3 -->
-                    <div class="pillar-card">
-                        <div class="pillar-icon">🖼️</div>
-                        <div class="pillar-number">Pillar 3</div>
-                        <h3 class="pillar-title">3. Flexible Media & Images</h3>
-                        <p class="pillar-desc">
-                            Prevent photos and videos from spilling outside their container by setting maximum boundaries and auto-calculated aspect ratio heights.
-                        </p>
-                        <div class="code-snippet-inline">
-                            <code>img { max-width: 100%; height: auto; }</code>
+                    <div class="trio-card js-card highlight-trio">
+                        <div class="trio-tag">JavaScript</div>
+                        <div class="trio-emoji">⚡</div>
+                        <h4>The Brain & Muscles (Behavior)</h4>
+                        <p>Processes logic, responds to clicks, changes content, and computes data.</p>
+                        <div class="trio-formula">"What it does & behaves"</div>
+                    </div>
+                </div>
+
+                <!-- Interactive Trio Demonstration Simulator -->
+                <div class="interactive-box">
+                    <div class="interactive-box-header">
+                        <div>
+                            <span class="live-pill">Interactive Demo</span>
+                            <h3 class="box-title">See The Trio In Action: Toggle The Layers</h3>
                         </div>
+                        <p class="box-desc">Toggle the checkboxes below to see how a component behaves with only HTML, with CSS added, and with JavaScript activated!</p>
                     </div>
 
-                    <!-- Pillar 4 -->
-                    <div class="pillar-card">
-                        <div class="pillar-icon">⚡</div>
-                        <div class="pillar-number">Pillar 4</div>
-                        <h3 class="pillar-title">4. CSS Media Queries</h3>
-                        <p class="pillar-desc">
-                            Conditional style rules that apply specific CSS only when the screen meets certain width, height, or orientation breakpoints.
-                        </p>
-                        <div class="code-snippet-inline">
-                            <code>@media (min-width: 768px) { ... }</code>
+                    <div class="trio-controls">
+                        <label class="toggle-control">
+                            <input type="checkbox" id="toggle-html" checked disabled>
+                            <span class="toggle-slider html-toggle"></span>
+                            <span class="toggle-text"><strong>HTML</strong> (Structure)</span>
+                        </label>
+
+                        <label class="toggle-control">
+                            <input type="checkbox" id="toggle-css" checked>
+                            <span class="toggle-slider css-toggle"></span>
+                            <span class="toggle-text"><strong>CSS</strong> (Styling)</span>
+                        </label>
+
+                        <label class="toggle-control">
+                            <input type="checkbox" id="toggle-js" checked>
+                            <span class="toggle-slider js-toggle"></span>
+                            <span class="toggle-text"><strong>JavaScript</strong> (Behavior)</span>
+                        </label>
+                    </div>
+
+                    <!-- Live Sandbox Preview -->
+                    <div class="trio-preview-stage" id="trio-stage">
+                        <div class="stage-component" id="demo-component">
+                            <div class="comp-avatar" id="comp-avatar">🚀</div>
+                            <h4 class="comp-title" id="comp-title">Frontend Explorer</h4>
+                            <p class="comp-desc" id="comp-desc">Click the button below to see if it responds!</p>
+                            <button type="button" class="comp-btn" id="demo-action-btn">Click Me!</button>
+                            <div class="comp-feedback" id="comp-feedback">
+                                <span class="feedback-status">Waiting for click...</span>
+                            </div>
+                        </div>
+
+                        <div class="stage-explanation" id="stage-explanation">
+                            <strong>State:</strong> All 3 Active (HTML + CSS + JS) — Styled and interactive! Click the button to trigger JavaScript logic.
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Section 3: Basic Level Code for Responsive Design -->
+            <!-- Section 3: Essential JavaScript Code (Little bit of clean code) -->
             <section id="basic-code" class="doc-section">
-                <div class="section-badge">Section 03</div>
-                <h2 class="section-heading">Basic Level of Code for Responsive Design</h2>
+                <div class="section-badge">Code Snippets</div>
+                <h2 class="section-heading">Essential Frontend JavaScript Code</h2>
                 <p class="section-lead">
-                    Here are the essential, beginner-friendly snippets of code you need to master responsive web design. Keep them simple, practical, and clean.
+                    You only need a few fundamental building blocks to start manipulating web pages with JavaScript.
                 </p>
 
-                <!-- Snippet 1: The Essential HTML Viewport -->
-                <div class="code-showcase-card">
+                <!-- Code snippet 1: Linking -->
+                <div class="code-block-card">
                     <div class="code-header">
-                        <div class="code-title-group">
-                            <span class="code-step-tag">Step 1</span>
-                            <span class="code-title">The Essential Viewport Tag (HTML)</span>
+                        <div class="code-title">
+                            <span class="code-step">Step 1</span>
+                            <span>Linking JavaScript to HTML</span>
                         </div>
-                        <span class="code-badge">Always in &lt;head&gt;</span>
+                        <span class="code-lang">HTML</span>
                     </div>
-                    <p class="code-description">
-                        Without this single line of HTML in your <code>&lt;head&gt;</code>, mobile browsers will assume your site was made for desktops in 2005 and shrink it into an unreadable miniature view.
-                    </p>
-                    <div class="code-block-wrapper">
-                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;!-- Crucial for responsive design --&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;My Responsive Web Page&lt;/title&gt;
-    &lt;link rel="stylesheet" href="style.css"&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;!-- Page content goes here --&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-                    </div>
-                    <div class="code-footer-tip">
-                        <strong>Explanation:</strong> <code>width=device-width</code> tells the browser to match the page width to the screen's physical pixels. <code>initial-scale=1.0</code> sets the default zoom level to 100%.
+                    <pre class="code-content"><code><span class="cm">&lt;!-- Place right before the closing &lt;/body&gt; tag --&gt;</span>
+<span class="kd">&lt;script</span> <span class="na">src=</span><span class="s">"script.js"</span><span class="kd">&gt;&lt;/script&gt;</span></code></pre>
+                    <div class="code-footer">
+                        💡 <strong>Why at the bottom?</strong> Placing the script before <code>&lt;/body&gt;</code> ensures all HTML elements are already loaded into memory before JavaScript tries to find them.
                     </div>
                 </div>
 
-                <!-- Snippet 2: Basic Fluid Container -->
-                <div class="code-showcase-card">
+                <!-- Code snippet 2: Variables -->
+                <div class="code-block-card">
                     <div class="code-header">
-                        <div class="code-title-group">
-                            <span class="code-step-tag">Step 2</span>
-                            <span class="code-title">The Basic Fluid Container (CSS)</span>
+                        <div class="code-title">
+                            <span class="code-step">Step 2</span>
+                            <span>Storing Data with Variables (let & const)</span>
                         </div>
-                        <span class="code-badge">Centering & Scaling</span>
+                        <span class="code-lang">JavaScript</span>
                     </div>
-                    <p class="code-description">
-                        Never set a fixed <code>width: 1200px;</code> on a wrapper. Instead, use <code>width: 100%;</code> combined with <code>max-width</code> so it fills smaller screens safely and caps at your desired size on wide monitors.
-                    </p>
-                    <div class="code-block-wrapper">
-                        <pre><code class="language-css">/* The universal responsive container */
-.container {
-    width: 100%;             /* Fills 100% of the screen on mobile phones */
-    max-width: 1100px;       /* Stops expanding on large desktop screens */
-    margin-left: auto;       /* Centers the container horizontally */
-    margin-right: auto;
-    padding-left: 16px;      /* Prevents content from touching phone screen edges */
-    padding-right: 16px;
-    box-sizing: border-box;  /* Ensures padding does NOT cause overflow */
-}</code></pre>
-                    </div>
+                    <pre class="code-content"><code><span class="cm">// const: for values that do not change</span>
+<span class="kd">const</span> <span class="nx">appName</span> <span class="o">=</span> <span class="s2">"Frontend Studio"</span><span class="p">;</span>
+
+<span class="cm">// let: for values that can change (counters, state)</span>
+<span class="kd">let</span> <span class="nx">clickCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">isLoggedIn</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span></code></pre>
                 </div>
 
-                <!-- Snippet 3: Basic Responsive Image -->
-                <div class="code-showcase-card">
+                <!-- Code snippet 3: Selecting Elements -->
+                <div class="code-block-card">
                     <div class="code-header">
-                        <div class="code-title-group">
-                            <span class="code-step-tag">Step 3</span>
-                            <span class="code-title">The Golden Responsive Image Rule (CSS)</span>
+                        <div class="code-title">
+                            <span class="code-step">Step 3</span>
+                            <span>Selecting HTML Elements (DOM Query)</span>
                         </div>
-                        <span class="code-badge">Zero Image Spills</span>
+                        <span class="code-lang">JavaScript</span>
                     </div>
-                    <p class="code-description">
-                        This 3-line CSS rule is the golden rule for images, SVGs, and videos. It ensures media never overflows its parent container while maintaining its natural aspect ratio.
-                    </p>
-                    <div class="code-block-wrapper">
-                        <pre><code class="language-css">/* The golden rule for responsive media */
-img, video {
-    max-width: 100%;    /* Image shrinks down if container is smaller than image */
-    height: auto;        /* Preserves the original aspect ratio (prevents squishing) */
-    display: block;      /* Removes annoying default bottom whitespace gap */
-}</code></pre>
-                    </div>
+                    <pre class="code-content"><code><span class="cm">// Grab an element by its ID or CSS selector</span>
+<span class="kd">const</span> <span class="nx">myButton</span> <span class="o">=</span> <span class="nx">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"#my-btn"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">myHeading</span> <span class="o">=</span> <span class="nx">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"#title-text"</span><span class="p">);</span></code></pre>
                 </div>
 
-                <!-- Snippet 4: Basic Media Query (Mobile-First) -->
-                <div class="code-showcase-card">
+                <!-- Code snippet 4: Modifying Content & Styles -->
+                <div class="code-block-card">
                     <div class="code-header">
-                        <div class="code-title-group">
-                            <span class="code-step-tag">Step 4</span>
-                            <span class="code-title">Basic Mobile-First Media Query Syntax (CSS)</span>
+                        <div class="code-title">
+                            <span class="code-step">Step 4</span>
+                            <span>Modifying Text & Classes (DOM Manipulation)</span>
                         </div>
-                        <span class="code-badge">The Core Mechanism</span>
+                        <span class="code-lang">JavaScript</span>
                     </div>
-                    <p class="code-description">
-                        In a mobile-first approach, you write default styles for small screens, then use <code>@media (min-width: 768px)</code> to enhance layout for tablets and desktops.
-                    </p>
-                    <div class="code-block-wrapper">
-                        <pre><code class="language-css">/* 1. DEFAULT: Mobile layout (1 column stacked vertically) */
-.card-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
+                    <pre class="code-content"><code><span class="cm">// Change the text content inside an HTML element</span>
+<span class="nx">myHeading</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="s2">"Updated with JavaScript!"</span><span class="p">;</span>
 
-/* 2. TABLET & DESKTOP: When screen is at least 768px wide */
-@media screen and (min-width: 768px) {
-    .card-grid {
-        flex-direction: row;        /* Switches from vertical stack to horizontal row */
-        flex-wrap: wrap;
-    }
-
-    .card-item {
-        flex: 1;                    /* All cards share equal width side-by-side */
-    }
-}</code></pre>
-                    </div>
+<span class="cm">// Add or toggle a CSS class dynamically</span>
+<span class="nx">myHeading</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">toggle</span><span class="p">(</span><span class="s2">"active"</span><span class="p">);</span></code></pre>
                 </div>
 
-                <!-- Snippet 5: Basic Responsive Navigation -->
-                <div class="code-showcase-card">
+                <!-- Code snippet 5: Event Listeners -->
+                <div class="code-block-card highlight-code">
                     <div class="code-header">
-                        <div class="code-title-group">
-                            <span class="code-step-tag">Step 5</span>
-                            <span class="code-title">Basic Responsive Navigation Bar</span>
+                        <div class="code-title">
+                            <span class="code-step">Step 5</span>
+                            <span>Handling Events (The Heart of Frontend JS)</span>
                         </div>
-                        <span class="code-badge">Stack on Mobile, Row on Desktop</span>
+                        <span class="code-lang">JavaScript</span>
                     </div>
-                    <p class="code-description">
-                        Navigation links stack vertically on small devices and align horizontally across the top on larger screens.
-                    </p>
-                    <div class="code-block-wrapper">
-                        <pre><code class="language-html">&lt;nav class="navbar"&gt;
-    &lt;div class="nav-logo"&gt;MyLogo&lt;/div&gt;
-    &lt;ul class="nav-links"&gt;
-        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href="#"&gt;Features&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/nav&gt;</code></pre>
-                    </div>
-                    <div class="code-block-wrapper" style="margin-top: 12px;">
-                        <pre><code class="language-css">/* Mobile default: column */
-.navbar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 16px;
-}
-
-.nav-links {
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    gap: 12px;
-    margin-top: 12px;
-}
-
-/* Desktop: row */
-@media (min-width: 768px) {
-    .navbar {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .nav-links {
-        flex-direction: row;
-        gap: 24px;
-        margin-top: 0;
-    }
-}</code></pre>
-                    </div>
-                </div>
-
-                <!-- Snippet 6: Basic Fluid Typography with clamp() -->
-                <div class="code-showcase-card">
-                    <div class="code-header">
-                        <div class="code-title-group">
-                            <span class="code-step-tag">Step 6</span>
-                            <span class="code-title">Modern Fluid Typography with CSS clamp()</span>
-                        </div>
-                        <span class="code-badge">No Media Queries Needed!</span>
-                    </div>
-                    <p class="code-description">
-                        <code>clamp(minimum, preferred, maximum)</code> scales headings smoothly between small screens and large monitors without requiring multiple media query overrides.
-                    </p>
-                    <div class="code-block-wrapper">
-                        <pre><code class="language-css">/* Fluid Heading: minimum 24px, grows with viewport, caps at 48px */
-h1 {
-    font-size: clamp(1.5rem, 4vw + 1rem, 3rem);
-}
-
-/* Fluid Body Text: minimum 15px, caps at 18px */
-p {
-    font-size: clamp(0.95rem, 1vw + 0.75rem, 1.125rem);
-}</code></pre>
+                    <pre class="code-content"><code><span class="cm">// Listen for user interactions (click, hover, input)</span>
+<span class="nx">myButton</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"click"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">clickCount</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="nx">myHeading</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="sb">`You clicked </span><span class="si">${</span><span class="nx">clickCount</span><span class="si">}</span><span class="sb"> times!`</span><span class="p">;</span>
+<span class="p">});</span></code></pre>
+                    <div class="code-footer">
+                        ✨ <strong>The Universal Frontend Pattern:</strong> <code>Select Element</code> ➔ <code>Listen for Event</code> ➔ <code>Update DOM</code>.
                     </div>
                 </div>
             </section>
 
-            <!-- Section 4: Standard Breakpoints & Mobile-First vs Desktop-First -->
-            <section id="breakpoints" class="doc-section">
-                <div class="section-badge">Section 04</div>
-                <h2 class="section-heading">Standard Breakpoints & Strategies</h2>
+            <!-- Section 4: Live JS Playground (Interactive Mini-Labs) -->
+            <section id="interactive-lab" class="doc-section">
+                <div class="section-badge">Live Lab</div>
+                <h2 class="section-heading">Interactive JavaScript Playground</h2>
                 <p class="section-lead">
-                    A <strong>breakpoint</strong> is the exact viewport width at which a media query triggers to reorganize your layout.
+                    Experience frontend JavaScript in action with these live, hands-on micro-experiments running real JavaScript code right now.
                 </p>
 
-                <!-- Breakpoints Reference Table -->
-                <div class="table-card">
-                    <table class="responsive-table">
-                        <thead>
-                            <tr>
-                                <th>Device Class</th>
-                                <th>Breakpoint Range</th>
-                                <th>Media Query (Mobile-First)</th>
-                                <th>Typical UI Adaptation</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><span class="device-badge mobile">📱 Mobile</span></td>
-                                <td><code>&lt; 640px</code></td>
-                                <td>Default styles (No query needed)</td>
-                                <td>Single-column, stacked layout, hamburger menu</td>
-                            </tr>
-                            <tr>
-                                <td><span class="device-badge tablet">📟 Tablet</span></td>
-                                <td><code>640px – 1023px</code></td>
-                                <td><code>@media (min-width: 640px)</code></td>
-                                <td>2-column grid, compact horizontal navigation</td>
-                            </tr>
-                            <tr>
-                                <td><span class="device-badge laptop">💻 Laptop / Desktop</span></td>
-                                <td><code>1024px – 1279px</code></td>
-                                <td><code>@media (min-width: 1024px)</code></td>
-                                <td>3 to 4-column cards, sidebar navigation, multi-pane layouts</td>
-                            </tr>
-                            <tr>
-                                <td><span class="device-badge ultrawide">🖥️ Large Monitor</span></td>
-                                <td><code>≥ 1280px</code></td>
-                                <td><code>@media (min-width: 1280px)</code></td>
-                                <td>Max-width container centering, generous whitespace, multi-track grids</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Mobile-First vs Desktop-First Comparison -->
-                <div class="strategy-comparison">
-                    <div class="strategy-card active-strategy">
-                        <div class="strategy-badge">🌟 Recommended Industry Standard</div>
-                        <h3>Mobile-First Design (min-width)</h3>
-                        <p>Write your basic CSS for phones first. Then progressively add columns, complex grids, and hover effects as the screen expands.</p>
-                        <pre><code class="language-css">/* Base: phone */
-.column { width: 100%; }
-
-/* Tablet & larger */
-@media (min-width: 768px) {
-    .column { width: 50%; }
-}
-
-/* Desktop & larger */
-@media (min-width: 1024px) {
-    .column { width: 33.333%; }
-}</code></pre>
-                    </div>
-
-                    <div class="strategy-card">
-                        <div class="strategy-badge subtle">Alternative Approach</div>
-                        <h3>Desktop-First Design (max-width)</h3>
-                        <p>Write CSS for big desktop monitors first. Then use <code>max-width</code> to strip away columns and stack elements as screens get smaller.</p>
-                        <pre><code class="language-css">/* Base: desktop */
-.column { width: 33.333%; }
-
-/* Tablet & smaller */
-@media (max-width: 1023px) {
-    .column { width: 50%; }
-}
-
-/* Phone only */
-@media (max-width: 767px) {
-    .column { width: 100%; }
-}</code></pre>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Section 5: Interactive Responsive Viewport Simulator -->
-            <section id="interactive-simulator" class="doc-section">
-                <div class="section-badge">Section 05</div>
-                <h2 class="section-heading">Interactive Live Responsive Resizer Studio</h2>
-                <p class="section-lead">
-                    Test responsive behavior right inside your browser! Click the device buttons below or drag the width slider to resize the simulated viewport and watch how the basic responsive code adapts in real time.
-                </p>
-
-                <!-- Simulator Control Bar -->
-                <div class="simulator-controls">
-                    <div class="preset-buttons" role="group" aria-label="Device Presets">
-                        <button class="preset-btn" data-width="375" id="btn-mobile">
-                            <span class="btn-icon">📱</span> Mobile (375px)
-                        </button>
-                        <button class="preset-btn" data-width="768" id="btn-tablet">
-                            <span class="btn-icon">📟</span> Tablet (768px)
-                        </button>
-                        <button class="preset-btn" data-width="1024" id="btn-laptop">
-                            <span class="btn-icon">💻</span> Laptop (1024px)
-                        </button>
-                        <button class="preset-btn active" data-width="100%" id="btn-full">
-                            <span class="btn-icon">🖥️</span> Full (100%)
-                        </button>
-                    </div>
-
-                    <div class="slider-group">
-                        <label for="width-slider" class="slider-label">Custom Width:</label>
-                        <input type="range" id="width-slider" min="320" max="1100" value="1100" class="width-slider">
-                        <span class="slider-value-display" id="slider-readout">1100px</span>
-                    </div>
-                </div>
-
-                <!-- Device Simulator Frame -->
-                <div class="simulator-wrapper">
-                    <div class="simulator-device-bar">
-                        <div class="device-indicators">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
+                <div class="labs-grid">
+                    <!-- Lab 1: Real-time Text Binding -->
+                    <div class="lab-card">
+                        <div class="lab-header">
+                            <span class="lab-num">Lab 1</span>
+                            <h4>Live DOM Text Binding</h4>
                         </div>
-                        <div class="simulator-url-bar">
-                            <span class="lock-icon">🔒</span> https://harish-responsive-demo.local
+                        <p class="lab-desc">Type into the input to see the target element update live on every keystroke (<code>input</code> event listener).</p>
+                        
+                        <div class="lab-controls">
+                            <label for="text-sync-input" class="lab-input-label">Type your name or message:</label>
+                            <input type="text" id="text-sync-input" class="lab-input" placeholder="Type here..." value="Harish">
                         </div>
-                        <div class="simulator-size-tag" id="sim-size-tag">Width: 100% | Breakpoint: Desktop (lg)</div>
+
+                        <div class="lab-output-box">
+                            <span class="output-tag">Live DOM Output</span>
+                            <div class="output-display" id="text-sync-output">Hello, Harish! Welcome to Day 18.</div>
+                        </div>
                     </div>
 
-                    <!-- The Actual Resizable Stage -->
-                    <div class="simulator-stage" id="simulator-stage">
-                        <!-- Inside: A Complete Mini Responsive Webpage -->
-                        <div class="sample-page">
-                            
-                            <!-- Sample Navigation -->
-                            <nav class="sample-nav">
-                                <div class="sample-logo">🚀 DevBrand</div>
-                                <button class="sample-nav-toggle" id="sample-nav-toggle" aria-label="Toggle Menu">
-                                    <span class="toggle-bar"></span>
-                                    <span class="toggle-bar"></span>
-                                    <span class="toggle-bar"></span>
-                                </button>
-                                <ul class="sample-nav-menu" id="sample-nav-menu">
-                                    <li><a href="javascript:void(0)" class="active">Overview</a></li>
-                                    <li><a href="javascript:void(0)">Features</a></li>
-                                    <li><a href="javascript:void(0)">Pricing</a></li>
-                                    <li><a href="javascript:void(0)">Docs</a></li>
-                                </ul>
-                            </nav>
+                    <!-- Lab 2: Interactive Counter -->
+                    <div class="lab-card">
+                        <div class="lab-header">
+                            <span class="lab-num">Lab 2</span>
+                            <h4>State & Click Events</h4>
+                        </div>
+                        <p class="lab-desc">Manipulating numerical state variables and updating the DOM counter with click listeners.</p>
 
-                            <!-- Sample Hero -->
-                            <section class="sample-hero">
-                                <div class="sample-hero-badge">Responsive Grid & Flexbox</div>
-                                <h3 class="sample-hero-title">Build Once, Run Beautifully Everywhere</h3>
-                                <p class="sample-hero-text">
-                                    Notice how this entire mock page changes its layout as you resize the simulator above! The navigation transforms, the hero stacks, and cards collapse into 1, 2, or 3 columns.
-                                </p>
-                            </section>
+                        <div class="counter-display-wrap">
+                            <span class="counter-value" id="counter-val">0</span>
+                            <span class="counter-status" id="counter-status">Initial state</span>
+                        </div>
 
-                            <!-- Sample Responsive Card Grid -->
-                            <section class="sample-grid">
-                                <div class="sample-card">
-                                    <div class="sample-card-icon">⚡</div>
-                                    <h4>Fluid Columns</h4>
-                                    <p>Adapts from 1-column on phones to 2-columns on tablets and 3-columns on laptops.</p>
-                                    <span class="sample-card-tag">CSS Flex / Grid</span>
-                                </div>
-                                <div class="sample-card">
-                                    <div class="sample-card-icon">📐</div>
-                                    <h4>Fluid Spacing</h4>
-                                    <p>Margins and padding scale smoothly to preserve precious mobile viewport space.</p>
-                                    <span class="sample-card-tag">Relative Units</span>
-                                </div>
-                                <div class="sample-card">
-                                    <div class="sample-card-icon">🖼️</div>
-                                    <h4>Fluid Images</h4>
-                                    <p>Images will never overflow their boundaries thanks to max-width: 100%.</p>
-                                    <span class="sample-card-tag">Aspect Ratio</span>
-                                </div>
-                            </section>
+                        <div class="counter-btn-group">
+                            <button type="button" class="lab-btn btn-danger" id="btn-decrement">- Decrease</button>
+                            <button type="button" class="lab-btn btn-secondary" id="btn-reset">Reset</button>
+                            <button type="button" class="lab-btn btn-primary" id="btn-increment">+ Increase</button>
+                        </div>
+                    </div>
 
-                            <!-- Sample Footer -->
-                            <footer class="sample-footer">
-                                <span>Day 17 Responsive Studio</span>
-                                <span>Simulated Viewport Test</span>
-                            </footer>
+                    <!-- Lab 3: Class & Style Toggle -->
+                    <div class="lab-card">
+                        <div class="lab-header">
+                            <span class="lab-num">Lab 3</span>
+                            <h4>ClassList & Style Toggler</h4>
+                        </div>
+                        <p class="lab-desc">Using <code>element.classList.toggle()</code> to dynamically swap CSS visual themes on demand.</p>
+
+                        <div class="toggle-preview-box" id="theme-preview-box">
+                            <span class="preview-badge" id="preview-badge">Normal Mode</span>
+                            <p id="preview-text">JavaScript can change CSS styles and classes on any element instantaneously.</p>
+                        </div>
+
+                        <div class="lab-btn-row">
+                            <button type="button" class="lab-btn btn-accent" id="btn-toggle-glow">✨ Toggle Glow</button>
+                            <button type="button" class="lab-btn btn-accent-alt" id="btn-toggle-dark">🌙 Toggle Dark Card</button>
+                        </div>
+                    </div>
+
+                    <!-- Lab 4: Live Event Inspector -->
+                    <div class="lab-card">
+                        <div class="lab-header">
+                            <span class="lab-num">Lab 4</span>
+                            <h4>Real-Time Event Stream</h4>
+                        </div>
+                        <p class="lab-desc">Hover over, click, or double-click the target area below to watch JavaScript log your browser events live.</p>
+
+                        <div class="event-target-area" id="event-target-box">
+                            <span class="target-prompt">👉 Interact inside this box (Move, Click, Double-click)</span>
+                        </div>
+
+                        <div class="event-log-container">
+                            <div class="event-log-header">
+                                <span>Recent Events Captured</span>
+                                <button type="button" class="clear-log-btn" id="btn-clear-logs">Clear</button>
+                            </div>
+                            <div class="event-log-list" id="event-log-list">
+                                <div class="log-entry">Waiting for user interaction...</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Section 6: Interactive Fixed vs Fluid Demo -->
-            <section id="fixed-vs-fluid" class="doc-section">
-                <div class="section-badge">Section 06</div>
-                <h2 class="section-heading">Interactive Demo: Fixed vs Fluid Width</h2>
+            <!-- Section 5: The DOM in 3 Steps -->
+            <section id="dom-basics" class="doc-section">
+                <div class="section-badge">How It Works</div>
+                <h2 class="section-heading">How Frontend JS Operates: The DOM Flow</h2>
                 <p class="section-lead">
-                    See why setting fixed pixel widths like <code>width: 700px;</code> is dangerous for responsive web pages. Toggle the button below to see how fixed elements cause bad horizontal scrolling while fluid elements adjust automatically.
+                    Every interaction you build in frontend JavaScript follows this exact 3-step loop:
                 </p>
 
-                <div class="interactive-toggle-box">
-                    <button class="toggle-action-btn" id="toggle-width-mode-btn">
-                        Switch to: <strong id="next-mode-text">Fixed 650px Width (See the Problem)</strong>
-                    </button>
-                    <span class="mode-status-indicator" id="current-mode-status">Current Mode: <strong>Fluid (Responsive max-width: 100%)</strong></span>
-                </div>
-
-                <div class="demo-overflow-container">
-                    <div class="demo-box fluid-mode" id="demo-target-box">
-                        <div class="demo-box-header">
-                            <span class="demo-box-title" id="demo-box-label">Mode: Fluid Responsive (max-width: 100%)</span>
-                            <span class="demo-box-rule" id="demo-box-css-rule">CSS: width: 100%; max-width: 650px;</span>
-                        </div>
-                        <p class="demo-box-content">
-                            When screen space shrinks, this fluid box automatically constrains itself to never exceed the parent width. If you switch to "Fixed Width", it forces an ugly horizontal scrollbar whenever the container is narrower than 650px!
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Section 7: Practical Recipes -->
-            <section id="responsive-recipes" class="doc-section">
-                <div class="section-badge">Section 07</div>
-                <h2 class="section-heading">3 Essential Responsive UI Recipes</h2>
-                <p class="section-lead">
-                    Ready-to-use basic responsive patterns used across millions of modern websites.
-                </p>
-
-                <div class="recipes-container">
-                    <!-- Recipe 1 -->
-                    <div class="recipe-card">
-                        <div class="recipe-header">
-                            <span class="recipe-num">Recipe 01</span>
-                            <h3>Responsive 1-to-2-to-3 Column Card Grid</h3>
-                        </div>
-                        <p>The standard e-commerce / blog card pattern: 1 col on mobile, 2 on tablet, 3 on desktop.</p>
-                        <pre><code class="language-css">/* Basic Responsive Cards */
-.cards-container {
-    display: grid;
-    grid-template-columns: 1fr;           /* 1 column on mobile */
-    gap: 16px;
-}
-
-@media (min-width: 600px) {
-    .cards-container {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablet */
-    }
-}
-
-@media (min-width: 992px) {
-    .cards-container {
-        grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
-    }
-}</code></pre>
+                <div class="dom-flow-steps">
+                    <div class="flow-step">
+                        <div class="step-badge">Step 1</div>
+                        <h3>SELECT</h3>
+                        <p>Locate the element in the HTML document using <code>document.querySelector()</code>.</p>
+                        <code class="flow-code">const btn = document.querySelector("#save-btn");</code>
                     </div>
 
-                    <!-- Recipe 2 -->
-                    <div class="recipe-card">
-                        <div class="recipe-header">
-                            <span class="recipe-num">Recipe 02</span>
-                            <h3>Zero-Media-Query Auto-Fit Responsive Grid</h3>
-                        </div>
-                        <p>Modern CSS Grid trick that automatically adds or drops columns based on available space without needing a single media query!</p>
-                        <pre><code class="language-css">/* Magic auto-fit grid */
-.auto-grid {
-    display: grid;
-    /* Cards are at least 260px wide, expanding equally to fill rows */
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
-}</code></pre>
+                    <div class="flow-arrow">➔</div>
+
+                    <div class="flow-step">
+                        <div class="step-badge">Step 2</div>
+                        <h3>LISTEN</h3>
+                        <p>Attach an event listener to wait for user interaction (click, input, submit).</p>
+                        <code class="flow-code">btn.addEventListener("click", () =&gt; { ... });</code>
                     </div>
 
-                    <!-- Recipe 3 -->
-                    <div class="recipe-card">
-                        <div class="recipe-header">
-                            <span class="recipe-num">Recipe 03</span>
-                            <h3>Responsive Stacked-to-Split Hero Section</h3>
-                        </div>
-                        <p>Hero with text on the left and image on the right. Stacks vertically on mobile and splits into a 50/50 side-by-side layout on desktop.</p>
-                        <pre><code class="language-css">/* Mobile: Stacked */
-.hero {
-    display: flex;
-    flex-direction: column-reverse; /* Put image above text on phone if needed */
-    gap: 24px;
-    align-items: center;
-}
+                    <div class="flow-arrow">➔</div>
 
-/* Desktop: Side-by-side */
-@media (min-width: 768px) {
-    .hero {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-    .hero-content, .hero-media {
-        flex: 1;
-    }
-}</code></pre>
+                    <div class="flow-step">
+                        <div class="step-badge">Step 3</div>
+                        <h3>CHANGE</h3>
+                        <p>Modify HTML text, toggle CSS classes, or calculate data inside the callback function.</p>
+                        <code class="flow-code">output.textContent = "Saved Successfully!";</code>
                     </div>
                 </div>
             </section>
 
-            <!-- Section 8: Quick Cheat Sheet -->
-            <section id="cheat-sheet" class="doc-section">
-                <div class="section-badge">Section 08</div>
-                <h2 class="section-heading">Responsive Design Quick Cheat Sheet</h2>
-                <p class="section-lead">
-                    Quick reference of core rules, best practices, and common rookie pitfalls.
-                </p>
-
-                <div class="cheat-sheet-grid">
-                    <div class="cheat-card">
-                        <h4>✅ Golden Rules of RWD</h4>
-                        <ul class="cheat-list">
-                            <li><strong>Always include</strong> <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code> in HTML.</li>
-                            <li><strong>Use relative units</strong> (<code>%</code>, <code>rem</code>, <code>vw</code>) rather than fixed pixel dimensions.</li>
-                            <li><strong>Add</strong> <code>max-width: 100%; height: auto;</code> to all images and videos.</li>
-                            <li><strong>Adopt Mobile-First</strong>: style small screens first using <code>@media (min-width: ...)</code>.</li>
-                            <li><strong>Design for touch</strong>: buttons and touch targets should be at least <code>44px × 44px</code>.</li>
-                        </ul>
+            <!-- Section 6: Key Takeaways -->
+            <section id="takeaway" class="doc-section summary-section">
+                <div class="section-badge">Summary</div>
+                <h2 class="section-heading">Day 18 Key Takeaways</h2>
+                
+                <div class="takeaways-list">
+                    <div class="takeaway-item">
+                        <span class="takeaway-bullet">✅</span>
+                        <div><strong>JavaScript is the behavior layer:</strong> HTML = Structure, CSS = Style, JavaScript = Logic and Interactivity.</div>
                     </div>
-
-                    <div class="cheat-card">
-                        <h4>❌ Common Mistakes to Avoid</h4>
-                        <ul class="cheat-list">
-                            <li><strong>Hardcoding element widths</strong> (e.g. <code>width: 1000px;</code>) which causes horizontal scrolling.</li>
-                            <li><strong>Disabling zoom</strong> (e.g. <code>user-scalable=no</code>) which hurts accessibility for visually impaired users.</li>
-                            <li><strong>Using fixed pixel font-sizes</strong> for headings that overflow phone screens.</li>
-                            <li><strong>Relying solely on desktop browser DevTools</strong> without testing on real mobile devices.</li>
-                            <li><strong>Targeting specific device brands</strong> instead of letting content dictate natural breakpoints.</li>
-                        </ul>
+                    <div class="takeaway-item">
+                        <span class="takeaway-bullet">✅</span>
+                        <div><strong>The DOM connects JS to HTML:</strong> JavaScript manipulates HTML and CSS through the Document Object Model tree.</div>
+                    </div>
+                    <div class="takeaway-item">
+                        <span class="takeaway-bullet">✅</span>
+                        <div><strong>Always link scripts at the end:</strong> Include <code>&lt;script src="script.js"&gt;&lt;/script&gt;</code> before <code>&lt;/body&gt;</code> so elements load first.</div>
+                    </div>
+                    <div class="takeaway-item">
+                        <span class="takeaway-bullet">✅</span>
+                        <div><strong>The Golden Pattern:</strong> <code>Select</code> ➔ <code>Listen</code> ➔ <code>Update</code>. Master this loop and you master frontend JavaScript!</div>
                     </div>
                 </div>
             </section>
@@ -718,153 +408,15 @@ p {
         </main>
 
         <!-- Footer -->
-        <footer class="page-footer">
-            <div class="footer-inner">
-                <p><strong>Day 17 of 100 Days Frontend Challenge</strong> &bull; Crafted by Harish (<a href="https://github.com/harish-0987" target="_blank" rel="noopener">harish-0987</a>)</p>
-                <p class="footer-links">
-                    <a href="https://github.com/harish-0987/DAY-16-OF-FRONTEND" target="_blank" rel="noopener">Day 16: CSS Grid Box</a> &bull;
-                    <a href="https://github.com/harish-0987/DAY-17-OF-FRONTEND" target="_blank" rel="noopener">Day 17: Responsive Design</a> &bull;
-                    <a href="#core-concepts">Back to Top ↑</a>
-                </p>
-            </div>
+        <footer class="main-footer">
+            <p>Day 18 of 100 Days Frontend Challenge • Created by <strong>Harish (harish-0987)</strong></p>
+            <p class="footer-links">
+                <a href="https://github.com/harish-0987/DAY-18-OF-FRONTEND" target="_blank" rel="noopener noreferrer">GitHub Repository: DAY-18-OF-FRONTEND</a>
+            </p>
         </footer>
-
     </div>
 
-    <!-- Interactive Simulator & Helper Script -->
-    <script>
-        // 1. Live Window Viewport Tracker
-        function updateLiveViewportDisplay() {
-            const width = window.innerWidth;
-            const height = window.innerHeight;
-            const sizeEl = document.getElementById('current-viewport-size');
-            const badgeEl = document.getElementById('current-breakpoint-badge');
-
-            if (sizeEl) {
-                sizeEl.textContent = `${width}px × ${height}px`;
-            }
-
-            if (badgeEl) {
-                if (width < 640) {
-                    badgeEl.textContent = 'Mobile (<640px)';
-                    badgeEl.className = 'tracker-badge mobile';
-                } else if (width < 1024) {
-                    badgeEl.textContent = 'Tablet (640-1023px)';
-                    badgeEl.className = 'tracker-badge tablet';
-                } else if (width < 1280) {
-                    badgeEl.textContent = 'Desktop (1024-1279px)';
-                    badgeEl.className = 'tracker-badge laptop';
-                } else {
-                    badgeEl.textContent = 'Large Desktop (≥1280px)';
-                    badgeEl.className = 'tracker-badge desktop';
-                }
-            }
-        }
-
-        window.addEventListener('resize', updateLiveViewportDisplay);
-        window.addEventListener('DOMContentLoaded', updateLiveViewportDisplay);
-
-        // 2. Interactive Viewport Simulator Controls
-        const simulatorStage = document.getElementById('simulator-stage');
-        const widthSlider = document.getElementById('width-slider');
-        const sliderReadout = document.getElementById('slider-readout');
-        const simSizeTag = document.getElementById('sim-size-tag');
-        const presetBtns = document.querySelectorAll('.preset-btn');
-
-        function setSimulatorWidth(widthValue) {
-            if (!simulatorStage) return;
-
-            presetBtns.forEach(btn => btn.classList.remove('active'));
-
-            if (widthValue === '100%') {
-                simulatorStage.style.width = '100%';
-                simulatorStage.classList.remove('sim-mobile');
-                if (sliderReadout) sliderReadout.textContent = '100% (Full)';
-                if (simSizeTag) simSizeTag.textContent = 'Width: 100% | Breakpoint: Desktop (lg)';
-                const fullBtn = document.getElementById('btn-full');
-                if (fullBtn) fullBtn.classList.add('active');
-            } else {
-                const numericPx = parseInt(widthValue, 10);
-                simulatorStage.style.width = `${numericPx}px`;
-                if (widthSlider) widthSlider.value = numericPx;
-                if (sliderReadout) sliderReadout.textContent = `${numericPx}px`;
-
-                let bpName = 'Mobile';
-                if (numericPx >= 1024) {
-                    bpName = 'Laptop / Desktop (lg)';
-                    simulatorStage.classList.remove('sim-mobile');
-                } else if (numericPx >= 640) {
-                    bpName = 'Tablet (md)';
-                    simulatorStage.classList.remove('sim-mobile');
-                } else {
-                    bpName = 'Mobile (sm)';
-                    simulatorStage.classList.add('sim-mobile');
-                }
-
-                if (simSizeTag) simSizeTag.textContent = `Width: ${numericPx}px | Breakpoint: ${bpName}`;
-
-                presetBtns.forEach(btn => {
-                    if (btn.dataset.width === String(numericPx)) {
-                        btn.classList.add('active');
-                    }
-                });
-            }
-        }
-
-        presetBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const width = btn.dataset.width;
-                setSimulatorWidth(width);
-            });
-        });
-
-        if (widthSlider) {
-            widthSlider.addEventListener('input', (e) => {
-                setSimulatorWidth(e.target.value);
-            });
-        }
-
-        // 3. Sample Navigation Hamburger Toggle inside simulator
-        const sampleNavToggle = document.getElementById('sample-nav-toggle');
-        const sampleNavMenu = document.getElementById('sample-nav-menu');
-
-        if (sampleNavToggle && sampleNavMenu) {
-            sampleNavToggle.addEventListener('click', () => {
-                sampleNavMenu.classList.toggle('open');
-                sampleNavToggle.classList.toggle('active');
-            });
-        }
-
-        // 4. Fixed vs Fluid Demo Toggle
-        const toggleWidthModeBtn = document.getElementById('toggle-width-mode-btn');
-        const demoTargetBox = document.getElementById('demo-target-box');
-        const demoBoxLabel = document.getElementById('demo-box-label');
-        const demoBoxCssRule = document.getElementById('demo-box-css-rule');
-        const currentModeStatus = document.getElementById('current-mode-status');
-        const nextModeText = document.getElementById('next-mode-text');
-
-        let isFluid = true;
-
-        if (toggleWidthModeBtn && demoTargetBox) {
-            toggleWidthModeBtn.addEventListener('click', () => {
-                isFluid = !isFluid;
-                if (isFluid) {
-                    demoTargetBox.classList.remove('fixed-mode');
-                    demoTargetBox.classList.add('fluid-mode');
-                    demoBoxLabel.textContent = 'Mode: Fluid Responsive (max-width: 100%)';
-                    demoBoxCssRule.textContent = 'CSS: width: 100%; max-width: 650px;';
-                    currentModeStatus.innerHTML = 'Current Mode: <strong style="color: var(--accent-emerald);">Fluid (Responsive max-width: 100%)</strong>';
-                    nextModeText.textContent = 'Fixed 650px Width (See the Problem)';
-                } else {
-                    demoTargetBox.classList.remove('fluid-mode');
-                    demoTargetBox.classList.add('fixed-mode');
-                    demoBoxLabel.textContent = 'Mode: Rigid Fixed Width (width: 650px)';
-                    demoBoxCssRule.textContent = 'CSS: width: 650px; (No max-width)';
-                    currentModeStatus.innerHTML = 'Current Mode: <strong style="color: var(--accent-rose);">Fixed 650px (Rigid - Causes Overflow)</strong>';
-                    nextModeText.textContent = 'Fluid Responsive Width (See the Fix)';
-                }
-            });
-        }
-    </script>
+    <!-- External JavaScript File -->
+    <script src="script.js"></script>
 </body>
 </html>
