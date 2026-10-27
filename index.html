@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Day 19 Frontend: Features and Variables in JavaScript. Comprehensive guide to JavaScript features, var vs let vs const, scope, hoisting, temporal dead zone, and interactive labs.">
+    <meta name="description" content="Day 20 Frontend: JavaScript Data Types, Operators, and Type Conversion. Comprehensive guide to the 8 data types, stack vs heap memory, operators, coercion quirks, and 6 interactive laboratories.">
     <meta name="author" content="Harish (harish-0987)">
-    <title>Harish | Day 19 Frontend - JavaScript Features & Variables</title>
+    <title>Harish | Day 20 Frontend - JavaScript Data Types, Operators & Type Conversion</title>
 
     <!-- Google Fonts for Modern Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Stylesheet -->
@@ -21,682 +21,908 @@
         <!-- Header Banner -->
         <header class="main-header">
             <div class="header-badges">
-                <span class="badge-pill">Day 19 of 100 Days Frontend Challenge</span>
-                <span class="badge-pill badge-lang">JavaScript (ES6+)</span>
-                <span class="badge-pill badge-topic">Features & Variables</span>
+                <span class="badge-pill">Day 20 of 100 Days Frontend Challenge</span>
+                <span class="badge-pill badge-lang">JavaScript (ES2024)</span>
+                <span class="badge-pill badge-topic">Types, Operators & Coercion</span>
             </div>
-            <h1 class="header-title">JavaScript <span class="highlight-js">Features</span> & <span class="highlight-cyan">Variables</span></h1>
+            <h1 class="header-title">JavaScript <span class="highlight-js">Data Types</span>, <span class="highlight-cyan">Operators</span> & <span class="highlight-emerald">Coercion</span></h1>
             <p class="header-subtitle">
-                Master the fundamental characteristics that make JavaScript the lingua franca of the web, and explore the deep mechanics of memory storage: from <code>var</code>, <code>let</code>, and <code>const</code> to scoping, hoisting, and the Temporal Dead Zone (TDZ).
+                Master the 8 core JavaScript data types, uncover how Call Stack and Heap partition memory, harness the full power of modern operators (including <code>??</code> and <code>?.</code>), and demystify the type conversion quirks that define frontend technical interviews.
             </p>
 
             <nav class="quick-nav" aria-label="Page navigation">
-                <a href="#features-section" class="nav-chip">1. Core JS Features</a>
-                <a href="#variables-section" class="nav-chip">2. var vs let vs const</a>
-                <a href="#matrix-section" class="nav-chip">3. Comparison Matrix</a>
-                <a href="#battle-lab" class="nav-chip highlight-chip">4. Variable Battle Arena</a>
-                <a href="#scope-lab" class="nav-chip">5. Scope Visualizer</a>
-                <a href="#hoisting-lab" class="nav-chip">6. Hoisting & TDZ</a>
-                <a href="#types-lab" class="nav-chip">7. Dynamic Typing Lab</a>
-                <a href="#mutation-lab" class="nav-chip">8. const Mutation Studio</a>
-                <a href="#validator-lab" class="nav-chip">9. Name Validator</a>
-                <a href="#takeaways" class="nav-chip">10. Summary</a>
+                <a href="#types-section" class="nav-chip">1. The 8 Data Types</a>
+                <a href="#memory-section" class="nav-chip">2. Stack vs Heap</a>
+                <a href="#operators-section" class="nav-chip">3. Operators Guide</a>
+                <a href="#coercion-section" class="nav-chip">4. Type Coercion</a>
+                <a href="#lab-type-inspector" class="nav-chip highlight-chip">5. Type Inspector Lab</a>
+                <a href="#lab-operators" class="nav-chip">6. Operators Sandbox</a>
+                <a href="#lab-equality-arena" class="nav-chip">7. == vs === Arena</a>
+                <a href="#lab-conversion" class="nav-chip">8. Coercion Studio</a>
+                <a href="#lab-truthy-falsy" class="nav-chip">9. Truthy / Falsy Matrix</a>
+                <a href="#lab-nullish-chaining" class="nav-chip">10. ?? & ?. Sandbox</a>
+                <a href="#interview-section" class="nav-chip">11. Interview Prep</a>
             </nav>
         </header>
 
         <!-- Main Content -->
         <main class="content-container">
 
-            <!-- Section 1: Core Features of JavaScript -->
-            <section id="features-section" class="doc-section">
-                <div class="section-badge badge-accent">Architecture & Language Design</div>
-                <h2 class="section-heading">Core Features of JavaScript</h2>
+            <!-- Section 1: The 8 Data Types Overview -->
+            <section id="types-section" class="doc-section">
+                <div class="section-badge badge-accent">Foundation & Language Core</div>
+                <h2 class="section-heading">The 8 JavaScript Data Types</h2>
                 <p class="section-lead">
-                    JavaScript is a high-level, multi-paradigm, dynamically typed language engineered to run in client browsers and modern server runtimes. Here are the core pillars that define its behavior:
+                    JavaScript is dynamically typed: identifiers do not carry static types—the values themselves carry types. Modern ECMAScript defines exactly 8 built-in types divided into 7 Primitives and 1 Reference type.
                 </p>
 
-                <div class="features-grid">
-                    <!-- Feature 1 -->
-                    <div class="feature-card">
-                        <div class="feature-card-header">
-                            <div class="feature-icon">⚡</div>
-                            <div>
-                                <h3>High-Level & JIT-Compiled</h3>
-                                <p>No manual memory management or static compiling required.</p>
-                            </div>
+                <div class="types-grid">
+                    <!-- Type 1: String -->
+                    <div class="type-card" data-category="primitive">
+                        <div class="type-card-header">
+                            <span class="type-badge badge-string">Primitive</span>
+                            <span class="type-typeof">typeof &rarr; "string"</span>
                         </div>
-                        <p>Modern browser engines (Google V8, Mozilla SpiderMonkey) use <strong>Just-In-Time (JIT) compilation</strong> to translate JavaScript into optimized machine code on the fly during execution.</p>
-                        <div class="feature-meta">
-                            <span>Engine: V8 / SpiderMonkey</span>
-                            <span>Memory: Automatic Garbage Collection</span>
+                        <h3 class="type-name">String</h3>
+                        <p class="type-desc">Represents textual UTF-16 data enclosed in single quotes, double quotes, or template literal backticks.</p>
+                        <div class="type-example">
+                            <code>const greeting = "Hello World";</code>
                         </div>
                     </div>
 
-                    <!-- Feature 2 -->
-                    <div class="feature-card">
-                        <div class="feature-card-header">
-                            <div class="feature-icon">🔄</div>
-                            <div>
-                                <h3>Dynamically & Weakly Typed</h3>
-                                <p>Variables hold values, not rigid types.</p>
-                            </div>
+                    <!-- Type 2: Number -->
+                    <div class="type-card" data-category="primitive">
+                        <div class="type-card-header">
+                            <span class="type-badge badge-number">Primitive</span>
+                            <span class="type-typeof">typeof &rarr; "number"</span>
                         </div>
-                        <p>You don't declare data types ahead of time. A variable holding a number can later hold a string. JavaScript also performs <strong>type coercion</strong> when combining different types.</p>
-                        <div class="feature-meta">
-                            <span>Typing: Dynamic runtime binding</span>
-                            <span>Inspection: typeof operator</span>
+                        <h3 class="type-name">Number</h3>
+                        <p class="type-desc">Double-precision 64-bit binary format IEEE 754. Handles integers, decimals, <code>Infinity</code>, <code>-Infinity</code>, and <code>NaN</code>.</p>
+                        <div class="type-example">
+                            <code>const pi = 3.14159; // also NaN</code>
                         </div>
                     </div>
 
-                    <!-- Feature 3 -->
-                    <div class="feature-card">
-                        <div class="feature-card-header">
-                            <div class="feature-icon">🧵</div>
-                            <div>
-                                <h3>Single-Threaded & Non-Blocking</h3>
-                                <p>One main call stack powered by the Event Loop.</p>
-                            </div>
+                    <!-- Type 3: BigInt -->
+                    <div class="type-card" data-category="primitive">
+                        <div class="type-card-header">
+                            <span class="type-badge badge-bigint">Primitive</span>
+                            <span class="type-typeof">typeof &rarr; "bigint"</span>
                         </div>
-                        <p>JavaScript executes code one statement at a time on a single thread. To handle heavy tasks (network requests, timers) without freezing the UI, it delegates them to Web APIs and the <strong>Event Loop</strong>.</p>
-                        <div class="feature-meta">
-                            <span>Concurrency: Event Loop</span>
-                            <span>Execution: Non-blocking I/O</span>
+                        <h3 class="type-name">BigInt</h3>
+                        <p class="type-desc">Introduced in ES2020 to represent arbitrary-precision integers beyond <code>Number.MAX_SAFE_INTEGER</code> (2<sup>53</sup> - 1).</p>
+                        <div class="type-example">
+                            <code>const largeNum = 9007199254740995n;</code>
                         </div>
                     </div>
 
-                    <!-- Feature 4 -->
-                    <div class="feature-card">
-                        <div class="feature-card-header">
-                            <div class="feature-icon">🎭</div>
-                            <div>
-                                <h3>Multi-Paradigm Language</h3>
-                                <p>Flexible programming styles suited for any architecture.</p>
-                            </div>
+                    <!-- Type 4: Boolean -->
+                    <div class="type-card" data-category="primitive">
+                        <div class="type-card-header">
+                            <span class="type-badge badge-boolean">Primitive</span>
+                            <span class="type-typeof">typeof &rarr; "boolean"</span>
                         </div>
-                        <p>Supports <strong>Procedural</strong> (step-by-step), <strong>Object-Oriented</strong> (classes, encapsulation, prototype chains), and <strong>Functional Programming</strong> (pure functions, immutability, map/filter/reduce).</p>
-                        <div class="feature-meta">
-                            <span>Styles: OOP + Functional</span>
-                            <span>Inheritance: Prototype-based</span>
+                        <h3 class="type-name">Boolean</h3>
+                        <p class="type-desc">A logical entity representing binary truth states: exactly <code>true</code> or <code>false</code>.</p>
+                        <div class="type-example">
+                            <code>const isCompleted = true;</code>
                         </div>
                     </div>
 
-                    <!-- Feature 5 -->
-                    <div class="feature-card">
-                        <div class="feature-card-header">
-                            <div class="feature-icon">🎯</div>
-                            <div>
-                                <h3>First-Class Functions</h3>
-                                <p>Functions treated as first-class citizens.</p>
-                            </div>
+                    <!-- Type 5: Undefined -->
+                    <div class="type-card" data-category="primitive">
+                        <div class="type-card-header">
+                            <span class="type-badge badge-undefined">Primitive</span>
+                            <span class="type-typeof">typeof &rarr; "undefined"</span>
                         </div>
-                        <p>Functions can be stored in variables, passed into other functions as arguments (callbacks), returned from functions (closures), and assigned properties just like objects.</p>
-                        <div class="feature-meta">
-                            <span>Patterns: Callbacks & Closures</span>
-                            <span>Usage: Higher-Order Functions</span>
+                        <h3 class="type-name">Undefined</h3>
+                        <p class="type-desc">Automatically assigned by the JavaScript engine to declared variables that have not yet been assigned a value.</p>
+                        <div class="type-example">
+                            <code>let user; // undefined</code>
                         </div>
                     </div>
 
-                    <!-- Feature 6 -->
-                    <div class="feature-card">
-                        <div class="feature-card-header">
-                            <div class="feature-icon">🌐</div>
-                            <div>
-                                <h3>Cross-Platform Ubiquity</h3>
-                                <p>Run anywhere: Browser, Server, Mobile, Desktop.</p>
-                            </div>
+                    <!-- Type 6: Null -->
+                    <div class="type-card" data-category="primitive">
+                        <div class="type-card-header">
+                            <span class="type-badge badge-null">Primitive</span>
+                            <span class="type-typeof">typeof &rarr; "object" ⚠️</span>
                         </div>
-                        <p>Originally designed solely for web browsers, modern JavaScript now powers backends (Node.js, Deno, Bun), mobile applications (React Native), and desktop apps (Electron).</p>
-                        <div class="feature-meta">
-                            <span>Specification: ECMAScript (TC39)</span>
-                            <span>Standard: Living Web Standard</span>
+                        <h3 class="type-name">Null</h3>
+                        <p class="type-desc">Represents the intentional absence of any object reference. Note: <code>typeof null === "object"</code> is a 1995 legacy bug.</p>
+                        <div class="type-example">
+                            <code>const selectedItem = null;</code>
+                        </div>
+                    </div>
+
+                    <!-- Type 7: Symbol -->
+                    <div class="type-card" data-category="primitive">
+                        <div class="type-card-header">
+                            <span class="type-badge badge-symbol">Primitive</span>
+                            <span class="type-typeof">typeof &rarr; "symbol"</span>
+                        </div>
+                        <h3 class="type-name">Symbol</h3>
+                        <p class="type-desc">Introduced in ES6 to produce guaranteed globally unique, immutable identifiers, ideal for hidden object keys.</p>
+                        <div class="type-example">
+                            <code>const id = Symbol('userId');</code>
+                        </div>
+                    </div>
+
+                    <!-- Type 8: Object (Reference) -->
+                    <div class="type-card type-card-reference" data-category="reference">
+                        <div class="type-card-header">
+                            <span class="type-badge badge-object">Reference Type</span>
+                            <span class="type-typeof">typeof &rarr; "object"</span>
+                        </div>
+                        <h3 class="type-name">Object (Non-Primitive)</h3>
+                        <p class="type-desc">Complex keyed collections and data structures. Includes Plain Objects <code>{}</code>, Arrays <code>[]</code>, Functions, Dates, and Maps.</p>
+                        <div class="type-example">
+                            <code>const user = { name: "Harish" };</code>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Section 2: JavaScript Variables Deep Dive -->
-            <section id="variables-section" class="doc-section">
-                <div class="section-badge badge-cyan">Memory & State</div>
-                <h2 class="section-heading">Variables in JavaScript: var vs let vs const</h2>
+            <!-- Section 2: Stack vs Heap Memory -->
+            <section id="memory-section" class="doc-section">
+                <div class="section-badge badge-cyan">Memory Architecture</div>
+                <h2 class="section-heading">Memory Allocation: Call Stack vs Memory Heap</h2>
                 <p class="section-lead">
-                    A variable is a <strong>named container</strong> in memory that stores a reference to a data value. In modern JavaScript, how you declare that container dictates its lifetime, scope, and mutability.
+                    The engine uses two distinct memory areas. Primitives are stored directly by value in the Stack; objects are stored in the Heap, with the Stack holding only memory references.
                 </p>
 
-                <div class="var-cards-grid">
-                    <!-- VAR Card -->
-                    <div class="var-card card-var">
-                        <div class="var-header">
-                            <span class="var-keyword">var</span>
-                            <span class="var-verdict verdict-legacy">Legacy (ES1 - 1995)</span>
+                <div class="memory-comparison-grid">
+                    <div class="memory-card">
+                        <div class="memory-card-header">
+                            <span class="memory-icon">⚡</span>
+                            <h3>Call Stack (Primitives)</h3>
                         </div>
-                        <h4>Function-Scoped Variable</h4>
-                        <p>The original variable declaration keyword from JavaScript's inception. Known for subtle bugs due to lack of block scoping and loose re-declaration rules.</p>
-                        
-                        <ul class="var-traits">
-                            <li><span class="icon">📦</span> <strong>Scope:</strong> Function-scoped (ignores <code>{ }</code> blocks)</li>
-                            <li><span class="icon">♻️</span> <strong>Re-declaration:</strong> Allowed in same scope (dangerous!)</li>
-                            <li><span class="icon">✏️</span> <strong>Re-assignment:</strong> Allowed at any time</li>
-                            <li><span class="icon">🎈</span> <strong>Hoisting:</strong> Hoisted and initialized to <code>undefined</code></li>
-                            <li><span class="icon">🌐</span> <strong>Global:</strong> Attaches to <code>window</code> object in browsers</li>
+                        <ul class="memory-features">
+                            <li><strong>Storage:</strong> Stores primitive values and execution contexts.</li>
+                            <li><strong>Access:</strong> Ultra-fast, ordered LIFO (Last-In, First-Out) memory.</li>
+                            <li><strong>Copying:</strong> <strong>Copied by Value</strong>. Mutating one variable creates a distinct copy without affecting original.</li>
+                            <li><strong>Immutability:</strong> Primitive data cannot be mutated in place; reassignment writes a new value.</li>
                         </ul>
-
-                        <div class="var-code-example">
-                            <code>var count = 1;<br>var count = 2; // Allowed! Silently overwrites</code>
+                        <div class="code-box">
+                            <pre><code>let score1 = 100;
+let score2 = score1; // Independent copy!
+score2 = 200;
+console.log(score1); // 100 (Untouched)</code></pre>
                         </div>
                     </div>
 
-                    <!-- LET Card -->
-                    <div class="var-card card-let">
-                        <div class="var-header">
-                            <span class="var-keyword">let</span>
-                            <span class="var-verdict verdict-modern">Modern Standard (ES6 - 2015)</span>
+                    <div class="memory-card">
+                        <div class="memory-card-header">
+                            <span class="memory-icon">🌐</span>
+                            <h3>Memory Heap (Reference Types)</h3>
                         </div>
-                        <h4>Block-Scoped Mutable Variable</h4>
-                        <p>Introduced in ECMAScript 2015 (ES6) to fix <code>var</code>'s design flaws. Confined strictly to the curly braces <code>{ }</code> where it is created.</p>
-                        
-                        <ul class="var-traits">
-                            <li><span class="icon">🧱</span> <strong>Scope:</strong> Block-scoped <code>{ ... }</code></li>
-                            <li><span class="icon">🚫</span> <strong>Re-declaration:</strong> Forbidden in the same scope</li>
-                            <li><span class="icon">✏️</span> <strong>Re-assignment:</strong> Allowed (perfect for counters/state)</li>
-                            <li><span class="icon">⏳</span> <strong>Hoisting:</strong> Hoisted into Temporal Dead Zone (TDZ)</li>
-                            <li><span class="icon">🛡️</span> <strong>Global:</strong> Does not pollute <code>window</code> object</li>
+                        <ul class="memory-features">
+                            <li><strong>Storage:</strong> Stores dynamically-sized objects, arrays, and functions.</li>
+                            <li><strong>Access:</strong> Slower, random-access memory managed by Garbage Collector.</li>
+                            <li><strong>Copying:</strong> <strong>Copied by Reference</strong>. Assigning an object copies only the memory pointer (#0x101).</li>
+                            <li><strong>Mutability:</strong> Properties can be freely modified, affecting all pointers pointing to that heap location.</li>
                         </ul>
-
-                        <div class="var-code-example">
-                            <code>let score = 10;<br>score = 20; // OK (Re-assignment allowed)</code>
-                        </div>
-                    </div>
-
-                    <!-- CONST Card -->
-                    <div class="var-card card-const">
-                        <div class="var-header">
-                            <span class="var-keyword">const</span>
-                            <span class="var-verdict verdict-recommended">Best Practice Default (ES6)</span>
-                        </div>
-                        <h4>Block-Scoped Constant Binding</h4>
-                        <p>Declares an immutable variable binding. The variable identifier cannot be reassigned to a new value once initialized. Recommended default for 90% of code.</p>
-                        
-                        <ul class="var-traits">
-                            <li><span class="icon">🧱</span> <strong>Scope:</strong> Block-scoped <code>{ ... }</code></li>
-                            <li><span class="icon">🚫</span> <strong>Re-declaration:</strong> Forbidden in the same scope</li>
-                            <li><span class="icon">🔒</span> <strong>Re-assignment:</strong> Strictly Forbidden (TypeError)</li>
-                            <li><span class="icon">⏳</span> <strong>Hoisting:</strong> Hoisted into Temporal Dead Zone (TDZ)</li>
-                            <li><span class="icon">📦</span> <strong>Mutation:</strong> Object/Array contents CAN be mutated!</li>
-                        </ul>
-
-                        <div class="var-code-example">
-                            <code>const API_URL = "https://api.dev";<br>// API_URL = "new"; ❌ TypeError!</code>
+                        <div class="code-box">
+                            <pre><code>const user1 = { name: "Harish" };
+const user2 = user1; // Copies pointer address!
+user2.name = "Alex";
+console.log(user1.name); // "Alex" (Mutated!)</code></pre>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Section 3: Comparison Matrix Table -->
-            <section id="matrix-section" class="doc-section">
-                <div class="section-badge">Reference Guide</div>
-                <h2 class="section-heading">Detailed Feature Comparison Matrix</h2>
+            <!-- Section 3: Mastery of JavaScript Operators -->
+            <section id="operators-section" class="doc-section">
+                <div class="section-badge badge-purple">Syntax & Operations</div>
+                <h2 class="section-heading">JavaScript Operators Master Guide</h2>
                 <p class="section-lead">
-                    Quick reference breakdown of how <code>var</code>, <code>let</code>, and <code>const</code> compare across every key dimension in the JavaScript runtime:
+                    Operators perform computations on operands. Understanding precedence, short-circuit evaluation, and modern operators like <code>??</code> and <code>?.</code> is essential for clean code.
                 </p>
 
-                <div class="table-responsive">
-                    <table class="comparison-table">
+                <div class="operators-table-wrapper">
+                    <table class="data-table">
                         <thead>
                             <tr>
-                                <th>Feature / Behavior</th>
-                                <th><code>var</code></th>
-                                <th><code>let</code></th>
-                                <th><code>const</code></th>
+                                <th>Category</th>
+                                <th>Operators</th>
+                                <th>Description</th>
+                                <th>Example Expression</th>
+                                <th>Result</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>Scope</strong></td>
-                                <td><span class="tag-badge tag-warn">Function Scope</span> (leaks out of if/for blocks)</td>
-                                <td><span class="tag-badge tag-yes">Block Scope { }</span></td>
-                                <td><span class="tag-badge tag-yes">Block Scope { }</span></td>
+                                <td><span class="cat-pill cat-arithmetic">Arithmetic</span></td>
+                                <td><code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>%</code> <code>**</code></td>
+                                <td>Math calculations, modulus remainder, and exponentiation</td>
+                                <td><code>10 % 3</code> / <code>2 ** 3</code></td>
+                                <td><code>1</code> / <code>8</code></td>
                             </tr>
                             <tr>
-                                <td><strong>Re-declaration in Same Scope</strong></td>
-                                <td><span class="tag-badge tag-warn">Allowed</span> (source of subtle bugs)</td>
-                                <td><span class="tag-badge tag-no">Forbidden</span> (SyntaxError)</td>
-                                <td><span class="tag-badge tag-no">Forbidden</span> (SyntaxError)</td>
+                                <td><span class="cat-pill cat-assignment">Assignment</span></td>
+                                <td><code>=</code> <code>+=</code> <code>-=</code> <code>*=</code> <code>/=</code></td>
+                                <td>Assigns values with optional arithmetic shortcut</td>
+                                <td><code>count += 5</code></td>
+                                <td>Updated <code>count</code></td>
                             </tr>
                             <tr>
-                                <td><strong>Re-assignment</strong></td>
-                                <td><span class="tag-badge tag-yes">Allowed</span></td>
-                                <td><span class="tag-badge tag-yes">Allowed</span></td>
-                                <td><span class="tag-badge tag-no">Forbidden</span> (TypeError)</td>
+                                <td><span class="cat-pill cat-comparison">Comparison</span></td>
+                                <td><code>===</code> <code>!==</code> <code>==</code> <code>!=</code> <code>&gt;</code> <code>&lt;</code></td>
+                                <td>Strict vs loose equality and relational checks</td>
+                                <td><code>5 === "5"</code> vs <code>5 == "5"</code></td>
+                                <td><code>false</code> vs <code>true</code></td>
                             </tr>
                             <tr>
-                                <td><strong>Initialization Required</strong></td>
-                                <td><span class="tag-badge tag-info">No</span> (defaults to <code>undefined</code>)</td>
-                                <td><span class="tag-badge tag-info">No</span> (defaults to <code>undefined</code>)</td>
-                                <td><span class="tag-badge tag-yes">Yes</span> (must have initial value)</td>
+                                <td><span class="cat-pill cat-logical">Logical</span></td>
+                                <td><code>&amp;&amp;</code> <code>||</code> <code>!</code></td>
+                                <td>Short-circuit AND (first falsy) / OR (first truthy)</td>
+                                <td><code>"Harish" || "Guest"</code></td>
+                                <td><code>"Harish"</code></td>
                             </tr>
                             <tr>
-                                <td><strong>Hoisting Behavior</strong></td>
-                                <td><span class="tag-badge tag-warn">Hoisted & initialized</span> to <code>undefined</code></td>
-                                <td><span class="tag-badge tag-info">Hoisted into TDZ</span> (throws ReferenceError)</td>
-                                <td><span class="tag-badge tag-info">Hoisted into TDZ</span> (throws ReferenceError)</td>
+                                <td><span class="cat-pill cat-modern">Nullish Coalescing</span></td>
+                                <td><code>??</code></td>
+                                <td>Returns right-hand operand ONLY if left is <code>null</code> or <code>undefined</code></td>
+                                <td><code>0 ?? 50</code> (0 is valid!)</td>
+                                <td><code>0</code></td>
                             </tr>
                             <tr>
-                                <td><strong>Temporal Dead Zone (TDZ)</strong></td>
-                                <td><span class="tag-badge tag-no">No TDZ</span></td>
-                                <td><span class="tag-badge tag-yes">Yes (active before declaration)</span></td>
-                                <td><span class="tag-badge tag-yes">Yes (active before declaration)</span></td>
+                                <td><span class="cat-pill cat-modern">Optional Chaining</span></td>
+                                <td><code>?.</code></td>
+                                <td>Safely accesses deeply nested properties without crashing</td>
+                                <td><code>user?.profile?.avatar</code></td>
+                                <td><code>undefined</code> (No crash)</td>
                             </tr>
                             <tr>
-                                <td><strong>Global Object (window) Pollution</strong></td>
-                                <td><span class="tag-badge tag-warn">Yes</span> (adds <code>window.varName</code>)</td>
-                                <td><span class="tag-badge tag-no">No</span> (isolated to script scope)</td>
-                                <td><span class="tag-badge tag-no">No</span> (isolated to script scope)</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Recommended Usage</strong></td>
-                                <td><span class="tag-badge tag-no">Avoid in modern JS</span></td>
-                                <td><span class="tag-badge tag-info">Use when value changes</span></td>
-                                <td><span class="tag-badge tag-yes">Default choice (90%+)</span></td>
+                                <td><span class="cat-pill cat-unary">Unary / Ternary</span></td>
+                                <td><code>+</code> <code>-</code> <code>typeof</code> <code>? :</code></td>
+                                <td>Fast type coercion and inline conditional branching</td>
+                                <td><code>+"42"</code> / <code>isAuth ? "Home" : "Login"</code></td>
+                                <td><code>42</code> (number)</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </section>
 
-            <!-- Section 4: Interactive Lab 1: Variable Battle Arena -->
-            <section id="battle-lab" class="doc-section">
-                <div class="section-badge badge-accent">Interactive Playground #1</div>
-                <h2 class="section-heading">Lab 1: The Variable Battle Arena</h2>
+            <!-- Section 4: Type Conversion & Coercion -->
+            <section id="coercion-section" class="doc-section">
+                <div class="section-badge badge-amber">Engine Mechanics</div>
+                <h2 class="section-heading">Type Conversion: Explicit vs Implicit Coercion</h2>
                 <p class="section-lead">
-                    Select a keyword below and execute live tests. Watch how JavaScript's compiler handles re-declaration, re-assignment, block scope leakage, and hoisting in real time!
+                    Type conversion converts a value from one data type to another. <strong>Explicit conversion</strong> is intentional; <strong>Implicit coercion</strong> happens automatically under the hood when operators encounter mismatched types.
                 </p>
 
-                <div class="interactive-lab-container">
-                    <div class="lab-header">
-                        <div class="lab-title-group">
-                            <span style="font-size: 1.5rem;">⚔️</span>
-                            <div>
-                                <h3>Select Variable Weapon</h3>
-                                <p>Choose a declaration keyword to test its behavior</p>
-                            </div>
-                        </div>
+                <div class="coercion-grid">
+                    <div class="coercion-card">
+                        <h3>1. Explicit Type Casting</h3>
+                        <p>Constructors called as functions to cleanly transform types:</p>
+                        <div class="code-box">
+                            <pre><code>// String Conversion:
+String(123);        // "123"
+String(false);      // "false"
 
-                        <div class="lab-segmented-control" role="tablist">
-                            <button id="weapon-var" class="segmented-btn" role="tab">var</button>
-                            <button id="weapon-let" class="segmented-btn" role="tab">let</button>
-                            <button id="weapon-const" class="segmented-btn active active-const" role="tab">const (Default)</button>
+// Numeric Conversion:
+Number("42");       // 42
+Number("");         // 0
+parseInt("24px");   // 24
++"99";              // 99 (Unary +)
+
+// Boolean Conversion:
+Boolean(1);         // true
+Boolean(0);         // false
+!!"hello";          // true (Double-bang)</code></pre>
                         </div>
                     </div>
 
-                    <!-- Action Test Buttons -->
-                    <div class="lab-actions-row">
-                        <button id="btn-test-redeclare" class="btn-action btn-primary">
-                            <span>🔄</span> Test Re-declaration
-                        </button>
-                        <button id="btn-test-reassign" class="btn-action">
-                            <span>✏️</span> Test Re-assignment
-                        </button>
-                        <button id="btn-test-block" class="btn-action">
-                            <span>🧱</span> Test Block Scope Leak
-                        </button>
-                        <button id="btn-test-hoist" class="btn-action">
-                            <span>🎈</span> Test Hoisting & TDZ
-                        </button>
-                        <button id="btn-clear-arena" class="btn-action btn-danger" style="margin-left: auto;">
-                            <span>🧹</span> Clear Console
-                        </button>
+                    <div class="coercion-card">
+                        <h3>2. Implicit Type Coercion</h3>
+                        <p>Rules the JavaScript engine follows during evaluations:</p>
+                        <div class="code-box">
+                            <pre><code>// Plus (+) with a string triggers String Concatenation:
+"5" + 2;            // "52" (Number 2 coerced to "2")
+
+// Math operators (-, *, /, %) trigger Numeric Coercion:
+"5" - 2;            // 3    ("5" coerced to number 5)
+"6" * "4";          // 24   (Both coerced to numbers)
+
+// Boolean contexts (if, &&, ||) trigger Truthy/Falsy check:
+if ("text") { ... } // Evaluates as true!</code></pre>
+                        </div>
                     </div>
+                </div>
 
-                    <!-- Arena Split: Code Preview + Live Output Console -->
-                    <div class="arena-split">
-                        <!-- Code Preview Panel -->
-                        <div class="code-viewer-panel">
-                            <div class="panel-titlebar">
-                                <div class="titlebar-dots">
-                                    <span class="dot dot-red"></span>
-                                    <span class="dot dot-yellow"></span>
-                                    <span class="dot dot-green"></span>
-                                </div>
-                                <span id="code-snippet-title">test.js — const declaration</span>
-                                <span>JavaScript</span>
-                            </div>
-                            <pre class="code-content-box" id="arena-code-display">// Select a test button above to run simulated JavaScript execution</pre>
-                        </div>
-
-                        <!-- Live Terminal Console Panel -->
-                        <div class="terminal-panel">
-                            <div class="panel-titlebar">
-                                <span>Browser DevTools Console</span>
-                                <span id="terminal-badge" class="tag-badge tag-yes">READY</span>
-                            </div>
-                            <div class="terminal-output" id="arena-terminal">
-                                <div class="terminal-line t-dim">
-                                    <span class="t-prompt">&gt;</span>
-                                    <span>Console initialized. Ready for test execution...</span>
-                                </div>
-                            </div>
-                        </div>
+                <!-- 8 Falsy Values Visual Callout -->
+                <div class="falsy-banner">
+                    <h3 class="falsy-title">⚠️ The Exact 8 Falsy Values in JavaScript</h3>
+                    <p class="falsy-desc">In JavaScript, <strong>EVERYTHING is truthy</strong> except these exact 8 values:</p>
+                    <div class="falsy-chips">
+                        <span class="f-chip"><code>false</code></span>
+                        <span class="f-chip"><code>0</code></span>
+                        <span class="f-chip"><code>-0</code></span>
+                        <span class="f-chip"><code>0n</code></span>
+                        <span class="f-chip"><code>""</code> (empty string)</span>
+                        <span class="f-chip"><code>null</code></span>
+                        <span class="f-chip"><code>undefined</code></span>
+                        <span class="f-chip"><code>NaN</code></span>
+                    </div>
+                    <div class="falsy-note">
+                        💡 <strong>Watch Out:</strong> <code>[]</code> (empty array), <code>{}</code> (empty object), <code>"0"</code> (string with zero), and <code>"false"</code> are all <strong>TRUTHY</strong>!
                     </div>
                 </div>
             </section>
 
-            <!-- Section 5: Interactive Lab 2: Scope & Block Visualizer -->
-            <section id="scope-lab" class="doc-section">
-                <div class="section-badge badge-cyan">Interactive Playground #2</div>
-                <h2 class="section-heading">Lab 2: Scope & Block Boundary Visualizer</h2>
-                <p class="section-lead">
-                    Understand the difference between <strong>Global Scope</strong>, <strong>Function Scope</strong>, and <strong>Block Scope <code>{ }</code></strong>. See how <code>var</code> ignores block boundaries while <code>let</code> and <code>const</code> respect them.
-                </p>
+            <!-- ===============================================================
+                 INTERACTIVE LAB 1: DATA TYPE INSPECTOR & MEMORY VISUALIZER
+                 =============================================================== -->
+            <section id="lab-type-inspector" class="doc-section lab-section">
+                <div class="lab-header">
+                    <div class="lab-pill">Interactive Lab 1</div>
+                    <h2 class="lab-title">Data Type Inspector & Memory Visualizer</h2>
+                    <p class="lab-desc">Click any data type preset or enter a custom JavaScript expression to inspect its classified type, <code>typeof</code> output, memory allocation zone (Call Stack vs Heap), and mutability.</p>
+                </div>
 
-                <div class="interactive-lab-container">
-                    <div class="lab-actions-row">
-                        <button id="btn-scope-block-test" class="btn-action btn-primary">
-                            <span>🔍</span> Test: Access inside vs outside <code>{ if block }</code>
-                        </button>
-                        <button id="btn-scope-function-test" class="btn-action">
-                            <span>📦</span> Test: Access inside vs outside <code>function()</code>
-                        </button>
-                        <button id="btn-scope-reset" class="btn-action" style="margin-left: auto;">
-                            <span>🔄</span> Reset Diagram
-                        </button>
+                <div class="lab-presets">
+                    <span class="preset-label">Quick Presets:</span>
+                    <button class="preset-btn active" data-expr="'Hello Frontend'">"Hello Frontend"</button>
+                    <button class="preset-btn" data-expr="42">42</button>
+                    <button class="preset-btn" data-expr="9007199254740995n">9007199254740995n</button>
+                    <button class="preset-btn" data-expr="true">true</button>
+                    <button class="preset-btn" data-expr="undefined">undefined</button>
+                    <button class="preset-btn" data-expr="null">null</button>
+                    <button class="preset-btn" data-expr="Symbol('token')">Symbol('token')</button>
+                    <button class="preset-btn" data-expr="{ name: 'Harish', day: 20 }">{ name: 'Harish' }</button>
+                    <button class="preset-btn" data-expr="[1, 2, 3, 4]">[1, 2, 3, 4]</button>
+                    <button class="preset-btn" data-expr="() => 'JS'">&lpar;&rpar; =&gt; 'JS'</button>
+                    <button class="preset-btn" data-expr="NaN">NaN</button>
+                </div>
+
+                <div class="inspector-grid">
+                    <div class="inspector-input-card">
+                        <label for="inspector-input" class="input-label">JavaScript Expression:</label>
+                        <div class="input-group">
+                            <input type="text" id="inspector-input" value="'Hello Frontend'" placeholder="e.g. 3.14, [1, 2], null, 'text'">
+                            <button id="btn-inspect-eval" class="btn btn-primary">Inspect Value</button>
+                        </div>
+
+                        <div class="inspector-specs">
+                            <div class="spec-row">
+                                <span class="spec-label">Official Data Type:</span>
+                                <span id="spec-data-type" class="spec-value type-tag-string">String</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label"><code>typeof</code> Operator Output:</span>
+                                <span id="spec-typeof" class="spec-value code-font">"string"</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Category Classification:</span>
+                                <span id="spec-category" class="spec-value badge-primitive">Primitive (Immutable)</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Memory Partition:</span>
+                                <span id="spec-memory" class="spec-value badge-stack">Call Stack (Direct Value)</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Boolean Truthiness:</span>
+                                <span id="spec-truthiness" class="spec-value badge-truthy">Truthy (evaluates to true)</span>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Visual Nested Scope Hierarchy -->
-                    <div class="scope-nest-container" id="visual-global-scope">
-                        <span class="scope-label label-global">🌐 Global Scope (Window)</span>
-                        <p style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 0.75rem;">
-                            Variables declared here are accessible anywhere in the script.
+                    <div class="inspector-visual-card">
+                        <h4 class="visual-title">Engine Memory Simulator</h4>
+                        <div class="memory-stage">
+                            <div class="stage-stack">
+                                <div class="stage-header">CALL STACK</div>
+                                <div id="stack-slot" class="stage-slot">
+                                    <div class="slot-var">val</div>
+                                    <div class="slot-arrow">&rarr;</div>
+                                    <div id="stack-val-display" class="slot-val">"Hello Frontend"</div>
+                                </div>
+                            </div>
+                            <div id="heap-container" class="stage-heap is-hidden">
+                                <div class="stage-header">MEMORY HEAP</div>
+                                <div id="heap-slot" class="stage-slot-heap">
+                                    <div class="heap-address">Address #0x10A</div>
+                                    <div id="heap-val-display" class="heap-content">{}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <p id="memory-explanation" class="memory-explanation-text">
+                            Strings are primitive data types stored directly by value in Call Stack memory. They cannot be modified in place.
                         </p>
+                    </div>
+                </div>
+            </section>
 
-                        <div class="scope-var-tags" id="global-var-tags">
-                            <span class="scope-var-pill pill-const">const appName = "FrontendApp"</span>
+            <!-- ===============================================================
+                 INTERACTIVE LAB 2: OPERATORS SANDBOX
+                 =============================================================== -->
+            <section id="lab-operators" class="doc-section lab-section">
+                <div class="lab-header">
+                    <div class="lab-pill">Interactive Lab 2</div>
+                    <h2 class="lab-title">Interactive Operators Sandbox</h2>
+                    <p class="lab-desc">Test real JavaScript operations live. Select an operator, enter operands, and watch the engine compute the result, return type, and coercion breakdown.</p>
+                </div>
+
+                <div class="sandbox-controls">
+                    <div class="segmented-control" role="group" aria-label="Operator Category">
+                        <button class="segmented-btn active" data-op-cat="arithmetic">Arithmetic</button>
+                        <button class="segmented-btn" data-op-cat="comparison">Comparison</button>
+                        <button class="segmented-btn" data-op-cat="logical">Logical</button>
+                        <button class="segmented-btn" data-op-cat="modern">Nullish (??)</button>
+                    </div>
+
+                    <div class="sandbox-engine">
+                        <div class="operand-box">
+                            <label for="op-left-input">Left Operand (A):</label>
+                            <input type="text" id="op-left-input" value="10">
                         </div>
 
-                        <!-- Function Scope Box -->
-                        <div class="scope-function-box" id="visual-function-scope">
-                            <span class="scope-label label-function">📦 Function Scope: function calculate() { ... }</span>
-                            <p style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 0.75rem;">
-                                Variables defined inside a function are sealed inside—neither var, let, nor const can escape.
+                        <div class="operator-select-box">
+                            <label for="op-select">Operator:</label>
+                            <select id="op-select" class="custom-select">
+                                <option value="+">+ (Addition)</option>
+                                <option value="-">- (Subtraction)</option>
+                                <option value="*">* (Multiplication)</option>
+                                <option value="/">/ (Division)</option>
+                                <option value="%">% (Remainder)</option>
+                                <option value="**">** (Exponentiation)</option>
+                            </select>
+                        </div>
+
+                        <div class="operand-box">
+                            <label for="op-right-input">Right Operand (B):</label>
+                            <input type="text" id="op-right-input" value="3">
+                        </div>
+
+                        <button id="btn-calc-op" class="btn btn-accent">Evaluate</button>
+                    </div>
+
+                    <div class="sandbox-result-card">
+                        <div class="res-row">
+                            <span class="res-label">Evaluated Expression:</span>
+                            <span id="res-expr-text" class="res-code">10 + 3</span>
+                        </div>
+                        <div class="res-row highlight-res-row">
+                            <span class="res-label">Output Value:</span>
+                            <span id="res-output-val" class="res-value">13</span>
+                        </div>
+                        <div class="res-row">
+                            <span class="res-label">Output Data Type:</span>
+                            <span id="res-output-type" class="res-badge">number</span>
+                        </div>
+                        <div class="res-row">
+                            <span class="res-label">Engine Mechanics Note:</span>
+                            <span id="res-notes" class="res-note">Standard mathematical addition of two numeric operands.</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===============================================================
+                 INTERACTIVE LAB 3: STRICT (===) VS LOOSE (==) ARENA
+                 =============================================================== -->
+            <section id="lab-equality-arena" class="doc-section lab-section">
+                <div class="lab-header">
+                    <div class="lab-pill">Interactive Lab 3</div>
+                    <h2 class="lab-title">Strict (===) vs Loose (==) Battle Arena</h2>
+                    <p class="lab-desc">Loose equality performs implicit type coercion according to the abstract equality algorithm, while strict equality checks both type and value. Test classic tricky interview comparisons below.</p>
+                </div>
+
+                <div class="arena-presets">
+                    <span class="preset-label">Famous Matchups:</span>
+                    <button class="battle-preset-btn active" data-a="5" data-b="'5'">5 vs '5'</button>
+                    <button class="battle-preset-btn" data-a="0" data-b="false">0 vs false</button>
+                    <button class="battle-preset-btn" data-a="''" data-b="0">'' vs 0</button>
+                    <button class="battle-preset-btn" data-a="null" data-b="undefined">null vs undefined</button>
+                    <button class="battle-preset-btn" data-a="[]" data-b="0">[] vs 0</button>
+                    <button class="battle-preset-btn" data-a="[]" data-b="false">[] vs false</button>
+                    <button class="battle-preset-btn" data-a="[1]" data-b="1">[1] vs 1</button>
+                    <button class="battle-preset-btn" data-a="NaN" data-b="NaN">NaN vs NaN</button>
+                    <button class="battle-preset-btn" data-a="[]" data-b="![]">[] vs ![] (Hard)</button>
+                </div>
+
+                <div class="battle-cards-container">
+                    <!-- Loose Equality Card -->
+                    <div class="battle-card battle-loose">
+                        <div class="battle-card-top">
+                            <span class="battle-tag">Loose Equality</span>
+                            <code class="battle-symbol">A == B</code>
+                        </div>
+                        <div class="battle-expression" id="loose-expr-display">5 == '5'</div>
+                        <div class="battle-verdict-badge verdict-true" id="loose-verdict">true</div>
+                        <div class="battle-breakdown">
+                            <strong>Coercion Algorithm:</strong>
+                            <p id="loose-explanation">
+                                Operands have different types (number vs string). The engine coerces the string '5' into the number 5, resulting in 5 == 5.
                             </p>
-
-                            <div class="scope-var-tags">
-                                <span class="scope-var-pill pill-let">let total = 100</span>
-                            </div>
-
-                            <!-- Block Scope Box -->
-                            <div class="scope-block-box" id="visual-block-scope">
-                                <span class="scope-label label-block">🧱 Block Scope: if (true) { ... }</span>
-                                <p style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 0.75rem;">
-                                    Curly braces create a block boundary. Watch who stays inside and who breaks out!
-                                </p>
-
-                                <div class="scope-var-tags">
-                                    <span class="scope-var-pill pill-var" id="pill-leaky-var">var leaky = "I can escape!"</span>
-                                    <span class="scope-var-pill pill-let" id="pill-confined-let">let safeLet = "Trapped in block"</span>
-                                    <span class="scope-var-pill pill-const" id="pill-confined-const">const safeConst = "Trapped in block"</span>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
-                    <div id="scope-explanation-card" class="golden-rule-card" style="margin-bottom: 0; padding: 1.25rem;">
-                        <span class="golden-icon" style="font-size: 1.75rem;">💡</span>
-                        <div class="golden-rule-text">
-                            <h4 id="scope-result-title" style="color: var(--accent-cyan); font-size: 1.05rem;">Click a test button above</h4>
-                            <p id="scope-result-desc" style="font-size: 0.9rem; color: var(--text-secondary); margin: 0;">
-                                See whether variables are accessible from outside their blocks.
+                    <!-- Strict Equality Card -->
+                    <div class="battle-card battle-strict">
+                        <div class="battle-card-top">
+                            <span class="battle-tag">Strict Equality</span>
+                            <code class="battle-symbol">A === B</code>
+                        </div>
+                        <div class="battle-expression" id="strict-expr-display">5 === '5'</div>
+                        <div class="battle-verdict-badge verdict-false" id="strict-verdict">false</div>
+                        <div class="battle-breakdown">
+                            <strong>Strict Algorithm:</strong>
+                            <p id="strict-explanation">
+                                Types are different (typeof A is "number", typeof B is "string"). Strict equality terminates immediately and returns false with zero coercion.
                             </p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Section 6: Interactive Lab 3: Hoisting & TDZ Interactive Timeline -->
-            <section id="hoisting-lab" class="doc-section">
-                <div class="section-badge badge-accent">Interactive Playground #3</div>
-                <h2 class="section-heading">Lab 3: Hoisting & The Temporal Dead Zone (TDZ)</h2>
-                <p class="section-lead">
-                    Before executing your code line-by-line, the JavaScript engine performs a <strong>Creation Phase</strong> to scan declarations. Step through the timeline below to see why <code>var</code> gives <code>undefined</code> while <code>let</code> throws a <code>ReferenceError</code>.
-                </p>
+            <!-- ===============================================================
+                 INTERACTIVE LAB 4: TYPE CONVERSION & COERCION STUDIO
+                 =============================================================== -->
+            <section id="lab-conversion" class="doc-section lab-section">
+                <div class="lab-header">
+                    <div class="lab-pill">Interactive Lab 4</div>
+                    <h2 class="lab-title">Type Conversion & Coercion Studio</h2>
+                    <p class="lab-desc">Explore explicit casting with constructors or witness the famous JavaScript implicit coercion quirks evaluated step-by-step.</p>
+                </div>
 
-                <div class="interactive-lab-container">
-                    <div class="lab-actions-row">
-                        <button id="btn-tdz-step1" class="btn-action btn-primary">1. Creation Phase (Memory Allocation)</button>
-                        <button id="btn-tdz-step2" class="btn-action">2. TDZ Window (Before Declaration)</button>
-                        <button id="btn-tdz-step3" class="btn-action">3. Execution & Initialization</button>
-                    </div>
+                <div class="studio-tabs">
+                    <button class="studio-tab active" id="tab-explicit">Explicit Type Casting</button>
+                    <button class="studio-tab" id="tab-quirks">Famous Coercion Quirks</button>
+                </div>
 
-                    <div class="timeline-stepper">
-                        <div class="timeline-step active-step" id="tdz-card-step1">
-                            <span class="step-num">PHASE 01</span>
-                            <h4>Creation Phase</h4>
-                            <p id="tdz-p1">JS Engine scans all code. <code>var a</code> is registered in memory and assigned <code>undefined</code>. <code>let b</code> is registered in memory but left <strong>completely uninitialized</strong>.</p>
+                <!-- Tab 1: Explicit Casting Panel -->
+                <div id="panel-explicit" class="studio-panel">
+                    <div class="explicit-form">
+                        <label for="explicit-input" class="input-label">Enter Input Value:</label>
+                        <div class="input-group">
+                            <input type="text" id="explicit-input" value="42px" placeholder="e.g. 100, '3.14', true, null">
                         </div>
-
-                        <div class="timeline-step" id="tdz-card-step2">
-                            <span class="step-num">PHASE 02</span>
-                            <h4>Temporal Dead Zone</h4>
-                            <p id="tdz-p2">The zone between entering scope and the line where <code>let/const</code> is declared. Accessing <code>b</code> here triggers <code>ReferenceError: Cannot access 'b' before initialization</code>!</p>
-                        </div>
-
-                        <div class="timeline-step" id="tdz-card-step3">
-                            <span class="step-num">PHASE 03</span>
-                            <h4>Execution Phase</h4>
-                            <p id="tdz-p3">Code runs sequentially. The line <code>let b = 50</code> is reached. <code>b</code> exits the TDZ and is initialized to <code>50</code>. Safe to read and use!</p>
+                        <div class="converter-buttons">
+                            <button class="btn btn-converter" data-cast="String">String(val)</button>
+                            <button class="btn btn-converter" data-cast="Number">Number(val)</button>
+                            <button class="btn btn-converter" data-cast="Boolean">Boolean(val)</button>
+                            <button class="btn btn-converter" data-cast="parseInt">parseInt(val, 10)</button>
+                            <button class="btn btn-converter" data-cast="parseFloat">parseFloat(val)</button>
+                            <button class="btn btn-converter" data-cast="UnaryPlus">+val (Unary)</button>
                         </div>
                     </div>
 
-                    <div class="code-viewer-panel">
-                        <div class="panel-titlebar">
-                            <span>hoisting-demonstration.js</span>
-                            <span id="tdz-status-badge" class="tag-badge tag-warn">Phase 1: Memory Allocation</span>
+                    <div class="explicit-result-box">
+                        <div class="res-row">
+                            <span class="res-label">Executed Expression:</span>
+                            <span id="cast-expr" class="res-code">parseInt("42px", 10)</span>
                         </div>
-                        <pre class="code-content-box" id="tdz-code-preview">console.log(myVar); // Returns: undefined (Hoisted & initialized)
-console.log(myLet); // ❌ ReferenceError! (In the Temporal Dead Zone)
-
-var myVar = "Hello World";
-let myLet = "Modern JS";</pre>
+                        <div class="res-row highlight-res-row">
+                            <span class="res-label">Resulting Value:</span>
+                            <span id="cast-val" class="res-value">42</span>
+                        </div>
+                        <div class="res-row">
+                            <span class="res-label">Resulting Type:</span>
+                            <span id="cast-type" class="res-badge">number</span>
+                        </div>
                     </div>
                 </div>
-            </section>
 
-            <!-- Section 7: Data Types & Live Dynamic Typing Laboratory -->
-            <section id="types-lab" class="doc-section">
-                <div class="section-badge badge-cyan">Interactive Playground #4</div>
-                <h2 class="section-heading">Lab 4: Dynamic Typing & Data Type Laboratory</h2>
-                <p class="section-lead">
-                    In JavaScript, variables don't possess static types—<strong>values do</strong>. A variable can morph dynamically from a Number to a String, Boolean, Object, or Symbol. Pick a value below to inspect its live properties:
-                </p>
+                <!-- Tab 2: Quirks Runner Panel -->
+                <div id="panel-quirks" class="studio-panel is-hidden">
+                    <div class="quirks-selector-grid">
+                        <button class="quirk-btn active" data-quirk="plus-str">'5' + 2</button>
+                        <button class="quirk-btn" data-quirk="minus-str">'5' - 2</button>
+                        <button class="quirk-btn" data-quirk="array-plus-array">[] + []</button>
+                        <button class="quirk-btn" data-quirk="array-plus-obj">[] + {}</button>
+                        <button class="quirk-btn" data-quirk="bool-plus-bool">true + true</button>
+                        <button class="quirk-btn" data-quirk="null-plus-one">null + 1</button>
+                        <button class="quirk-btn" data-quirk="undef-plus-one">undefined + 1</button>
+                        <button class="quirk-btn" data-quirk="nan-equality">NaN === NaN</button>
+                    </div>
 
-                <div class="interactive-lab-container">
-                    <div class="types-lab-layout">
-                        <!-- Buttons column -->
-                        <div>
-                            <h4 style="margin-bottom: 0.85rem; font-size: 1rem; color: var(--text-secondary);">
-                                Assign New Value to <code>let dynamicVar = ...</code>:
-                            </h4>
-                            <div class="type-buttons-grid">
-                                <button class="btn-type-pick selected" data-type="number" data-val="42">42 (Number)</button>
-                                <button class="btn-type-pick" data-type="string" data-val="Hello Frontend!">"Hello" (String)</button>
-                                <button class="btn-type-pick" data-type="boolean" data-val="true">true (Boolean)</button>
-                                <button class="btn-type-pick" data-type="array" data-val="[10, 20, 30]">[10, 20, 30] (Array)</button>
-                                <button class="btn-type-pick" data-type="object" data-val="{ id: 1, name: 'Harish' }">{ id: 1 } (Object)</button>
-                                <button class="btn-type-pick" data-type="null" data-val="null">null (Null)</button>
-                                <button class="btn-type-pick" data-type="undefined" data-val="undefined">undefined</button>
-                                <button class="btn-type-pick" data-type="bigint" data-val="9007199254740991n">9007199254... (BigInt)</button>
-                                <button class="btn-type-pick" data-type="symbol" data-val="Symbol('id')">Symbol('id')</button>
-                            </div>
+                    <div class="quirk-detail-box">
+                        <div class="quirk-header">
+                            <h4 id="quirk-title" class="quirk-name">Expression: '5' + 2</h4>
+                            <span id="quirk-output-badge" class="quirk-badge">Evaluates to: "52"</span>
                         </div>
-
-                        <!-- Inspector Card Column -->
-                        <div class="type-inspector-card">
-                            <div class="inspector-row">
-                                <span class="inspector-label">Variable Identifier:</span>
-                                <span class="inspector-val"><code>let dynamicVar</code></span>
-                            </div>
-                            <div class="inspector-row">
-                                <span class="inspector-label">Assigned Value:</span>
-                                <span class="inspector-val" id="insp-val" style="color: var(--accent-js);">42</span>
-                            </div>
-                            <div class="inspector-row">
-                                <span class="inspector-label">typeof dynamicVar:</span>
-                                <span class="inspector-val"><span id="insp-typeof" class="tag-badge tag-info">number</span></span>
-                            </div>
-                            <div class="inspector-row">
-                                <span class="inspector-label">Memory Category:</span>
-                                <span class="inspector-val" id="insp-memory">Primitive (Stored on Stack)</span>
-                            </div>
-                            <div class="inspector-row">
-                                <span class="inspector-label">Pass Mechanism:</span>
-                                <span class="inspector-val" id="insp-pass">Passed by Value (Independent Copy)</span>
-                            </div>
-                            <div class="inspector-row">
-                                <span class="inspector-label">Quirk / Gotcha:</span>
-                                <span class="inspector-val" id="insp-quirk" style="font-size: 0.85rem; color: var(--text-muted);">Standard IEEE 754 float</span>
-                            </div>
+                        <div class="quirk-steps">
+                            <strong>Step-by-step Engine Execution:</strong>
+                            <ol id="quirk-steps-list">
+                                <li>The binary <code>+</code> operator sees at least one operand is of type <code>string</code> ('5').</li>
+                                <li>The engine coerces the second operand (number 2) into a string: <code>String(2) &rarr; "2"</code>.</li>
+                                <li>String concatenation occurs: <code>"5" + "2" &rarr; "52"</code>.</li>
+                            </ol>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Section 8: Interactive Lab 5: const Mutation Studio -->
-            <section id="mutation-lab" class="doc-section">
-                <div class="section-badge badge-accent">Interactive Playground #5</div>
-                <h2 class="section-heading">Lab 5: const Mutation Studio (Binding vs Value)</h2>
-                <p class="section-lead">
-                    A major misconception for frontend beginners: <strong><code>const</code> does NOT mean the value is immutable!</strong> It only prevents re-assigning the variable identifier. You can freely mutate the properties of objects and arrays declared with <code>const</code>!
-                </p>
+            <!-- ===============================================================
+                 INTERACTIVE LAB 5: TRUTHY VS FALSY MATRIX & CHECKER
+                 =============================================================== -->
+            <section id="lab-truthy-falsy" class="doc-section lab-section">
+                <div class="lab-header">
+                    <div class="lab-pill">Interactive Lab 5</div>
+                    <h2 class="lab-title">Truthy vs Falsy Live Checker & Matrix</h2>
+                    <p class="lab-desc">Type any value or click interactive chips to test whether JavaScript coerces it to <code>true</code> or <code>false</code> in conditionals.</p>
+                </div>
 
-                <div class="interactive-lab-container">
-                    <div class="lab-actions-row">
-                        <button id="btn-mutate-prop" class="btn-action btn-emerald">
-                            <span>➕</span> Mutate Object Property (<code>user.role = "Senior Dev"</code>)
-                        </button>
-                        <button id="btn-push-array" class="btn-action btn-emerald">
-                            <span>📦</span> Mutate Array (<code>user.skills.push("React")</code>)
-                        </button>
-                        <button id="btn-reassign-const" class="btn-action btn-danger">
-                            <span>💥</span> Attempt Reassignment (<code>user = {}</code>)
-                        </button>
-                        <button id="btn-reset-mutation" class="btn-action" style="margin-left: auto;">
-                            <span>🔄</span> Reset State
-                        </button>
+                <div class="truthy-tester-box">
+                    <div class="tester-input-wrapper">
+                        <label for="truthy-input" class="input-label">Test any value or expression:</label>
+                        <div class="input-group">
+                            <input type="text" id="truthy-input" value="[]" placeholder="e.g. 0, '', '0', false, {}, null">
+                            <button id="btn-test-truthy" class="btn btn-primary">Test Truthiness</button>
+                        </div>
                     </div>
 
-                    <div class="arena-split">
-                        <div class="code-viewer-panel">
-                            <div class="panel-titlebar">
-                                <span>Memory State Visualizer</span>
-                                <span class="tag-badge tag-yes">Heap Object Reference</span>
-                            </div>
-                            <pre class="code-content-box" id="mutation-object-display">// Live JSON State of const user:
-{
-  "name": "Harish",
-  "role": "Frontend Developer",
-  "skills": ["HTML", "CSS", "JavaScript"]
-}</pre>
+                    <div class="truthy-badge-display">
+                        <div id="truthy-indicator" class="indicator-badge badge-truthy">
+                            <span class="indicator-icon">✅</span>
+                            <span id="indicator-text" class="indicator-title">TRUTHY</span>
+                        </div>
+                        <p id="truthy-explanation" class="truthy-explanation-text">
+                            Empty array <code>[]</code> is an Object instance. All objects in JavaScript are TRUTHY!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="truthy-chips-matrix">
+                    <div class="matrix-column falsy-column">
+                        <h4 class="matrix-col-title">The 8 Official Falsy Values:</h4>
+                        <div class="matrix-chips">
+                            <button class="matrix-chip chip-falsy" data-val="false">false</button>
+                            <button class="matrix-chip chip-falsy" data-val="0">0</button>
+                            <button class="matrix-chip chip-falsy" data-val="-0">-0</button>
+                            <button class="matrix-chip chip-falsy" data-val="0n">0n</button>
+                            <button class="matrix-chip chip-falsy" data-val="''">"" (empty string)</button>
+                            <button class="matrix-chip chip-falsy" data-val="null">null</button>
+                            <button class="matrix-chip chip-falsy" data-val="undefined">undefined</button>
+                            <button class="matrix-chip chip-falsy" data-val="NaN">NaN</button>
+                        </div>
+                    </div>
+
+                    <div class="matrix-column truthy-column">
+                        <h4 class="matrix-col-title">Deceptive Values That Are TRUTHY:</h4>
+                        <div class="matrix-chips">
+                            <button class="matrix-chip chip-truthy" data-val="[]">[] (empty array)</button>
+                            <button class="matrix-chip chip-truthy" data-val="{}">{} (empty object)</button>
+                            <button class="matrix-chip chip-truthy" data-val="'0'">"0" (string)</button>
+                            <button class="matrix-chip chip-truthy" data-val="'false'">"false" (string)</button>
+                            <button class="matrix-chip chip-truthy" data-val="-1">-1 (negative)</button>
+                            <button class="matrix-chip chip-truthy" data-val="' '">" " (whitespace)</button>
+                            <button class="matrix-chip chip-truthy" data-val="Infinity">Infinity</button>
+                            <button class="matrix-chip chip-truthy" data-val="() => {}">() => {} (func)</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===============================================================
+                 INTERACTIVE LAB 6: NULLISH (??) & OPTIONAL CHAINING (?.)
+                 =============================================================== -->
+            <section id="lab-nullish-chaining" class="doc-section lab-section">
+                <div class="lab-header">
+                    <div class="lab-pill">Interactive Lab 6</div>
+                    <h2 class="lab-title">Nullish Coalescing (??) & Optional Chaining (?.) Studio</h2>
+                    <p class="lab-desc">See why modern web applications use <code>??</code> instead of <code>||</code> when dealing with numbers (0) and empty strings, and test safe nested object navigation.</p>
+                </div>
+
+                <div class="modern-tools-grid">
+                    <!-- Tool 1: ?? vs || -->
+                    <div class="modern-tool-card">
+                        <h3 class="tool-title">1. Nullish Coalescing (??) vs Logical OR (||)</h3>
+                        <p class="tool-desc">Select a test value for <code>userInput</code> to see how <code>||</code> vs <code>??</code> treat it:</p>
+
+                        <div class="modern-radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="nullish-val" value="0" checked>
+                                <span><code>0</code> (Speed setting)</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="nullish-val" value="''">
+                                <span><code>""</code> (Empty bio)</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="nullish-val" value="false">
+                                <span><code>false</code> (Mute flag)</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="nullish-val" value="null">
+                                <span><code>null</code> (Missing)</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="nullish-val" value="undefined">
+                                <span><code>undefined</code> (Unset)</span>
+                            </label>
                         </div>
 
-                        <div class="terminal-panel">
-                            <div class="panel-titlebar">
-                                <span>Runtime Evaluation Log</span>
-                                <span id="mutation-log-badge" class="tag-badge tag-info">READY</span>
+                        <div class="comparison-results">
+                            <div class="comp-box comp-or">
+                                <div class="comp-header">Logical OR (||)</div>
+                                <code class="comp-code">userInput || "Default"</code>
+                                <div id="res-or-val" class="comp-outcome">"Default" ⚠️</div>
+                                <span class="comp-caption">Falls back on ANY falsy value</span>
                             </div>
-                            <div class="terminal-output" id="mutation-terminal">
-                                <div class="terminal-line t-dim">
-                                    <span class="t-prompt">&gt;</span>
-                                    <span>const user = { ... } initialized. Memory pointer is locked.</span>
-                                </div>
+
+                            <div class="comp-box comp-nullish">
+                                <div class="comp-header">Nullish Coalescing (??)</div>
+                                <code class="comp-code">userInput ?? "Default"</code>
+                                <div id="res-nullish-val" class="comp-outcome">0 ✅</div>
+                                <span class="comp-caption">Falls back ONLY on null/undefined</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool 2: Optional Chaining (?.) -->
+                    <div class="modern-tool-card">
+                        <h3 class="tool-title">2. Safe Navigation with Optional Chaining (?.)</h3>
+                        <p class="tool-desc">Toggle nested properties in a mock API response to see how <code>?.</code> prevents runtime crashes:</p>
+
+                        <div class="toggle-switches">
+                            <label class="switch-control">
+                                <input type="checkbox" id="chk-has-user" checked>
+                                <span class="switch-slider"></span>
+                                <span class="switch-label">Include <code>user</code> object</span>
+                            </label>
+                            <label class="switch-control">
+                                <input type="checkbox" id="chk-has-profile" checked>
+                                <span class="switch-slider"></span>
+                                <span class="switch-label">Include <code>profile</code></span>
+                            </label>
+                            <label class="switch-control">
+                                <input type="checkbox" id="chk-has-avatar" checked>
+                                <span class="switch-slider"></span>
+                                <span class="switch-label">Include <code>avatarUrl</code></span>
+                            </label>
+                        </div>
+
+                        <div class="chaining-preview">
+                            <div class="chain-code">
+                                <code>response?.user?.profile?.avatarUrl ?? "default-avatar.png"</code>
+                            </div>
+                            <div class="chain-result">
+                                <span class="res-label">Evaluated Output:</span>
+                                <span id="chain-output" class="res-value">"https://harish.dev/pic.jpg"</span>
+                            </div>
+                            <div id="chain-status" class="chain-status status-safe">
+                                ✅ Safe traversal: No TypeError thrown.
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Section 9: Interactive Lab 6: Variable Naming Validator -->
-            <section id="validator-lab" class="doc-section">
-                <div class="section-badge badge-cyan">Interactive Playground #6</div>
-                <h2 class="section-heading">Lab 6: Variable Identifier Syntax & Rule Validator</h2>
-                <p class="section-lead">
-                    Test any variable identifier name to see if it conforms to JavaScript syntax specifications, avoids reserved keywords, and follows clean camelCase conventions:
-                </p>
+            <!-- Section: Top Frontend Interview Questions -->
+            <section id="interview-section" class="doc-section">
+                <div class="section-badge badge-rose">Technical Interview Prep</div>
+                <h2 class="section-heading">Top Frontend Interview Questions & Answers</h2>
+                <p class="section-lead">Master the essential questions asked by top engineering companies regarding JavaScript types, memory, and coercion.</p>
 
-                <div class="interactive-lab-container">
-                    <div class="validator-input-group">
-                        <input type="text" id="identifier-input" class="validator-input" placeholder="Enter identifier e.g. userName, $price, 2fast, function..." value="userName">
-                        <button id="btn-check-ident" class="btn-action btn-primary">Check Syntax</button>
-                    </div>
-
-                    <div id="validator-feedback" class="validator-result validator-valid">
-                        <span id="validator-icon">✅</span>
-                        <div id="validator-message">
-                            <strong>Valid Identifier!</strong> <code>userName</code> follows JavaScript syntax rules and standard <strong>lowerCamelCase</strong> convention.
+                <div class="interview-accordion">
+                    <!-- Q1 -->
+                    <details class="interview-item" open>
+                        <summary class="interview-question">
+                            <span class="q-icon">❓</span>
+                            <span>Q1: What is the fundamental difference between <code>null</code> and <code>undefined</code>?</span>
+                        </summary>
+                        <div class="interview-answer">
+                            <p><strong>Answer:</strong></p>
+                            <ul>
+                                <li><code>undefined</code> represents the automatic default state of a declared variable before any assignment (or a function with no return).</li>
+                                <li><code>null</code> is an intentional assignment representing an explicit empty reference or "no object value".</li>
+                                <li><code>typeof undefined</code> returns <code>"undefined"</code>, whereas <code>typeof null</code> returns <code>"object"</code> (a famous 1995 legacy bug).</li>
+                                <li>In loose equality, <code>null == undefined</code> is <code>true</code>. In strict equality, <code>null === undefined</code> is <code>false</code>.</li>
+                            </ul>
                         </div>
-                    </div>
+                    </details>
 
-                    <!-- Quick Suggestions Chips -->
-                    <div style="margin-top: 1.25rem; display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;">
-                        <span style="font-size: 0.85rem; color: var(--text-muted);">Try test examples:</span>
-                        <button class="nav-chip btn-preset-name" data-name="totalScore">totalScore</button>
-                        <button class="nav-chip btn-preset-name" data-name="$element">$element</button>
-                        <button class="nav-chip btn-preset-name" data-name="_privateKey">_privateKey</button>
-                        <button class="nav-chip btn-preset-name" data-name="2fast">2fast (Digit first)</button>
-                        <button class="nav-chip btn-preset-name" data-name="user-name">user-name (Hyphen)</button>
-                        <button class="nav-chip btn-preset-name" data-name="class">class (Reserved)</button>
-                        <button class="nav-chip btn-preset-name" data-name="API_KEY">API_KEY (Constant)</button>
-                    </div>
+                    <!-- Q2 -->
+                    <details class="interview-item">
+                        <summary class="interview-question">
+                            <span class="q-icon">❓</span>
+                            <span>Q2: Why does <code>0.1 + 0.2 !== 0.3</code> in JavaScript? How should you fix it?</span>
+                        </summary>
+                        <div class="interview-answer">
+                            <p><strong>Answer:</strong></p>
+                            <p>JavaScript represents numbers as IEEE 754 64-bit binary floating-point. In binary base-2, numbers like 0.1 and 0.2 are recurring repeating fractions (like 1/3 in decimal base-10). The resulting sum is <code>0.30000000000000004</code>.</p>
+                            <p><strong>Fix:</strong> Use <code>Number.EPSILON</code> for comparison, or round via <code>.toFixed()</code> or multiply to integer cents:</p>
+                            <div class="code-box">
+                                <pre><code>const areEqual = Math.abs((0.1 + 0.2) - 0.3) < Number.EPSILON; // true</code></pre>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- Q3 -->
+                    <details class="interview-item">
+                        <summary class="interview-question">
+                            <span class="q-icon">❓</span>
+                            <span>Q3: How does JavaScript evaluate the expression <code>[] == ![]</code>?</span>
+                        </summary>
+                        <div class="interview-answer">
+                            <p><strong>Answer:</strong> It evaluates to <code>true</code> via step-by-step coercion:</p>
+                            <ol>
+                                <li>Unary operator <code>!</code> has higher precedence than <code>==</code>. Since <code>[]</code> is an object, it is truthy. Thus <code>![]</code> becomes <code>false</code>.</li>
+                                <li>The expression becomes <code>[] == false</code>.</li>
+                                <li>Loose equality coerces boolean <code>false</code> to number <code>0</code>: <code>[] == 0</code>.</li>
+                                <li>Comparing an object (array) to a number coerces the array via <code>.toString()</code>: <code>[].toString() === ""</code>.</li>
+                                <li>Empty string <code>""</code> coerced to number becomes <code>0</code>.</li>
+                                <li>The expression is now <code>0 == 0</code>, which is <strong><code>true</code></strong>!</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <!-- Q4 -->
+                    <details class="interview-item">
+                        <summary class="interview-question">
+                            <span class="q-icon">❓</span>
+                            <span>Q4: What is the difference between Logical OR (<code>||</code>) and Nullish Coalescing (<code>??</code>)?</span>
+                        </summary>
+                        <div class="interview-answer">
+                            <p><strong>Answer:</strong></p>
+                            <ul>
+                                <li><code>||</code> falls back to the right operand on <strong>ANY falsy value</strong> (including <code>0</code>, <code>""</code>, and <code>false</code>). This often introduces bugs when valid settings like zero count or empty string get overwritten.</li>
+                                <li><code>??</code> falls back <strong>ONLY on nullish values</strong> (<code>null</code> or <code>undefined</code>). It correctly preserves <code>0</code>, <code>""</code>, and <code>false</code>.</li>
+                            </ul>
+                        </div>
+                    </details>
                 </div>
             </section>
 
-            <!-- Section 10: Golden Rules & Summary -->
+            <!-- Key Takeaways Section -->
             <section id="takeaways" class="doc-section">
-                <div class="section-badge badge-accent">Best Practices</div>
-                <h2 class="section-heading">Modern JavaScript Variable Golden Rule</h2>
-                
-                <div class="golden-rule-card">
-                    <span class="golden-icon">👑</span>
-                    <div class="golden-rule-text">
-                        <h3>The 1-2-3 Rule for Modern Variables</h3>
-                        <p>
-                            1. <strong>Default to <code>const</code></strong> for all declarations. It produces predictable code, prevents accidental mutations, and signals developer intent.<br>
-                            2. <strong>Use <code>let</code> only when re-assignment is needed</strong> (e.g., loop counters, accumulator sums, toggle flags).<br>
-                            3. <strong>Never use <code>var</code></strong> in modern code. It has no block scope, pollutes global scope, and introduces hoisting bugs.
-                        </p>
+                <div class="section-badge badge-accent">Review & Checklist</div>
+                <h2 class="section-heading">Key Takeaways for Day 20</h2>
+                <div class="takeaways-grid">
+                    <div class="takeaway-card">
+                        <span class="takeaway-num">01</span>
+                        <h4>8 Data Types</h4>
+                        <p>7 Primitives (string, number, bigint, boolean, undefined, null, symbol) stored in Stack; 1 Reference (object) stored in Heap.</p>
                     </div>
-                </div>
-
-                <div class="takeaways-list">
-                    <div class="takeaway-item">
-                        <span class="takeaway-bullet">✅</span>
-                        <div><strong>Block Scoping:</strong> <code>let</code> and <code>const</code> are bound to curly braces <code>{ }</code>. They do not leak into outer code blocks.</div>
+                    <div class="takeaway-card">
+                        <span class="takeaway-num">02</span>
+                        <h4>Stack vs Heap</h4>
+                        <p>Primitives are copied by value (immutable). Reference types are copied by pointer address (mutable).</p>
                     </div>
-                    <div class="takeaway-item">
-                        <span class="takeaway-bullet">✅</span>
-                        <div><strong>Temporal Dead Zone (TDZ):</strong> You cannot access <code>let</code> or <code>const</code> before their declaration line. Doing so throws a <code>ReferenceError</code>.</div>
+                    <div class="takeaway-card">
+                        <span class="takeaway-num">03</span>
+                        <h4>Strict Equality</h4>
+                        <p>Always default to <code>===</code> and <code>!==</code> to prevent unintended implicit type coercion bugs.</p>
                     </div>
-                    <div class="takeaway-item">
-                        <span class="takeaway-bullet">✅</span>
-                        <div><strong>const Mutability:</strong> <code>const</code> locks the variable binding, not the contents of arrays or objects. You can still modify properties!</div>
+                    <div class="takeaway-card">
+                        <span class="takeaway-num">04</span>
+                        <h4>Modern Operators</h4>
+                        <p>Use <code>??</code> for safe default fallbacks and <code>?.</code> for safe deep object navigation without crashes.</p>
                     </div>
-                    <div class="takeaway-item">
-                        <span class="takeaway-bullet">✅</span>
-                        <div><strong>Dynamic Typing:</strong> Variables can hold any data type at runtime. Always verify unexpected types with <code>typeof</code>.</div>
+                    <div class="takeaway-card">
+                        <span class="takeaway-num">05</span>
+                        <h4>The 8 Falsy Values</h4>
+                        <p>Remember: <code>false</code>, <code>0</code>, <code>-0</code>, <code>0n</code>, <code>""</code>, <code>null</code>, <code>undefined</code>, and <code>NaN</code>. All other values are truthy.</p>
+                    </div>
+                    <div class="takeaway-card">
+                        <span class="takeaway-num">06</span>
+                        <h4>Explicit Casting</h4>
+                        <p>Prefer readable explicit conversions like <code>Number(x)</code> and <code>Boolean(x)</code> over hidden coercion.</p>
                     </div>
                 </div>
             </section>
-
         </main>
 
         <!-- Footer -->
         <footer class="main-footer">
-            <p>Day 19 of 100 Days Frontend Challenge • Created by <strong>Harish (harish-0987)</strong></p>
-            <p class="footer-links">
-                <a href="https://github.com/harish-0987/DAY-19-OF-FRONTEND" target="_blank" rel="noopener noreferrer">GitHub Repository: harish-0987/DAY-19-OF-FRONTEND</a>
-            </p>
+            <div class="footer-content">
+                <p class="footer-title">Day 20 of 100 Days Frontend Challenge</p>
+                <p class="footer-subtitle">Crafted with precision by <strong>Harish (harish-0987)</strong></p>
+                <div class="footer-links">
+                    <a href="https://github.com/harish-0987/DAY-20-OF-FRONTEND" target="_blank" rel="noopener noreferrer" class="footer-link">
+                        GitHub Repository &rarr;
+                    </a>
+                </div>
+            </div>
         </footer>
     </div>
 
-    <!-- External JavaScript File -->
+    <!-- Script -->
     <script src="script.js"></script>
 </body>
 </html>
